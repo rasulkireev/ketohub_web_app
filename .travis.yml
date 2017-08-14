@@ -9,6 +9,8 @@ env:
 cache:
   directories:
     - travis_phantomjs
+notifications:
+  email: false
 before_install: |
   nvm install $NODE_VERSION
   # Make sure cached PhantomJS is up to date
