@@ -1,5 +1,5 @@
 sudo: false
-dist: jessie
+dist: trusty
 language: java
 jdk:
   # Install JDK8 for html5 validator.
