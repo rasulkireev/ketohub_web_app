@@ -1,0 +1,8 @@
+{
+    "preset": "google",
+    "fileExtensions": [".js", ".jscs"],
+    "excludeFiles": [
+      "app/bower_components/**"
+    ],
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+}
