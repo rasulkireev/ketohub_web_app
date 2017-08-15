@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-controller="ketoHubCtrl">
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
       <div class="navbar-header">
@@ -25,8 +25,22 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <p>KetoHub: coming soon</p>
+  <div class="container recipes">
+    <div class="panel panel-default" ng-repeat="(url, recipe) in recipes">
+      <div class="row">
+				<div class="col-xs-6 col-md-4">
+					<a ng-href="{{ url }}" target="_blank">
+						<img ng-src="{{ recipe.thumbnail }}" alt="{{ recipe.title }}" src="#" width="340">
+					</a>
+        </div>
+				<div class="col-xs-6 col-md-8">
+          <h2>{{ recipe.title }}</h2>
+					<a ng-href="{{ url }}" target="_blank">
+            <p>{{ url }}</p>
+          </a>
+        </div>
+      </div>
+    </div>
   </div> <!-- /container -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="app.js"></script>
