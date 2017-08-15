@@ -29,13 +29,13 @@
     <div class="panel panel-default" ng-repeat="(url, recipe) in recipes">
       <div class="row">
 				<div class="col-xs-6 col-md-4">
-					<a href="{{ url }}" target="_blank">
-						<img src="{{ recipe.thumbnail }}" width="340">
+					<a ng-href="{{ url }}" target="_blank">
+						<img ng-src="{{ recipe.thumbnail }}" alt="{{ recipe.title }}" src="#" width="340">
 					</a>
         </div>
 				<div class="col-xs-6 col-md-8">
           <h2>{{ recipe.title }}</h2>
-					<a href="{{ url }}" target="_blank">
+					<a ng-href="{{ url }}" target="_blank">
             <p>{{ url }}</p>
           </a>
         </div>
