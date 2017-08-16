@@ -29,20 +29,34 @@
     <div class="panel panel-default" ng-repeat="(url, recipe) in recipes">
       <div class="row">
 				<div class="col-xs-6 col-md-4">
-					<a ng-href="{{ url }}" target="_blank">
+					<a ng-href="{{ recipe.url }}" target="_blank">
 						<img ng-src="{{ recipe.thumbnail }}" alt="{{ recipe.title }}" src="#" width="340" class="img-responsive">
 					</a>
         </div>
 				<div class="col-xs-6 col-md-8">
           <h2>{{ recipe.title }}</h2>
-					<a ng-href="{{ url }}" target="_blank">
-            <p>{{ url }}</p>
+					<a ng-href="{{ recipe.url }}" target="_blank">
+            <p>{{ recipe.url }}</p>
           </a>
         </div>
       </div>
     </div>
   </div> <!-- /container -->
   <script src="bower_components/angular/angular.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+  <script>
+		var config = {
+			apiKey: "AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw",
+			authDomain: "ketohub.firebaseapp.com",
+			databaseURL: "https://ketohub.firebaseio.com",
+			projectId: "ketohub",
+			storageBucket: "ketohub.appspot.com",
+			messagingSenderId: "1012588055483"
+		};
+		firebase.initializeApp(config);
+		var ref = firebase.database().ref();
+  </script>
   <script src="app.js"></script>
 </body>
 </html>
