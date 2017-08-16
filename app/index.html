@@ -26,11 +26,11 @@
     </div>
   </nav>
   <div class="container recipes">
-    <div class="panel panel-default" ng-repeat="(url, recipe) in recipes">
+    <div class="panel panel-default" ng-repeat="(key, recipe) in recipes">
       <div class="row">
 				<div class="col-xs-6 col-md-4">
 					<a ng-href="{{ recipe.url }}" target="_blank">
-						<img ng-src="{{ recipe.thumbnail }}" alt="{{ recipe.title }}" src="#" width="340" class="img-responsive">
+						<img ng-src="https://storage.googleapis.com/ketohub/{{ key }}_thumbnail.jpg" alt="{{ recipe.title }}" src="#" class="img-responsive">
 					</a>
         </div>
 				<div class="col-xs-6 col-md-8">
