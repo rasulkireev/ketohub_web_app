@@ -10,8 +10,9 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <script src="bower_components/angular/angular.js"></script>
 </head>
-<body ng-controller="ketoHubCtrl">
+<body ng-controller="ketoHubCtrl" ng-cloak>
   <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
       <div class="navbar-header">
@@ -42,7 +43,6 @@
       </div>
     </div>
   </div> <!-- /container -->
-  <script src="bower_components/angular/angular.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
   <script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
   <script>
