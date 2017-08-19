@@ -27,7 +27,7 @@
     </div>
   </nav>
   <div class="container recipes">
-    <div class="panel panel-default" ng-repeat="(key, recipe) in recipes">
+    <div class="well" ng-repeat="(key, recipe) in recipes">
       <div class="row">
 				<div class="col-xs-6 col-md-4">
 					<a ng-href="{{ recipe.url }}" target="_blank">
@@ -37,7 +37,7 @@
 				<div class="col-xs-6 col-md-8">
           <h2>{{ recipe.title }}</h2>
 					<a ng-href="{{ recipe.url }}" target="_blank">
-            <p>{{ recipe.url }}</p>
+            <p>{{ recipe.url | rootDomain }}</p>
           </a>
         </div>
       </div>
