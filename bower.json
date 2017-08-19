@@ -1,9 +1,5 @@
 {
   "name": "KetoHub",
   "homepage": "https://ketohub.io",
-  "version": "0.0.0",
-  "dependencies": {
-    "angular": "~1.6.4",
-    "bootstrap": "^3.3.7"
-  }
+  "version": "0.0.0"
 }
