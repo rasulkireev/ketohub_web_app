@@ -9,13 +9,9 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     files: [
-      'bower_components/angular/angular.js',
+      'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/d3/d3.js',
       '*.js',
-      'components/**/*.js',
-      'services/**/*.js',
-      'directives/**/*.js'
     ],
 
     exclude: [
@@ -23,9 +19,6 @@ module.exports = function(config) {
 
     preprocessors: {
       'app.js': ['coverage'],
-      'components/**/*.js': ['coverage'],
-      'services/**/*.js': ['coverage'],
-      'directives/**/*.js': ['coverage']
     },
 
     reporters: ['progress', 'coverage'],
