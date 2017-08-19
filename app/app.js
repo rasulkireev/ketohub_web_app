@@ -2,8 +2,14 @@
 
 var ketoHubApp = angular.module('ketoHubApp', ['firebase']);
 
-ketoHubApp.controller('ketoHubCtrl',
-  function($scope, $firebaseArray, $window) {
+ketoHubApp
+.constant('buttonActiveClass', 'btn-primary')
+.constant('recipesPerPage', 2)
+.controller('ketoHubCtrl',
+  function($scope, $firebaseArray, $window, buttonActiveClass, recipesPerPage) {
+    $scope.currentPage = 1;
+    $scope.pageSize = recipesPerPage;
+
     var ref = $window.firebase.database().ref();
     $scope.recipes =  $firebaseArray(ref.child('recipes'));
 
@@ -17,10 +23,19 @@ ketoHubApp.controller('ketoHubCtrl',
             '_thumbnail.jpg';
       }
     });
+
+    $scope.selectPage = function(newPage) {
+      $scope.currentPage = newPage;
+    };
+
+    $scope.getPageClass = function(page) {
+      return $scope.currentPage == page ? buttonActiveClass : '';
+    };
   }
 );
 
-ketoHubApp.filter('rootDomain', function() {
+ketoHubApp
+.filter('rootDomain', function() {
   var extractHostname = function(url) {
     var hostname;
 
@@ -51,4 +66,37 @@ ketoHubApp.filter('rootDomain', function() {
     }
     return domain;
   };
+})
+.filter('range', function($filter) {
+  return function(data, page, size) {
+    if (!angular.isArray(data) ||
+        !angular.isNumber(page) ||
+        !angular.isNumber(size)) {
+      return data;
+    }
+    // TODO(mtlynch): For some reason, data.slice returns an empty array even
+    // though we can iterate over it, so we use this hacky workaround. Clean
+    // this up.
+    var startIndex = (page - 1) * size;
+    var endIndex = Math.min(startIndex + size, data.length);
+    var result = [];
+    for (var i = startIndex; i < endIndex; i++) {
+      result.push(data[i]);
+    }
+    return result;
+  };
+})
+.filter('pageCount', function() {
+  return function(data, size) {
+    if (angular.isArray(data)) {
+      var result = [];
+      for (var i = 0; i < Math.ceil(data.length / size); i++) {
+        result.push(i);
+      }
+      return result;
+    } else {
+      return data;
+    }
+  };
 });
+
