@@ -5,10 +5,15 @@ var ketoHubApp = angular.module('ketoHubApp', ['firebase']);
 ketoHubApp
 .constant('buttonActiveClass', 'btn-primary')
 .constant('recipesPerPage', 2)
+.constant('recipeCategories',
+    ['breakfast', 'entree', 'side', 'dessert', 'snack', 'beverage',
+    'condiment'])
 .controller('ketoHubCtrl',
-  function($scope, $firebaseArray, $window, buttonActiveClass, recipesPerPage) {
+  function($scope, $firebaseArray, $window, buttonActiveClass, recipesPerPage,
+    recipeCategories) {
     $scope.currentPage = 1;
     $scope.pageSize = recipesPerPage;
+    $scope.categories = recipeCategories;
 
     var ref = $window.firebase.database().ref();
     $scope.recipes =  $firebaseArray(ref.child('recipes'));
@@ -30,6 +35,24 @@ ketoHubApp
 
     $scope.getPageClass = function(page) {
       return $scope.currentPage == page ? buttonActiveClass : '';
+    };
+
+    var currentCategory = null;
+    $scope.selectCategory = function(newCategory) {
+      $scope.selectedPage = 1;
+      if (currentCategory != newCategory) {
+        currentCategory = newCategory;
+      } else {
+        currentCategory = null;
+      }
+    };
+
+    $scope.getCategoryClass = function(category) {
+      return currentCategory == category ? buttonActiveClass : '';
+    };
+
+    $scope.categoryFilterFn = function(recipe) {
+      return (currentCategory == null) || (recipe.category == currentCategory);
     };
   }
 );
@@ -98,5 +121,9 @@ ketoHubApp
       return data;
     }
   };
+})
+.filter('capitalize', function() {
+  return function(word) {
+    return word.charAt(0).toUpperCase() + word.substr(1);
+  };
 });
-
