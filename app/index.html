@@ -41,8 +41,10 @@
     })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
     ga('create', 'UA-105245506-1', 'auto');
+    ga('require', 'outboundLinkTracker');
     ga('send', 'pageview');
   </script>
+  <script async src="node_modules/autotrack/autotrack.js"></script>
   <!-- End Google Analytics -->
 </head>
 <body ng-controller="ketoHubCtrl" ng-cloak>
