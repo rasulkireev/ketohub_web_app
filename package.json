@@ -3,6 +3,9 @@
   "homepage": "https://ketohub.io",
   "version": "0.1.0",
   "private": true,
+  "dependencies": {
+    "autotrack": "^2.4.1"
+  },
   "devDependencies": {
     "bower": "^1.8.0",
     "coveralls": "^2.13.1",
