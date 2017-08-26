@@ -28,6 +28,9 @@ install:
   - npm config set spin false
   - npm install
   - pip install --user html5validator
+  # Unclear why we have to install this separately, since it's in package.json,
+  # but Travis fails without it.
+  - npm install -g cssbeautify-cli
 script: |
   ./build
 deploy:
