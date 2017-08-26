@@ -10,7 +10,7 @@ npm run travis
 
 html5validator \
   --root ./app \
-  --blacklist bower_components \
+  --blacklist bower_components views \
   --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
               'apple-touch-icon' \
   --log INFO

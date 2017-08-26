@@ -47,61 +47,12 @@
   <script async src="third_party/autotrack.custom.js"></script>
   <!-- End Google Analytics -->
 </head>
-<body ng-controller="ketoHubCtrl" ng-cloak>
+<body>
   <div class="navbar">
     <a class="navbar-brand" href="#">KetoHub</a>
   </div>
-  <div class="container">
-    <div class="btn-group-lg text-center"
-      role="group" aria-label="Recipe categories">
-      <button type="button"
-              ng-repeat="item in categories"
-              ng-click="selectCategory(item)"
-              class="btn btn-secondary recipe-categories"
-              ng-class="getCategoryClass(item)">
-        {{ item | capitalize }}s
-      </button>
-    </div>
-  </div>
-  <p>&nbsp;</p>
-  <div class="container recipes">
-    <div
-      class="well"
-      ng-repeat="(key, recipe) in recipes | filter:categoryFilterFn | range:currentPage:pageSize">
-      <div class="row">
-        <div class="col-xs-6 col-md-4">
-          <a ng-href="{{ recipe.url }}" target="_blank">
-            <img ng-src="{{ recipe.thumbnailUrl }}" alt="{{ recipe.title }}" src="#" class="img-responsive">
-          </a>
-        </div>
-        <div class="col-xs-6 col-md-8">
-          <h2>{{ recipe.title }}</h2>
-          <a ng-href="{{ recipe.url }}" target="_blank">
-            <p>{{ recipe.url | rootDomain }}</p>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="pull-right btn-group">
-      <a ng-repeat="page in recipes | filter:categoryFilterFn | pageCount:pageSize"
-         ng-click="selectPage($index + 1)" class="btn btn-default"
-         ng-class="getPageClass($index + 1)">
-         {{ $index + 1 }}
-      </a>
-    </div>
-  </div> <!-- /container -->
-  <!-- Begin MailChimp Signup Form -->
-  <div id="mc_embed_signup">
-    <form action="//mtlynch.us16.list-manage.com/subscribe/post?u=827c54a25e4f8abbb83d878c4&amp;id=c6ee22ca72" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-      <div id="mc_embed_signup_scroll">
-        <label for="mce-EMAIL">KetoHub is brand new!<br/>Subscribe to our newsletter to find out when we add new features.</label>
-        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_827c54a25e4f8abbb83d878c4_c6ee22ca72" tabindex="-1" value=""></div>
-        <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-      </div>
-    </form>
-  </div>
-  <!--End mc_embed_signup-->
+  <ng-include src="'views/recipeList.html'"></ng-include>
+  <ng-include src="'views/mailingList.html'"></ng-include>
   <hr>
   <div class="container">
     <p class="text-muted text-center">
