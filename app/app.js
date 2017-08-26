@@ -39,7 +39,7 @@ ketoHubApp
 
     var currentCategory = null;
     $scope.selectCategory = function(newCategory) {
-      $scope.selectedPage = 1;
+      $scope.currentPage = 1;
       if (currentCategory != newCategory) {
         currentCategory = newCategory;
       } else {
