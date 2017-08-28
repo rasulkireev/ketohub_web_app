@@ -32,7 +32,8 @@ install:
   # but Travis fails without it.
   - npm install -g cssbeautify-cli
 script: |
-  ./build
+  - ./build
+  - cat coverage/*/lcov.info ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: firebase
   token:
