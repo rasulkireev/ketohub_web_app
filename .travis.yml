@@ -31,7 +31,7 @@ install:
   # Unclear why we have to install this separately, since it's in package.json,
   # but Travis fails without it.
   - npm install -g cssbeautify-cli
-script: |
+script:
   - ./build
   - cat coverage/*/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
