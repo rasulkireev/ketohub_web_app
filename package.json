@@ -7,7 +7,6 @@
     "angular": "^1.6.6",
     "angular-mocks": "^1.6.6",
     "angularfire": "^2.3.0",
-    "bower": "^1.8.0",
     "coveralls": "^2.13.1",
     "cssbeautify-cli": "^0.5.3",
     "firebase": "^4.3.0",
@@ -23,9 +22,7 @@
     "phantomjs-prebuilt ": "^2.1.14"
   },
   "scripts": {
-    "postinstall": "bower install",
     "update-deps": "npm update",
-    "postupdate-deps": "bower update",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1 ./app",
     "pretest": "npm install",
