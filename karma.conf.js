@@ -9,23 +9,18 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/d3/d3.js',
-      '*.js',
-      'components/**/*.js',
-      'services/**/*.js',
-      'directives/**/*.js'
+      '../node_modules/angular/angular.js',
+      '../node_modules/angular-mocks/angular-mocks.js',
+      '../node_modules/angularfire/dist/angularfire.js',
+      '../node_modules/firebase/firebase.js',
+      '*.js'
     ],
 
     exclude: [
     ],
 
     preprocessors: {
-      'app.js': ['coverage'],
-      'components/**/*.js': ['coverage'],
-      'services/**/*.js': ['coverage'],
-      'directives/**/*.js': ['coverage']
+      'app.js': ['coverage']
     },
 
     reporters: ['progress', 'coverage'],
