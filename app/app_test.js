@@ -1,6 +1,30 @@
 'use strict';
 
 describe('ketoHub controller', function() {
+  var mockScope;
+  var mockFirebaseArray;
+  var mockWindow;
+
+  beforeEach(angular.mock.module('ketoHubApp'));
+
+  beforeEach(angular.mock.inject(function($controller, $rootScope, $firebaseArray, $window) {
+    mockScope = $rootScope.$new();
+    mockFirebaseArray = $firebaseArray;
+    mockWindow = $window;
+    $controller("ketoHubCtrl", {
+      $scope: mockScope,
+      $firebaseArray: mockFirebaseArray,
+      $window: mockWindow
+    });
+  }));
+
+
+  it('should capitalize lowercase strings', function() {
+    expect(1).toBe(1);
+  });
+});
+
+describe('filter tests', function() {
   var rootDomain;
   var capitalize;
 
