@@ -23,7 +23,11 @@
           </a>
         </div>
         <div class="col-xs-6 col-md-8">
-          <h2>{{ recipe.title }}</h2>
+          <h2>
+            <a ng-href="{{ recipe.url }}" target="_blank">
+              {{ recipe.title }}
+            </a>
+          </h2>
           <a ng-href="{{ recipe.url }}" target="_blank">
             <p>{{ recipe.url | rootDomain }}</p>
           </a>
