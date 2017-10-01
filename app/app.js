@@ -4,7 +4,7 @@ var ketoHubApp = angular.module('ketoHubApp', ['firebase']);
 
 ketoHubApp
 .constant('buttonActiveClass', 'btn-primary')
-.constant('recipesPerPage', 2)
+.constant('recipesPerPage', 10)
 .constant('recipeCategories',
     ['breakfast', 'entree', 'side', 'dessert', 'snack', 'beverage',
     'condiment'])
