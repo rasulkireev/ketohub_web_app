@@ -21,17 +21,17 @@
       ng-repeat="(key, recipe) in recipes | filter:categoryFilterFn | range:currentPage:pageSize">
       <div class="row">
         <div class="col-xs-6 col-md-4">
-          <a ng-href="{{ recipe.url }}" target="_blank">
+          <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
             <img ng-src="{{ recipe.thumbnailUrl }}" alt="{{ recipe.title }}" src="#" class="img-responsive">
           </a>
         </div>
         <div class="col-xs-6 col-md-8">
           <h2>
-            <a ng-href="{{ recipe.url }}" target="_blank">
+            <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
               {{ recipe.title }}
             </a>
           </h2>
-          <a ng-href="{{ recipe.url }}" target="_blank">
+          <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
             <p>{{ recipe.url | rootDomain }}</p>
           </a>
         </div>
