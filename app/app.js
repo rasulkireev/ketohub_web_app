@@ -1,19 +1,21 @@
 'use strict';
 
-var ketoHubApp = angular.module('ketoHubApp', ['firebase']);
+var ketoHubApp = angular.module('ketoHubApp', ['firebase', 'ui.bootstrap']);
 
 ketoHubApp
 .constant('buttonActiveClass', 'btn-primary')
 .constant('recipesPerPage', 10)
+.constant('maxPageButtons', 6)
 .constant('recipeCategories',
     ['breakfast', 'entree', 'side', 'dessert', 'snack', 'beverage',
     'condiment'])
 .controller('ketoHubCtrl',
   function($scope, $firebaseArray, $window, buttonActiveClass, recipesPerPage,
-    recipeCategories) {
+    maxPageButtons, recipeCategories) {
     $scope.currentPage = 1;
     $scope.pageSize = recipesPerPage;
     $scope.categories = recipeCategories;
+    $scope.maxPageButtons = maxPageButtons;
 
     var ref = $window.firebase.database().ref();
     $scope.recipes =  $firebaseArray(ref.child('recipes'));
@@ -28,14 +30,6 @@ ketoHubApp
             '_thumbnail.jpg';
       }
     });
-
-    $scope.selectPage = function(newPage) {
-      $scope.currentPage = newPage;
-    };
-
-    $scope.getPageClass = function(page) {
-      return $scope.currentPage == page ? buttonActiveClass : '';
-    };
 
     var currentCategory = null;
     $scope.selectCategory = function(newCategory) {
@@ -107,19 +101,6 @@ ketoHubApp
       result.push(data[i]);
     }
     return result;
-  };
-})
-.filter('pageCount', function() {
-  return function(data, size) {
-    if (angular.isArray(data)) {
-      var result = [];
-      for (var i = 0; i < Math.ceil(data.length / size); i++) {
-        result.push(i);
-      }
-      return result;
-    } else {
-      return data;
-    }
   };
 })
 .filter('capitalize', function() {
