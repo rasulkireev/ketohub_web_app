@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Sat Feb 18 2017 09:33:16 GMT-0500 (EST)
-
 module.exports = function(config) {
   config.set({
 
@@ -13,6 +10,7 @@ module.exports = function(config) {
       '../node_modules/angular-mocks/angular-mocks.js',
       '../node_modules/angularfire/dist/angularfire.js',
       '../node_modules/firebase/firebase.js',
+      '../node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
       '*.js'
     ],
 

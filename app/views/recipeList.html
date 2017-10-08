@@ -11,10 +11,14 @@
       </button>
     </div>
   </div>
-  <p>&nbsp;</p>
-  <ng-include src="'views/pagination.html'"></ng-include>
-  <p>&nbsp;</p>
-  <p>&nbsp;</p>
+  <pagination
+    ng-model="currentPage"
+    total-items="(recipes | filter:categoryFilterFn).length"
+    class="pagination-sm"
+    items-per-page="pageSize"
+    max-size="maxPageButtons"
+    boundary-links="true">
+  </pagination>
   <div class="container recipes">
     <div
       class="well"
@@ -38,5 +42,12 @@
       </div>
     </div>
   </div>
-  <ng-include src="'views/pagination.html'"></ng-include>
+  <pagination
+    ng-model="currentPage"
+    total-items="(recipes | filter:categoryFilterFn).length"
+    class="pagination-sm"
+    items-per-page="pageSize"
+    max-size="maxPageButtons"
+    boundary-links="true">
+  </pagination>
 </div>
