@@ -4,6 +4,8 @@ language: java
 jdk:
   # Install JDK8 for html5 validator.
   - oraclejdk8
+env:
+  - NODE_VERSION="6.11.2"
 notifications:
   email: false
 before_install:
