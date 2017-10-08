@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Sat Feb 18 2017 09:33:16 GMT-0500 (EST)
-
 module.exports = function(config) {
   config.set({
 
@@ -38,7 +35,14 @@ module.exports = function(config) {
 
     autoWatch: false,
 
-    browsers: ['PhantomJS2'],
+    browsers: ['Chromium_no_sandbox'],
+
+    customLaunchers: {
+      Chromium_no_sandbox: {
+        base: 'Chromium',
+        flags: ['--no-sandbox']
+      }
+    },
 
     concurrency: Infinity
   });
