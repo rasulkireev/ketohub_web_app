@@ -18,7 +18,7 @@ ketoHubApp
     $scope.maxPageButtons = maxPageButtons;
 
     var ref = $window.firebase.database().ref();
-    $scope.recipes =  $firebaseArray(ref.child('recipes'));
+    $scope.recipes = $firebaseArray(ref.child('recipes'));
 
     $scope.recipes.$loaded(function() {
       // Add thumbnail attribute to each recipe.
@@ -73,6 +73,9 @@ ketoHubApp
   };
 
   return function(url) {
+    if (!url) {
+      return;
+    }
     var domain = extractHostname(url);
     var domainParts = domain.split('.');
     var domainsPartsLength = domainParts.length;
@@ -82,6 +85,34 @@ ketoHubApp
                domainParts[domainsPartsLength - 1];
     }
     return domain;
+  };
+})
+.filter('search', function() {
+  return function(recipes, keywords) {
+    if (!keywords) {
+      return recipes;
+    }
+    var results = [];
+
+    var matchesRecipe = function(recipe, keywords) {
+      var words = recipe.title.toLowerCase();
+      angular.forEach(recipe.ingredients, function(ingredient) {
+        words += ingredient.toLowerCase();
+      });
+      for (var i = 0; i < keywords.length; i++) {
+        if (words.indexOf(keywords[i].toLowerCase()) === -1) {
+          return false;
+        }
+      }
+      return true;
+    };
+
+    angular.forEach(recipes, function(recipe) {
+      if (matchesRecipe(recipe, keywords.split(/\s+/))) {
+        results.push(recipe);
+      }
+    });
+    return results;
   };
 })
 .filter('range', function($filter) {
