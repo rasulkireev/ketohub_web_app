@@ -11,9 +11,13 @@
       </button>
     </div>
   </div>
+  <div class="form-group">
+    <label for="keywords">Search:</label>
+    <input type="text" class="form-control" ng-model="keywords">
+  </div>
   <pagination
     ng-model="currentPage"
-    total-items="(recipes | filter:categoryFilterFn).length"
+    total-items="(recipes | filter:categoryFilterFn | search:keywords).length"
     class="pagination-sm"
     items-per-page="pageSize"
     max-size="maxPageButtons"
@@ -22,7 +26,7 @@
   <div class="container recipes">
     <div
       class="well"
-      ng-repeat="(key, recipe) in recipes | filter:categoryFilterFn | range:currentPage:pageSize">
+      ng-repeat="recipe in recipes | filter:categoryFilterFn | search:keywords | range:currentPage:pageSize">
       <div class="row">
         <div class="col-xs-6 col-md-4">
           <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
@@ -44,7 +48,7 @@
   </div>
   <pagination
     ng-model="currentPage"
-    total-items="(recipes | filter:categoryFilterFn).length"
+    total-items="(recipes | filter:categoryFilterFn | search:keywords).length"
     class="pagination-sm"
     items-per-page="pageSize"
     max-size="maxPageButtons"
