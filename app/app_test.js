@@ -3,12 +3,14 @@
 describe('ketoHub controller', function() {
   var rootDomain;
   var capitalize;
+  var search;
 
   beforeEach(angular.mock.module('ketoHubApp'));
 
   beforeEach(angular.mock.inject(function($filter) {
     capitalize = $filter('capitalize');
     rootDomain = $filter('rootDomain');
+    search = $filter('search');
   }));
 
   it('should capitalize lowercase strings', function() {
@@ -44,5 +46,33 @@ describe('ketoHub controller', function() {
 
   it('should remove everything from URL', function() {
     expect(rootDomain('https://www.foo.com:443/bar?baz=1#z')).toBe('foo.com');
+  });
+
+  it('should match recipes with keyword in title', function() {
+    expect(
+        search([{'title': 'the foo recipe', 'ingredients': []}], 'foo').length)
+      .toBe(1);
+  });
+
+  it('should match recipes with keyword in ingredients', function() {
+    expect(
+        search([
+          {
+            'title': 'the bar recipe',
+            'ingredients': ['baz', 'the foo ingredient']
+          }
+        ], 'foo').length)
+      .toBe(1);
+  });
+
+  it('should not match recipes that do not contain keyword', function() {
+    expect(
+        search([
+          {
+            'title': 'the bar recipe',
+            'ingredients': ['baz', 'bam']
+          }
+        ], 'foo').length)
+      .toBe(0);
   });
 });
