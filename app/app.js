@@ -110,7 +110,7 @@ ketoHubApp
     angular.forEach(recipes, function(recipe) {
       if (matchesRecipe(recipe, keywords.split(/\s+/))) {
         results.push(recipe);
-      };
+      }
     });
     return results;
   };
