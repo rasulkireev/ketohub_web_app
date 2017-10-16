@@ -18,7 +18,7 @@ ketoHubApp
     $scope.maxPageButtons = maxPageButtons;
 
     var ref = $window.firebase.database().ref();
-    $scope.recipes = $firebaseArray(ref.child('recipes'));
+    $scope.recipes = $firebaseArray(ref.child('recipes').orderByChild('title'));
 
     $scope.recipes.$loaded(function() {
       // Add thumbnail attribute to each recipe.
