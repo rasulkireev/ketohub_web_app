@@ -15,6 +15,9 @@
     <label for="keywords">Search:</label>
     <input type="text" class="form-control" ng-model="keywords">
   </div>
+  <div class=container" ng-show="keywords">
+    <p>Found {{ (recipes | filter:categoryFilterFn | search:keywords).length }} matching recipes</p>
+  </div>
   <pagination
     ng-model="currentPage"
     total-items="(recipes | filter:categoryFilterFn | search:keywords).length"
