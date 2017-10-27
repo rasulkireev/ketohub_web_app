@@ -26,7 +26,7 @@
   <div class="container recipes">
     <div
       class="well"
-      ng-repeat="recipe in recipes | filter:categoryFilterFn | search:keywords | range:currentPage:pageSize">
+      ng-repeat="recipe in recipes | filter:categoryFilterFn | orderBy:'-publishedTime' | search:keywords | range:currentPage:pageSize">
       <div class="row">
         <div class="col-xs-6 col-md-4">
           <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
