@@ -1,6 +1,7 @@
 'use strict';
 
 describe('ketoHub controller', function() {
+  var timeSince;
   var rootDomain;
   var capitalize;
   var search;
@@ -8,8 +9,9 @@ describe('ketoHub controller', function() {
   beforeEach(angular.mock.module('ketoHubApp'));
 
   beforeEach(angular.mock.inject(function($filter) {
-    capitalize = $filter('capitalize');
+    timeSince = $filter('timeSince');
     rootDomain = $filter('rootDomain');
+    capitalize = $filter('capitalize');
     search = $filter('search');
   }));
 
@@ -23,6 +25,37 @@ describe('ketoHub controller', function() {
 
   it('should leave capitalized strings capitalized', function() {
     expect(capitalize('Welcome to KetoHub')).toBe('Welcome to KetoHub');
+  });
+
+  it('should use a floor of 1m', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-12-31T23:59:59+00:00')).toBe('1 minute');
+  });
+  it('should round to the nearest value', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-12-31T23:25:31+00:00')).toBe('34 minutes');
+    expect(timeSince('2009-12-31T23:25:30+00:00')).toBe('35 minutes');
+
+  });
+  it('should use minutes for values less than 60 minutes', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-12-31T23:00:31+00:00')).toBe('59 minutes');
+    expect(timeSince('2009-12-31T23:00:30+00:00')).toBe('1 hour');
+  });
+  it('should use hours for values less than 24 hours', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-12-31T00:30:01+00:00')).toBe('23 hours');
+    expect(timeSince('2009-12-31T00:30:00+00:00')).toBe('1 day');
+  });
+  it('should use days for values less than 90 days', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-10-04T00:00:00+00:00')).toBe('89 days');
+    expect(timeSince('2009-10-03T11:59:59+00:00')).toBe('3 months');
+  });
+  it('should use months for values less than 12 months', function() {
+    jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
+    expect(timeSince('2009-01-25T00:00:00+00:00')).toBe('11 months');
+    expect(timeSince('2009-01-04T00:00:00+00:00')).toBe('1 year');
   });
 
   it('should remove protocol prefix from URL', function() {
