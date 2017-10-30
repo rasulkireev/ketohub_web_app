@@ -42,9 +42,7 @@
               {{ recipe.title }}
             </a>
           </h2>
-          <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">
-            <p>{{ recipe.url | rootDomain }}</p>
-          </a>
+          <p>Published {{ recipe.publishedTime | timeSince }} ago on <a ng-href="{{ recipe.url }}" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a></p>
         </div>
       </div>
     </div>
