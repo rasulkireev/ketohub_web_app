@@ -1,6 +1,4 @@
-'use strict';
-
-var ketoHubApp = angular.module('ketoHubApp', ['firebase', 'ui.bootstrap']);
+let ketoHubApp = angular.module('ketoHubApp', ['firebase', 'ui.bootstrap']);
 
 ketoHubApp
 .constant('buttonActiveClass', 'btn-primary')
@@ -17,13 +15,13 @@ ketoHubApp
     $scope.categories = recipeCategories;
     $scope.maxPageButtons = maxPageButtons;
 
-    var ref = $window.firebase.database().ref();
+    let ref = $window.firebase.database().ref();
     $scope.recipes = $firebaseArray(ref.child('recipes'));
 
     $scope.recipes.$loaded(function() {
       // Add thumbnail attribute to each recipe.
-      for (var i = 0; i < $scope.recipes.length; i++) {
-        var recipe = $scope.recipes[i];
+      for (let i = 0; i < $scope.recipes.length; i++) {
+        let recipe = $scope.recipes[i];
         recipe.thumbnailUrl =
             'https://storage.googleapis.com/ketohub/' +
             recipe.$id +
@@ -31,7 +29,7 @@ ketoHubApp
       }
     });
 
-    var currentCategory = null;
+    let currentCategory = null;
     $scope.selectCategory = function(newCategory) {
       $scope.currentPage = 1;
       if (currentCategory != newCategory) {
@@ -54,18 +52,18 @@ ketoHubApp
 ketoHubApp
 .filter('timeSince', function() {
   return function(startTimeStr) {
-    var startTime = new Date(startTimeStr);
-    var now = new Date();
-    var milliseconds = now - startTime;
-    var seconds = milliseconds / 1000;
-    var minutes = seconds / 60;
-    var hours = minutes / 60;
-    var days = hours / 24;
-    var months = days / (365 / 12);
-    var years = days / 365;
+    const startTime = new Date(startTimeStr);
+    const now = new Date();
+    const milliseconds = now - startTime;
+    const seconds = milliseconds / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+    const months = days / (365 / 12);
+    const years = days / 365;
 
-    var interval;
-    var units;
+    let interval;
+    let units;
 
     // The interval calculation is not precise and does not account for things
     // like DST or leap years.
@@ -102,8 +100,8 @@ ketoHubApp
   };
 })
 .filter('rootDomain', function() {
-  var extractHostname = function(url) {
-    var hostname;
+  const extractHostname = function(url) {
+    let hostname;
 
     // Remove protocol, and get hostname.
     if (url.indexOf('://') > -1) {
@@ -125,9 +123,9 @@ ketoHubApp
     if (!url) {
       return;
     }
-    var domain = extractHostname(url);
-    var domainParts = domain.split('.');
-    var domainsPartsLength = domainParts.length;
+    let domain = extractHostname(url);
+    const domainParts = domain.split('.');
+    const domainsPartsLength = domainParts.length;
 
     if (domainsPartsLength > 2) {
       domain = domainParts[domainsPartsLength - 2] + '.' +
@@ -141,14 +139,14 @@ ketoHubApp
     if (!keywords) {
       return recipes;
     }
-    var results = [];
+    let results = [];
 
-    var matchesRecipe = function(recipe, keywords) {
-      var words = recipe.title.toLowerCase();
+    const matchesRecipe = function(recipe, keywords) {
+      let words = recipe.title.toLowerCase();
       angular.forEach(recipe.ingredients, function(ingredient) {
         words += ingredient.toLowerCase();
       });
-      for (var i = 0; i < keywords.length; i++) {
+      for (let i = 0; i < keywords.length; i++) {
         if (words.indexOf(keywords[i].toLowerCase()) === -1) {
           return false;
         }
@@ -174,10 +172,10 @@ ketoHubApp
     // TODO(mtlynch): For some reason, data.slice returns an empty array even
     // though we can iterate over it, so we use this hacky workaround. Clean
     // this up.
-    var startIndex = (page - 1) * size;
-    var endIndex = Math.min(startIndex + size, data.length);
-    var result = [];
-    for (var i = startIndex; i < endIndex; i++) {
+    const startIndex = (page - 1) * size;
+    const endIndex = Math.min(startIndex + size, data.length);
+    let result = [];
+    for (let i = startIndex; i < endIndex; i++) {
       result.push(data[i]);
     }
     return result;

@@ -18,7 +18,8 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'app.js': ['coverage']
+      'app.js': ['coverage'],
+      '**/*.js': ['eslint']
     },
 
     reporters: ['progress', 'coverage'],

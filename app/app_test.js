@@ -1,10 +1,8 @@
-'use strict';
-
 describe('ketoHub controller', function() {
-  var timeSince;
-  var rootDomain;
-  var capitalize;
-  var search;
+  let timeSince;
+  let rootDomain;
+  let capitalize;
+  let search;
 
   beforeEach(angular.mock.module('ketoHubApp'));
 
@@ -35,7 +33,6 @@ describe('ketoHub controller', function() {
     jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
     expect(timeSince('2009-12-31T23:25:31+00:00')).toBe('34 minutes');
     expect(timeSince('2009-12-31T23:25:30+00:00')).toBe('35 minutes');
-
   });
   it('should use minutes for values less than 60 minutes', function() {
     jasmine.clock().mockDate(new Date('2010-01-01T00:00:00+00:00'));
@@ -92,8 +89,8 @@ describe('ketoHub controller', function() {
         search([
           {
             'title': 'the bar recipe',
-            'ingredients': ['baz', 'the foo ingredient']
-          }
+            'ingredients': ['baz', 'the foo ingredient'],
+          },
         ], 'foo').length)
       .toBe(1);
   });
@@ -103,8 +100,8 @@ describe('ketoHub controller', function() {
         search([
           {
             'title': 'the bar recipe',
-            'ingredients': ['baz', 'bam']
-          }
+            'ingredients': ['baz', 'bam'],
+          },
         ], 'foo').length)
       .toBe(0);
   });
