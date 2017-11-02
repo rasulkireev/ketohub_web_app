@@ -37,7 +37,14 @@ module.exports = function(config) {
 
     autoWatch: false,
 
-    browsers: ['PhantomJS2'],
+    browsers: ['Chromium_no_sandbox'],
+
+    customLaunchers: {
+      Chromium_no_sandbox: {
+        base: 'Chromium',
+        flags: ['--no-sandbox']
+      }
+    },
 
     concurrency: Infinity
   });
