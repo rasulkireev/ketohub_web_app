@@ -8,14 +8,7 @@ set -e
 
 npm run travis
 
-html5validator \
-  --root ./app \
-  --blacklist bower_components views \
-  --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
-              'apple-touch-icon' \
-  --log INFO
-
-CSS_FILE=app/app.css
+CSS_FILE=src/styles.css
 CSS_BEAUTIFIED=$(mktemp)
 # Beautify the CSS, but strip the first line because cssbeautify prints the
 # filename in the output file.
@@ -25,3 +18,5 @@ cssbeautify-cli \
   | tail -n +2 \
   > "${CSS_BEAUTIFIED}"
 diff "${CSS_FILE}" "${CSS_BEAUTIFIED}"
+
+npm run build
