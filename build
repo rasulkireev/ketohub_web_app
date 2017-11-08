@@ -18,3 +18,5 @@ cssbeautify-cli \
   | tail -n +2 \
   > "${CSS_BEAUTIFIED}"
 diff "${CSS_FILE}" "${CSS_BEAUTIFIED}"
+
+npm run build
