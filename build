@@ -8,12 +8,6 @@ set -e
 
 npm run travis
 
-html5validator \
-  --root ./src \
-  --ignore-re 'Attribute "ng-[a-z-]+" not allowed' \
-              'apple-touch-icon' \
-  --log INFO
-
 CSS_FILE=src/styles.css
 CSS_BEAUTIFIED=$(mktemp)
 # Beautify the CSS, but strip the first line because cssbeautify prints the
