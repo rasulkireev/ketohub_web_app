@@ -7,8 +7,12 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test-single-run": "ng test --watch false",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "update-deps": "npm update",
+    "travis": "npm run lint && npm run test-single-run"
+
   },
   "private": true,
   "dependencies": {
