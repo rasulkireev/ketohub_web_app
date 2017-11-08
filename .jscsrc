@@ -1,8 +1,0 @@
-{
-    "preset": "google",
-    "fileExtensions": [".js", ".jscs"],
-    "excludeFiles": [
-      "app/third_party/**"
-    ],
-    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
-}
