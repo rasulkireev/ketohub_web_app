@@ -1,0 +1,63 @@
+<div class="container recipes-wrapper">
+  <div class="btn-group-lg text-center"
+       role="group" aria-label="Recipe categories">
+    <button type="button"
+            *ngFor="let item of categories"
+            (click)="selectCategory(item)"
+            [ngClass]="['btn recipe-categories', getCategoryClass(item)]">
+      {{ item | capitalize }}s
+    </button>
+  </div>
+  <div class="form-group">
+    <label for="keywords">Search:</label>
+    <input type="text" id="keywords" class="form-control" [(ngModel)]="keywords">
+  </div>
+  <div class="container" *ngIf="keywords">
+    <p>Found {{ (filteredRecipes() | search:keywords).length }} matching recipes</p>
+  </div>
+  <div *ngIf="loaded">
+    <pagination [boundaryLinks]="true"
+                [totalItems]="(filteredRecipes() | search:keywords).length"
+                [(ngModel)]="currentPage"
+                class="pagination-sm"
+                [maxSize]="maxPageButtons"
+                previousText="Previous"
+                nextText="Next"
+                firstText="First"
+                lastText="Last">
+    </pagination>
+    <div class="recipes">
+      <div
+        class="card recipe"
+        *ngFor="let recipe of filteredRecipes() | arraySort:'publishedTime' | search:keywords | range:currentPage:pageSize">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-xs-6 col-md-4">
+              <a [href]="recipe.url" target="_blank" rel="noopener">
+                <img [src]="recipe.thumbnailUrl" [attr.alt]="recipe.title" src="#" class="img-responsive">
+              </a>
+            </div>
+            <div class="col-xs-6 col-md-8">
+              <h2>
+                <a [href]="recipe.url" target="_blank" rel="noopener">
+                  {{ recipe.title }}
+                </a>
+              </h2>
+              <p>Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <pagination [boundaryLinks]="true"
+                [totalItems]="(filteredRecipes() | search:keywords).length"
+                [(ngModel)]="currentPage"
+                class="pagination-sm"
+                [maxSize]="maxPageButtons"
+                previousText="Previous"
+                nextText="Next"
+                firstText="First"
+                lastText="Last">
+    </pagination>
+  </div>
+</div>

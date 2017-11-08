@@ -1,0 +1,24 @@
+/* MailChimp signup form. */
+#mc_embed_signup {
+  background: #fff;
+  clear: left;
+  font: 14px Helvetica,Arial,sans-serif;
+  width: 100%;
+}
+
+.recipes-wrapper {
+  padding-top: 20px;
+}
+
+.recipe-categories {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.recipes a {
+  text-decoration: none;
+}
+
+.recipe {
+  margin-bottom: 10px;
+}
