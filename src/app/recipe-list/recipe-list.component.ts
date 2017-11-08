@@ -26,11 +26,11 @@ export class RecipeListComponent implements OnInit {
     this.db.list('recipes').snapshotChanges().subscribe(entries => {
       this.loaded = true;
       entries.forEach(entry => {
-        let recipe = entry.payload.val();
+        const recipe = entry.payload.val();
         recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}_thumbnail.jpg`;
         this.recipes.push(recipe);
       });
-    })
+    });
   }
 
   ngOnInit() {
@@ -38,7 +38,7 @@ export class RecipeListComponent implements OnInit {
 
   selectCategory(newCategory) {
     this.currentPage = 1;
-    if (this.currentCategory != newCategory) {
+    if (this.currentCategory !== newCategory) {
       this.currentCategory = newCategory;
     } else {
       this.currentCategory = null;
@@ -46,12 +46,12 @@ export class RecipeListComponent implements OnInit {
   };
 
   getCategoryClass(category) {
-    return this.currentCategory == category ? 'btn-primary' : 'btn-default';
+    return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   };
 
   filteredRecipes() {
     if (this.currentCategory) {
-      return this.recipes.filter(recipe => recipe.category == this.currentCategory)
+      return this.recipes.filter(recipe => recipe.category === this.currentCategory);
     } else {
       return this.recipes;
     }

@@ -7,16 +7,18 @@ export class SearchPipe implements PipeTransform {
 
   private matchesRecipe = (recipe, keywords) => {
     let words = recipe.title.toLowerCase();
-    recipe.ingredients && recipe.ingredients.forEach(ingredient => {
-      words += ingredient.toLowerCase();
-    });
+    if (recipe.ingredients) {
+      recipe.ingredients.forEach(ingredient => {
+        words += ingredient.toLowerCase();
+      });
+    }
     for (let i = 0; i < keywords.length; i++) {
       if (words.indexOf(keywords[i].toLowerCase()) === -1) {
         return false;
       }
     }
     return true;
-  };
+  }
 
   transform(recipes: any[], keywords?: any): any {
     if (!keywords) {

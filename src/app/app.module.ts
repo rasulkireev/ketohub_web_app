@@ -20,12 +20,12 @@ import { CapitalizePipe } from './shared/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './shared/array-sort/array-sort.pipe';
 
 const config = {
-  apiKey: "AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw",
-  authDomain: "ketohub.firebaseapp.com",
-  databaseURL: "https://ketohub.firebaseio.com",
-  projectId: "ketohub",
-  storageBucket: "ketohub.appspot.com",
-  messagingSenderId: "1012588055483"
+  apiKey: 'AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw',
+  authDomain: 'ketohub.firebaseapp.com',
+  databaseURL: 'https://ketohub.firebaseio.com',
+  projectId: 'ketohub',
+  storageBucket: 'ketohub.appspot.com',
+  messagingSenderId: '1012588055483'
 };
 
 @NgModule({
