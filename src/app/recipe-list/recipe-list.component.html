@@ -41,9 +41,18 @@
             <div class="col-xs-6 col-md-8">
               <h2>
                 <a [href]="recipe.url" target="_blank" rel="noopener">
-                  {{ recipe.title }}
+                  <div innerHTML="{{ recipe.title | highlightedResult : keywords }}"></div>
                 </a>
               </h2>
+              <div *ngIf="matchingIngredients(recipe.ingredients, keywords).length > 0">
+                <b>Ingredients</b>
+                <ul>
+                  <li
+                    *ngFor="let ingredient of matchingIngredients(recipe.ingredients, keywords)">
+                    <div innerHTML="{{ ingredient | capitalize | highlightedResult : keywords}}"></div>
+                  </li>
+                </ul>
+              </div>
               <p>Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a></p>
             </div>
           </div>
