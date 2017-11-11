@@ -57,5 +57,22 @@ export class RecipeListComponent implements OnInit {
     }
   }
 
-
+  matchingIngredients(ingredients, keywords) {
+    const matching: string[] = [];
+    if (ingredients && keywords) {
+      for (const ingredient of ingredients) {
+        let match = false;
+        for (const keyword of keywords.split(' ')) {
+          if (ingredient.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+            match = true;
+            break;
+          }
+        }
+        if (match) {
+          matching.push(ingredient);
+        }
+      }
+    }
+    return matching;
+  }
 }
