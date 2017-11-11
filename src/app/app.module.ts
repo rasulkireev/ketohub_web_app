@@ -18,6 +18,7 @@ import { SearchPipe } from './shared/search/search.pipe';
 import { RangePipe } from './shared/range/range.pipe';
 import { CapitalizePipe } from './shared/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './shared/array-sort/array-sort.pipe';
+import { HighlightedResultPipe } from './highlighted-result.pipe';
 
 const config = {
   apiKey: 'AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw',
@@ -39,7 +40,8 @@ const config = {
     SearchPipe,
     RangePipe,
     CapitalizePipe,
-    ArraySortPipe
+    ArraySortPipe,
+    HighlightedResultPipe
   ],
   imports: [
     BrowserModule,
