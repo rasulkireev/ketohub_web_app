@@ -1,3 +1,7 @@
 .recipe img {
   height: 230px;
 }
+
+button.recipe-categories {
+  cursor: pointer;
+}
