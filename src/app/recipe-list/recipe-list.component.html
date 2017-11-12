@@ -2,7 +2,6 @@
   <div class="btn-group-lg text-center"
        role="group" aria-label="Recipe categories">
     <button type="button"
-            role="button"
             *ngFor="let item of categories"
             (click)="selectCategory(item)"
             [ngClass]="['btn recipe-categories', getCategoryClass(item)]">
