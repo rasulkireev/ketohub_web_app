@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'highlightedResult'
+  name: 'highlightedResult',
 })
 
 export class HighlightedResultPipe implements PipeTransform {
@@ -12,11 +12,11 @@ export class HighlightedResultPipe implements PipeTransform {
         let startIndex = 0;
         startIndex = value.toLowerCase().indexOf(keyword.toLowerCase());
         while (startIndex !== -1) {
-            const endLength = keyword.length;
-            const matchingString = value.substr(startIndex, endLength);
-            const replacement = `<mark>${matchingString}</mark>`;
-            value = value.slice(0, startIndex) + replacement + value.slice(startIndex + keyword.length);
-            startIndex = value.toLowerCase().indexOf(keyword.toLowerCase(), startIndex + replacement.length);
+          const endLength = keyword.length;
+          const matchingString = value.substr(startIndex, endLength);
+          const replacement = `<mark>${matchingString}</mark>`;
+          value = value.slice(0, startIndex) + replacement + value.slice(startIndex + keyword.length);
+          startIndex = value.toLowerCase().indexOf(keyword.toLowerCase(), startIndex + replacement.length);
         }
       }
     }

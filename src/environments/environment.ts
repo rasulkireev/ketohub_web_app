@@ -4,5 +4,13 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig : {
+    apiKey: 'AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw',
+    authDomain: 'ketohub.firebaseapp.com',
+    databaseURL: 'https://ketohub.firebaseio.com',
+    projectId: 'ketohub',
+    storageBucket: 'ketohub.appspot.com',
+    messagingSenderId: '1012588055483',
+  },
 };

@@ -24,6 +24,6 @@ describe('HighlightedResultPipe', () => {
   });
 
   it('should ignore string case', () => {
-  expect(pipe.transform('hAt HAT hat', 'Hat')).toBe('<mark>hAt</mark> <mark>HAT</mark> <mark>hat</mark>');
+    expect(pipe.transform('hAt HAT hat', 'Hat')).toBe('<mark>hAt</mark> <mark>HAT</mark> <mark>hat</mark>');
   });
 });

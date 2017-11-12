@@ -5,7 +5,7 @@ import { recipesPerPage, maxPageButtons, recipeCategories } from '../constants';
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css']
+  styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
 
@@ -23,9 +23,9 @@ export class RecipeListComponent implements OnInit {
   loaded = false;
 
   constructor(private db: AngularFireDatabase) {
-    this.db.list('recipes').snapshotChanges().subscribe(entries => {
+    this.db.list('recipes').snapshotChanges().subscribe((entries) => {
       this.loaded = true;
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         const recipe = entry.payload.val();
         recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}_thumbnail.jpg`;
         this.recipes.push(recipe);

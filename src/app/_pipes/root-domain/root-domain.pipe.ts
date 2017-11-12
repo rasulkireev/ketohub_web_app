@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'rootDomain'
+  name: 'rootDomain',
 })
 export class RootDomainPipe implements PipeTransform {
 
