@@ -10,6 +10,9 @@ export class HighlightedResultPipe implements PipeTransform {
     let highlightedValue = value;
     if (keywords && highlightedValue) {
       for (const keyword of keywords.split(' ')) {
+        if (!keyword) {
+          continue;
+        }
         let startIndex = 0;
         startIndex = highlightedValue.toLowerCase().indexOf(keyword.toLowerCase());
         while (startIndex !== -1) {
