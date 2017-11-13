@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
         words += ingredient.toLowerCase();
       });
     }
-    for (let i = 0; i < keywords.length; i++) {
+    for (let i = 0; i < keywords.length; i += 1) {
       if (words.indexOf(keywords[i].toLowerCase()) === -1) {
         return false;
       }
