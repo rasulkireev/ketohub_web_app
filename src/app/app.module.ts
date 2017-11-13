@@ -1,33 +1,32 @@
+// Angular
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Environment
+import { environment } from '../environments/environment';
+
+// Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-
 import { PaginationModule } from 'ngx-bootstrap';
 
+// Components
 import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './_components/nav/nav.component';
 import { MailingListComponent } from './mailing-list/mailing-list.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
-import { TimeSincePipe } from './shared/time-since/time-since.pipe';
-import { RootDomainPipe } from './shared/root-domain/root-domain.pipe';
-import { SearchPipe } from './shared/search/search.pipe';
-import { RangePipe } from './shared/range/range.pipe';
-import { CapitalizePipe } from './shared/capitalize/capitalize.pipe';
-import { ArraySortPipe } from './shared/array-sort/array-sort.pipe';
-import { HighlightedResultPipe } from './highlighted-result.pipe';
 
-const config = {
-  apiKey: 'AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw',
-  authDomain: 'ketohub.firebaseapp.com',
-  databaseURL: 'https://ketohub.firebaseio.com',
-  projectId: 'ketohub',
-  storageBucket: 'ketohub.appspot.com',
-  messagingSenderId: '1012588055483'
-};
+// Pipes
+import { TimeSincePipe } from './_pipes/time-since/time-since.pipe';
+import { RootDomainPipe } from './_pipes/root-domain/root-domain.pipe';
+import { SearchPipe } from './_pipes/search/search.pipe';
+import { RangePipe } from './_pipes/range/range.pipe';
+import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
+import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
+import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
+import { FooterComponent } from './_components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,19 +40,20 @@ const config = {
     RangePipe,
     CapitalizePipe,
     ArraySortPipe,
-    HighlightedResultPipe
+    HighlightedResultPipe,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-
-    AngularFireModule.initializeApp(config),
+    
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
 
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

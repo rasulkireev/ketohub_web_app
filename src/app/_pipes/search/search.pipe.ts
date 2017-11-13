@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'search'
+  name: 'search',
 })
 export class SearchPipe implements PipeTransform {
 
   private matchesRecipe = (recipe, keywords) => {
     let words = recipe.title.toLowerCase();
     if (recipe.ingredients) {
-      recipe.ingredients.forEach(ingredient => {
+      recipe.ingredients.forEach((ingredient) => {
         words += ingredient.toLowerCase();
       });
     }
-    for (let i = 0; i < keywords.length; i++) {
+    for (let i = 0; i < keywords.length; i += 1) {
       if (words.indexOf(keywords[i].toLowerCase()) === -1) {
         return false;
       }
@@ -27,7 +27,7 @@ export class SearchPipe implements PipeTransform {
 
     const results = [];
 
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe) => {
       if (this.matchesRecipe(recipe, keywords.split(/\s+/))) {
         results.push(recipe);
       }

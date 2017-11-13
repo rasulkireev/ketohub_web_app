@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'range'
+  name: 'range',
 })
 export class RangePipe implements PipeTransform {
 
@@ -12,7 +12,7 @@ export class RangePipe implements PipeTransform {
     const startIndex = (page - 1) * size;
     const endIndex = Math.min(startIndex + size, data.length);
     const result = [];
-    for (let i = startIndex; i < endIndex; i++) {
+    for (let i = startIndex; i < endIndex; i += 1) {
       result.push(data[i]);
     }
     return result;
