@@ -23,6 +23,10 @@ describe('HighlightedResultPipe', () => {
     expect(pipe.transform('spam and eggs', 'spam eggs')).toBe('<mark>spam</mark> and <mark>eggs</mark>');
   });
 
+  it('should handle trailing space after keyword', () => {
+    expect(pipe.transform('spam and eggs', 'spam ')).toBe('<mark>spam</mark> and eggs');
+  });
+
   it('should coalesce adjacent matches', () => {
     expect(pipe.transform('jeeepers', 'e')).toBe('j<mark>eee</mark>p<mark>e</mark>rs');
   });
