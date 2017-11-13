@@ -19,6 +19,10 @@ describe('HighlightedResultPipe', () => {
     expect(pipe.transform('scams and flams', 'ams')).toBe('sc<mark>ams</mark> and fl<mark>ams</mark>');
   });
 
+  it('should match multiple keywords', () => {
+    expect(pipe.transform('spam and eggs', 'spam eggs')).toBe('<mark>spam</mark> and <mark>eggs</mark>');
+  });
+
   it('should coalesce adjacent matches', () => {
     expect(pipe.transform('jeeepers', 'e')).toBe('j<mark>eee</mark>p<mark>e</mark>rs');
   });

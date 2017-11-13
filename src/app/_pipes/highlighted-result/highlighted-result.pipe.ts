@@ -11,7 +11,7 @@ export class HighlightedResultPipe implements PipeTransform {
     if (keywords && highlightedValue) {
       for (const keyword of keywords.split(' ')) {
         let startIndex = 0;
-        startIndex = value.toLowerCase().indexOf(keyword.toLowerCase());
+        startIndex = highlightedValue.toLowerCase().indexOf(keyword.toLowerCase());
         while (startIndex !== -1) {
           const endLength = keyword.length;
           const matchingString = highlightedValue.substr(startIndex, endLength);
