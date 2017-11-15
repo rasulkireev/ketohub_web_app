@@ -18,7 +18,8 @@ export class RecipeListComponent implements OnInit {
 
   currentCategory;
 
-  keywords;
+  keywordsRaw: string;
+  keywords: string[];
 
   loaded = false;
 
@@ -34,6 +35,32 @@ export class RecipeListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  splitKeywords(newKeywords) {
+    let words = newKeywords.toLowerCase().split(' ').filter(x => !!x);
+    const deletions: number[] = [];
+
+    // Find keywords that are contained in other keywords (e.g. "be" in "beef").
+    for (let i = 0; i < words.length; i += 1) {
+      for (let j = 0; j < words.length; j += 1) {
+        if (i === j) {
+          continue;
+        }
+        if (words[j].indexOf(words[i]) >= 0) {
+          deletions.unshift(i);
+          break;
+        }
+      }
+    }
+
+    // Delete keywords that other keywords contain.
+    for (let i = 0; i < deletions.length; i += 1) {
+      delete words[deletions[i]];
+    }
+    words = words.filter(x => !!x);
+
+    this.keywords = words;
   }
 
   selectCategory(newCategory) {
@@ -57,13 +84,13 @@ export class RecipeListComponent implements OnInit {
     }
   }
 
-  matchingIngredients(ingredients, keywords) {
+  matchingIngredients(ingredients) {
     const matching: string[] = [];
-    if (ingredients && keywords) {
+    if (ingredients && this.keywords) {
       for (const ingredient of ingredients) {
         let match = false;
-        for (const keyword of keywords.split(' ')) {
-          if (ingredient.toLowerCase().indexOf(keyword.toLowerCase()) !== -1) {
+        for (const keyword of this.keywords) {
+          if (ingredient.toLowerCase().indexOf(keyword) !== -1) {
             match = true;
             break;
           }

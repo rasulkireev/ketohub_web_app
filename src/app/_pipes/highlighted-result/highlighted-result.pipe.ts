@@ -6,21 +6,18 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class HighlightedResultPipe implements PipeTransform {
 
-  transform(value: string, keywords: string): any {
+  transform(value: string, keywords: string[]): any {
     let highlightedValue = value;
     if (keywords && highlightedValue) {
-      for (const keyword of keywords.split(' ')) {
-        if (!keyword) {
-          continue;
-        }
+      for (const keyword of keywords) {
         let startIndex = 0;
-        startIndex = highlightedValue.toLowerCase().indexOf(keyword.toLowerCase());
+        startIndex = highlightedValue.toLowerCase().indexOf(keyword);
         while (startIndex !== -1) {
           const endLength = keyword.length;
           const matchingString = highlightedValue.substr(startIndex, endLength);
           const replacement = `<mark>${matchingString}</mark>`;
           highlightedValue = highlightedValue.slice(0, startIndex) + replacement + highlightedValue.slice(startIndex + keyword.length);
-          startIndex = highlightedValue.toLowerCase().indexOf(keyword.toLowerCase(), startIndex + replacement.length);
+          startIndex = highlightedValue.toLowerCase().indexOf(keyword, startIndex + replacement.length);
         }
       }
     }

@@ -13,14 +13,14 @@ export class SearchPipe implements PipeTransform {
       });
     }
     for (let i = 0; i < keywords.length; i += 1) {
-      if (words.indexOf(keywords[i].toLowerCase()) === -1) {
+      if (words.indexOf(keywords[i]) === -1) {
         return false;
       }
     }
     return true;
   }
 
-  transform(recipes: any[], keywords?: any): any {
+  transform(recipes: any[], keywords: string[]): any {
     if (!keywords) {
       return recipes;
     }
@@ -28,7 +28,7 @@ export class SearchPipe implements PipeTransform {
     const results = [];
 
     recipes.forEach((recipe) => {
-      if (this.matchesRecipe(recipe, keywords.split(/\s+/))) {
+      if (this.matchesRecipe(recipe, keywords)) {
         results.push(recipe);
       }
     });

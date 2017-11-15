@@ -10,7 +10,7 @@
   </div>
   <div class="form-group" class="my-3">
     <label for="keywords">Search:</label>
-    <input type="text" id="keywords" class="form-control" [(ngModel)]="keywords">
+    <input type="text" id="keywords" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="splitKeywords($event)">
   </div>
   <div class="container" *ngIf="keywords">
     <p>Found {{ (filteredRecipes() | search:keywords).length }} matching recipes</p>
@@ -47,7 +47,7 @@
                 <b>Ingredients</b>
                 <ul>
                   <li
-                    *ngFor="let ingredient of matchingIngredients(recipe.ingredients, keywords)">
+                    *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
                     <div innerHTML="{{ ingredient | capitalize | highlightedResult : keywords}}"></div>
                   </li>
                 </ul>
