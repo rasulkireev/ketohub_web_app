@@ -10,7 +10,7 @@ describe('SearchPipe', () => {
 
   it('should match recipes with keyword in title', () => {
     expect(
-      pipe.transform([{ title: 'the foo recipe', ingredients: [] }], 'foo').length)
+      pipe.transform([{ title: 'the foo recipe', ingredients: [] }], ['foo']).length)
       .toBe(1);
   });
 
@@ -21,7 +21,7 @@ describe('SearchPipe', () => {
           title: 'the bar recipe',
           ingredients: ['baz', 'the foo ingredient'],
         },
-      ], 'foo').length)
+      ], ['foo']).length)
       .toBe(1);
   });
 
@@ -32,7 +32,7 @@ describe('SearchPipe', () => {
           title: 'the bar recipe',
           ingredients: ['baz', 'bam'],
         },
-      ], 'foo').length)
+      ], ['foo']).length)
       .toBe(0);
   });
 });
