@@ -70,11 +70,11 @@ export class RecipeListComponent implements OnInit {
     } else {
       this.currentCategory = null;
     }
-  };
+  }
 
   getCategoryClass(category) {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
-  };
+  }
 
   filteredRecipes() {
     if (this.currentCategory) {
@@ -86,7 +86,7 @@ export class RecipeListComponent implements OnInit {
 
   matchingIngredients(ingredients) {
     const matching: string[] = [];
-    if (ingredients && this.keywords) {
+    if (ingredients != null && this.keywords != null) {
       for (const ingredient of ingredients) {
         let match = false;
         for (const keyword of this.keywords) {

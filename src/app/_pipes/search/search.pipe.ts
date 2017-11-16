@@ -21,7 +21,7 @@ export class SearchPipe implements PipeTransform {
   }
 
   transform(recipes: any[], keywords: string[]): any {
-    if (!keywords) {
+    if (keywords == null) {
       return recipes;
     }
 

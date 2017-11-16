@@ -8,7 +8,7 @@ export class HighlightedResultPipe implements PipeTransform {
 
   transform(value: string, keywords: string[]): any {
     let highlightedValue = value;
-    if (keywords && highlightedValue) {
+    if (keywords != null && highlightedValue != null) {
       for (const keyword of keywords) {
         let startIndex = 0;
         startIndex = highlightedValue.toLowerCase().indexOf(keyword);
