@@ -2,7 +2,7 @@ sudo: false
 dist: trusty
 language: node_js
 node_js:
-  - "6"
+  - "8"
 env:
   - PHANTOMJS_VERSION="2.1.1" PATH="$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH"
 cache:
