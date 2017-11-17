@@ -22,7 +22,7 @@ export class RootDomainPipe implements PipeTransform {
     hostname = hostname.split('?')[0];
 
     return hostname;
-  };
+  }
 
   transform(url: any, args?: any): any {
     if (!url) {

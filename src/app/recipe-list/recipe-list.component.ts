@@ -70,23 +70,22 @@ export class RecipeListComponent implements OnInit {
     } else {
       this.currentCategory = null;
     }
-  };
+  }
 
   getCategoryClass(category) {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
-  };
+  }
 
   filteredRecipes() {
     if (this.currentCategory) {
       return this.recipes.filter(recipe => recipe.category === this.currentCategory);
-    } else {
-      return this.recipes;
     }
+    return this.recipes;
   }
 
   matchingIngredients(ingredients) {
     const matching: string[] = [];
-    if (ingredients && this.keywords) {
+    if (ingredients != null && this.keywords != null) {
       for (const ingredient of ingredients) {
         let match = false;
         for (const keyword of this.keywords) {
