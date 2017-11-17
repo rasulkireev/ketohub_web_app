@@ -53,7 +53,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 
     PaginationModule.forRoot(),
   ],
-  providers: [],
+  providers: [ArraySortPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
