@@ -79,9 +79,8 @@ export class RecipeListComponent implements OnInit {
   filteredRecipes() {
     if (this.currentCategory) {
       return this.recipes.filter(recipe => recipe.category === this.currentCategory);
-    } else {
-      return this.recipes;
     }
+    return this.recipes;
   }
 
   matchingIngredients(ingredients) {
