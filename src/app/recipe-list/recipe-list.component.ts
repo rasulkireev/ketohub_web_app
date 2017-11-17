@@ -14,9 +14,12 @@ export class RecipeListComponent implements OnInit {
   categories = recipeCategories;
   maxPageButtons = maxPageButtons;
 
+  // Recipes as they appear in the database.
+  private recipesRaw: any[] = [];
+  // Recipes with filters and sorting applied.
   recipes: any[] = [];
 
-  currentCategory;
+  currentCategory: string;
 
   keywordsRaw: string;
   keywords: string[];
@@ -29,8 +32,9 @@ export class RecipeListComponent implements OnInit {
       entries.forEach((entry) => {
         const recipe = entry.payload.val();
         recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}_thumbnail.jpg`;
-        this.recipes.push(recipe);
+        this.recipesRaw.push(recipe);
       });
+      this.filterRecipes();
     });
   }
 
@@ -64,23 +68,25 @@ export class RecipeListComponent implements OnInit {
   }
 
   selectCategory(newCategory) {
-    this.currentPage = 1;
     if (this.currentCategory !== newCategory) {
       this.currentCategory = newCategory;
     } else {
       this.currentCategory = null;
     }
+    this.filterRecipes();
   }
 
   getCategoryClass(category) {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
-  filteredRecipes() {
-    if (this.currentCategory) {
-      return this.recipes.filter(recipe => recipe.category === this.currentCategory);
+  private filterRecipes() {
+    this.currentPage = 1;
+    if (this.currentCategory != null) {
+      this.recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
+    } else {
+      this.recipes = this.recipesRaw;
     }
-    return this.recipes;
   }
 
   matchingIngredients(ingredients) {

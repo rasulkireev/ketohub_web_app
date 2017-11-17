@@ -13,11 +13,11 @@
     <input type="text" id="keywords" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="splitKeywords($event)">
   </div>
   <div class="container" *ngIf="keywords">
-    <p>Found {{ (filteredRecipes() | search:keywords).length }} matching recipes</p>
+    <p>Found {{ (recipes | search:keywords).length }} matching recipes</p>
   </div>
   <div *ngIf="loaded">
     <pagination [boundaryLinks]="true"
-                [totalItems]="(filteredRecipes() | search:keywords).length"
+                [totalItems]="(recipes | search:keywords).length"
                 [(ngModel)]="currentPage"
                 class="pagination-sm"
                 [maxSize]="maxPageButtons"
@@ -29,7 +29,7 @@
     <div class="recipes">
       <div
         class="card recipe"
-        *ngFor="let recipe of filteredRecipes() | arraySort:'publishedTime' | search:keywords | range:currentPage:pageSize">
+        *ngFor="let recipe of recipes | arraySort:'publishedTime' | search:keywords | range:currentPage:pageSize">
         <div class="card-block">
           <div class="row">
             <div class="col-xs-6 col-md-4">
@@ -59,7 +59,7 @@
       </div>
     </div>
     <pagination [boundaryLinks]="true"
-                [totalItems]="(filteredRecipes() | search:keywords).length"
+                [totalItems]="(recipes | search:keywords).length"
                 [(ngModel)]="currentPage"
                 class="pagination-sm"
                 [maxSize]="maxPageButtons"
