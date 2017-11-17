@@ -29,7 +29,7 @@
     <div class="recipes">
       <div
         class="card recipe"
-        *ngFor="let recipe of recipes | arraySort:'publishedTime' | search:keywords | range:currentPage:pageSize">
+        *ngFor="let recipe of recipes | search:keywords | range:currentPage:pageSize">
         <div class="card-block">
           <div class="row">
             <div class="col-xs-6 col-md-4">

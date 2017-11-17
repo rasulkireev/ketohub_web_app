@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { ArraySortPipe } from './../_pipes/array-sort/array-sort.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../constants';
 
 @Component({
@@ -26,7 +27,7 @@ export class RecipeListComponent implements OnInit {
 
   loaded = false;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private arraySortPipe: ArraySortPipe) {
     this.db.list('recipes').snapshotChanges().subscribe((entries) => {
       this.loaded = true;
       entries.forEach((entry) => {
@@ -82,11 +83,14 @@ export class RecipeListComponent implements OnInit {
 
   private filterRecipes() {
     this.currentPage = 1;
+    let recipes: any[] = [];
     if (this.currentCategory != null) {
-      this.recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
+      recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
     } else {
-      this.recipes = this.recipesRaw;
+      recipes = this.recipesRaw;
     }
+    recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
+    this.recipes = recipes;
   }
 
   matchingIngredients(ingredients) {
