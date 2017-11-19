@@ -23,6 +23,14 @@ describe('HighlightedResultPipe', () => {
     expect(pipe.transform('spam and eggs', ['spam', 'eggs'])).toBe('<mark>spam</mark> and <mark>eggs</mark>');
   });
 
+  it('should match multiple keywords when second is single letter', () => {
+    expect(pipe.transform('Loaded Keto Cauliflower Bowl', ['loaded', 'k'])).toBe('<mark>Loaded</mark> <mark>K</mark>eto Cauliflower Bowl');
+  });
+ 
+  it('should match when keywords overlap in their match', () => {
+    expect(pipe.transform('jalapeno salad', ['jala', 'lapeno'])).toBe('<mark>jalapeno</mark> salad');
+  });
+
   it('should coalesce adjacent matches', () => {
     expect(pipe.transform('jeeepers', ['e'])).toBe('j<mark>eee</mark>p<mark>e</mark>rs');
   });
