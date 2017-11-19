@@ -16,7 +16,7 @@ import { PaginationModule } from 'ngx-bootstrap';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { NavComponent } from './_components/nav/nav.component';
-import { MailingListComponent } from './mailing-list/mailing-list.component';
+import { MailingListComponent } from './_components/mailing-list/mailing-list.component';
 import { RecipeListComponent } from './_components/recipe-list/recipe-list.component';
 
 // Pipes
