@@ -14,9 +14,10 @@ import { PaginationModule } from 'ngx-bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
+import { FooterComponent } from './_components/footer/footer.component';
 import { NavComponent } from './_components/nav/nav.component';
 import { MailingListComponent } from './mailing-list/mailing-list.component';
-import { RecipeListComponent } from './recipe-list/recipe-list.component';
+import { RecipeListComponent } from './_components/recipe-list/recipe-list.component';
 
 // Pipes
 import { TimeSincePipe } from './_pipes/time-since/time-since.pipe';
@@ -26,7 +27,6 @@ import { RangePipe } from './_pipes/range/range.pipe';
 import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
-import { FooterComponent } from './_components/footer/footer.component';
 
 @NgModule({
   declarations: [

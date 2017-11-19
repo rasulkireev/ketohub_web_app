@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { ArraySortPipe } from './../_pipes/array-sort/array-sort.pipe';
-import { SearchPipe } from './../_pipes/search/search.pipe';
-import { recipesPerPage, maxPageButtons, recipeCategories } from '../constants';
+import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
+import { SearchPipe } from './../../_pipes/search/search.pipe';
+import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constants';
 
 @Component({
   selector: 'app-recipe-list',
