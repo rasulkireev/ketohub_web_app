@@ -12,7 +12,7 @@
     <label for="keywords">Search:</label>
     <input type="text" id="keywords" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="splitKeywords($event)">
   </div>
-  <div class="container" *ngIf="keywords">
+  <div class="container" *ngIf="keywords && keywords.length > 0">
     <p>Found {{ (recipes | search:keywords).length }} matching recipes</p>
   </div>
   <div *ngIf="loaded">
