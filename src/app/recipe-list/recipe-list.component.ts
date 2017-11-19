@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ArraySortPipe } from './../_pipes/array-sort/array-sort.pipe';
+import { SearchPipe } from './../_pipes/search/search.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../constants';
 
 @Component({
@@ -23,11 +24,11 @@ export class RecipeListComponent implements OnInit {
   currentCategory: string;
 
   keywordsRaw: string;
-  keywords: string[];
+  private keywords: string[];
 
   loaded = false;
 
-  constructor(private db: AngularFireDatabase, private arraySortPipe: ArraySortPipe) {
+  constructor(private db: AngularFireDatabase, private arraySortPipe: ArraySortPipe, private searchPipe: SearchPipe) {
     this.db.list('recipes').snapshotChanges().subscribe((entries) => {
       this.loaded = true;
       entries.forEach((entry) => {
@@ -66,6 +67,7 @@ export class RecipeListComponent implements OnInit {
     words = words.filter(x => !!x);
 
     this.keywords = words;
+    this.filterRecipes();
   }
 
   selectCategory(newCategory) {
@@ -89,6 +91,7 @@ export class RecipeListComponent implements OnInit {
     } else {
       recipes = this.recipesRaw;
     }
+    recipes = this.searchPipe.transform(recipes, this.keywords);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
