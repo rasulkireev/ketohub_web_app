@@ -18,6 +18,7 @@
   <div *ngIf="loaded">
     <pagination [boundaryLinks]="true"
                 [totalItems]="recipes.length"
+                [itemsPerPage]="pageSize"
                 [(ngModel)]="currentPage"
                 class="pagination-sm"
                 [maxSize]="maxPageButtons"
@@ -26,41 +27,46 @@
                 firstText="First"
                 lastText="Last">
     </pagination>
-    <div class="recipes">
+    <div class="recipes card-columns">
       <div
         class="card recipe"
         *ngFor="let recipe of recipes | range:currentPage:pageSize">
+        <a [href]="recipe.url" target="_blank" rel="noopener">
+          <img
+            [src]="recipe.thumbnailUrl"
+            [attr.alt]="recipe.title"
+            src="#"
+            class="img-responsive card-img-top img-fluid">
+        </a>
         <div class="card-block">
-          <div class="row">
-            <div class="col-xs-6 col-md-4">
-              <a [href]="recipe.url" target="_blank" rel="noopener">
-                <img [src]="recipe.thumbnailUrl" [attr.alt]="recipe.title" src="#" class="img-responsive">
-              </a>
-            </div>
-            <div class="col-xs-6 col-md-8">
-              <h2>
-                <a [href]="recipe.url" target="_blank" rel="noopener">
-                  <div innerHTML="{{ recipe.title | highlightedResult : keywords }}"></div>
-                </a>
-              </h2>
-              <div *ngIf="matchingIngredients(recipe.ingredients, keywords).length > 0">
-                <b>Ingredients</b>
-                <ul>
-                  <li
-                    *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
-                    <div innerHTML="{{ ingredient | capitalize | highlightedResult : keywords}}"></div>
-                  </li>
-                </ul>
-              </div>
-              <p>Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a></p>
-            </div>
+          <h4 class="card-title">
+            <a [href]="recipe.url" target="_blank" rel="noopener">
+              <div innerHTML="{{ recipe.title | highlightedResult : keywords }}"></div>
+            </a>
+          </h4>
+          <div
+            *ngIf="matchingIngredients(recipe.ingredients, keywords).length > 0"
+            class="card-text">
+            <b>Ingredients</b>
+            <ul>
+              <li
+                *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
+                <div innerHTML="{{ ingredient | capitalize | highlightedResult : keywords}}"></div>
+              </li>
+            </ul>
           </div>
+          <footer>
+            <small class="text-muted">
+              Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a>
+            </small>
+          </footer>
         </div>
       </div>
     </div>
     <pagination [boundaryLinks]="true"
                 [totalItems]="recipes.length"
                 [(ngModel)]="currentPage"
+                [itemsPerPage]="pageSize"
                 class="pagination-sm"
                 [maxSize]="maxPageButtons"
                 previousText="Previous"

@@ -1,4 +1,4 @@
-const recipesPerPage = 10;
+const recipesPerPage = 15;
 const maxPageButtons = 6;
 const recipeCategories = ['breakfast', 'entree', 'side', 'dessert', 'snack', 'beverage', 'condiment'];
 
