@@ -15,6 +15,9 @@
   <div class="container" *ngIf="keywordsRaw && keywordsRaw.length > 0">
     <p>Found {{ recipes.length }} matching recipes</p>
   </div>
+  <p>page is {{currentPage}}</p>
+  <button (click)="resetPage()">Reset page</button>
+  <button (click)="filterRecipes()">Filter recipes</button>
   <div *ngIf="loaded">
     <pagination [boundaryLinks]="true"
                 [totalItems]="recipes.length"
@@ -23,6 +26,7 @@
                 class="pagination-sm"
                 [maxSize]="maxPageButtons"
                 previousText="Previous"
+                (pageChanged)="pageChanged($event)"
                 nextText="Next"
                 firstText="First"
                 lastText="Last">

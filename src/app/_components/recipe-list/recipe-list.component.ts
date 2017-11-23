@@ -83,8 +83,15 @@ export class RecipeListComponent implements OnInit {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
-  private filterRecipes() {
+  resetPage() {
+    console.log('called resetPage');
     this.currentPage = 1;
+  }
+
+  filterRecipes() {
+    console.log(`currentPage=${this.currentPage}`);
+    this.currentPage = 1;
+    console.log(`currentPage=${this.currentPage}`);
     let recipes: any[] = [];
     if (this.currentCategory != null) {
       recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
@@ -94,6 +101,12 @@ export class RecipeListComponent implements OnInit {
     recipes = this.searchPipe.transform(recipes, this.keywords);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
+    this.currentPage = 1;
+  }
+
+  pageChanged(e) {
+    console.log('page changed');
+    console.log(e);
   }
 
   matchingIngredients(ingredients) {
