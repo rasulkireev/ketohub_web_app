@@ -11,10 +11,10 @@ import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constant
 })
 export class RecipeListComponent implements OnInit {
 
-  currentPage = 1;
-  pageSize = recipesPerPage;
-  categories = recipeCategories;
-  maxPageButtons = maxPageButtons;
+  currentPage: number = 1;
+  pageSize: number = recipesPerPage;
+  categories: string[] = recipeCategories;
+  maxPageButtons: number = maxPageButtons;
 
   // Recipes as they appear in the database.
   private recipesRaw: any[] = [];
@@ -26,7 +26,7 @@ export class RecipeListComponent implements OnInit {
   keywordsRaw: string;
   private keywords: string[];
 
-  loaded = false;
+  loaded: boolean = false;
 
   constructor(private db: AngularFireDatabase, private arraySortPipe: ArraySortPipe, private searchPipe: SearchPipe) {
     this.db.list('recipes').snapshotChanges().subscribe((entries) => {
@@ -43,8 +43,8 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
   }
 
-  splitKeywords(newKeywords) {
-    let words = newKeywords.toLowerCase().split(' ').filter(x => !!x);
+  splitKeywords(newKeywords: string) {
+    let words = newKeywords.toLowerCase().split(' ').filter(x => x !== '');
     const deletions: number[] = [];
 
     // Find keywords that are contained in other keywords (e.g. "be" in "beef").
@@ -64,13 +64,13 @@ export class RecipeListComponent implements OnInit {
     for (let i = 0; i < deletions.length; i += 1) {
       delete words[deletions[i]];
     }
-    words = words.filter(x => !!x);
+    words = words.filter(x => x !== '');
 
     this.keywords = words;
     this.filterRecipes();
   }
 
-  selectCategory(newCategory) {
+  selectCategory(newCategory: string) {
     if (this.currentCategory !== newCategory) {
       this.currentCategory = newCategory;
     } else {
@@ -79,7 +79,7 @@ export class RecipeListComponent implements OnInit {
     this.filterRecipes();
   }
 
-  getCategoryClass(category) {
+  getCategoryClass(category: string) {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
@@ -96,7 +96,7 @@ export class RecipeListComponent implements OnInit {
     this.recipes = recipes;
   }
 
-  matchingIngredients(ingredients) {
+  matchingIngredients(ingredients: string[]) {
     const matching: string[] = [];
     if (ingredients != null && this.keywords != null) {
       for (const ingredient of ingredients) {
