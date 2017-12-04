@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 // Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { PaginationModule } from 'ngx-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Components
 import { AppComponent } from './app.component';
@@ -51,7 +51,7 @@ import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-r
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
 
-    PaginationModule.forRoot(),
+    NgbModule.forRoot(),
   ],
   providers: [ArraySortPipe, SearchPipe],
   bootstrap: [AppComponent],
