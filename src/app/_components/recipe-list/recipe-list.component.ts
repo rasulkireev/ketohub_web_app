@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
+import { SplitKeywordsPipe } from './../../_pipes/split-keywords/split-keywords.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constants';
 
 @Component({
@@ -28,7 +29,11 @@ export class RecipeListComponent implements OnInit {
 
   loaded: boolean = false;
 
-  constructor(private db: AngularFireDatabase, private arraySortPipe: ArraySortPipe, private searchPipe: SearchPipe) {
+  constructor(
+    private db: AngularFireDatabase,
+    private arraySortPipe: ArraySortPipe,
+    private searchPipe: SearchPipe,
+    private splitKeywordsPipe: SplitKeywordsPipe) {
     this.db.list('recipes').snapshotChanges().subscribe((entries) => {
       this.loaded = true;
       entries.forEach((entry) => {
@@ -43,30 +48,8 @@ export class RecipeListComponent implements OnInit {
   ngOnInit() {
   }
 
-  splitKeywords(newKeywords: string) {
-    let words = newKeywords.toLowerCase().split(' ').filter(x => x !== '');
-    const deletions: number[] = [];
-
-    // Find keywords that are contained in other keywords (e.g. "be" in "beef").
-    for (let i = 0; i < words.length; i += 1) {
-      for (let j = 0; j < words.length; j += 1) {
-        if (i === j) {
-          continue;
-        }
-        if (words[j].indexOf(words[i]) >= 0) {
-          deletions.unshift(i);
-          break;
-        }
-      }
-    }
-
-    // Delete keywords that other keywords contain.
-    for (let i = 0; i < deletions.length; i += 1) {
-      delete words[deletions[i]];
-    }
-    words = words.filter(x => x !== '');
-
-    this.keywords = words;
+  updateKeywords(rawKeywords: string) {
+    this.keywords = this.splitKeywordsPipe.transform(rawKeywords);
     this.filterRecipes();
   }
 
