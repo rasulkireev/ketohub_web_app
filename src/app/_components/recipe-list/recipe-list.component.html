@@ -16,17 +16,16 @@
     <p>Found {{ recipes.length }} matching recipes</p>
   </div>
   <div *ngIf="loaded">
-    <pagination [boundaryLinks]="true"
-                [totalItems]="recipes.length"
-                [itemsPerPage]="pageSize"
-                [(ngModel)]="currentPage"
-                class="pagination-sm"
-                [maxSize]="maxPageButtons"
-                previousText="Previous"
-                nextText="Next"
-                firstText="First"
-                lastText="Last">
-    </pagination>
+    <ngb-pagination
+      [boundaryLinks]="true"
+      [directionLinks]="true"
+      [collectionSize]="recipes.length"
+      [(page)]="currentPage"
+      [pageSize]="pageSize"
+      [maxSize]="maxPageButtons"
+      [ellipses]="false"
+      [rotate]="true">
+    </ngb-pagination>
     <div class="recipes card-columns">
       <div
         class="card recipe"
@@ -63,16 +62,15 @@
         </div>
       </div>
     </div>
-    <pagination [boundaryLinks]="true"
-                [totalItems]="recipes.length"
-                [(ngModel)]="currentPage"
-                [itemsPerPage]="pageSize"
-                class="pagination-sm"
-                [maxSize]="maxPageButtons"
-                previousText="Previous"
-                nextText="Next"
-                firstText="First"
-                lastText="Last">
-    </pagination>
+    <ngb-pagination
+      [boundaryLinks]="true"
+      [directionLinks]="true"
+      [collectionSize]="recipes.length"
+      [(page)]="currentPage"
+      [pageSize]="pageSize"
+      [maxSize]="maxPageButtons"
+      [ellipses]="false"
+      [rotate]="true">
+    </ngb-pagination>
   </div>
 </div>
