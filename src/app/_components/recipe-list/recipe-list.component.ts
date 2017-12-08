@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
@@ -30,6 +31,7 @@ export class RecipeListComponent implements OnInit {
   loaded: boolean = false;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private db: AngularFireDatabase,
     private arraySortPipe: ArraySortPipe,
     private searchPipe: SearchPipe,
@@ -46,6 +48,10 @@ export class RecipeListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.keywordsRaw = params['q'];
+      this.updateKeywords(this.keywordsRaw);
+    });
   }
 
   updateKeywords(rawKeywords: string) {

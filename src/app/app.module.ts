@@ -11,6 +11,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AppRoutingModule } from './app-routing.module';
 
 // Components
 import { AppComponent } from './app.component';
@@ -49,6 +50,7 @@ import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AppRoutingModule,
     
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
