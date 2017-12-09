@@ -49,6 +49,9 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
+      if (!params['q']) {
+        return;
+      }
       this.keywordsRaw = params['q'];
       this.updateKeywords(this.keywordsRaw);
     });
