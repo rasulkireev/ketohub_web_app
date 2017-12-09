@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+html {
+  overflow-x: hidden;
+  @include case-of('small') {
+    font-size: 2vh;
+  }
+}
+
+body {
+  @extend %font-roboto-regular;
+  background-size: 100vw 100vh;
+}
+
+h1 {
+  @extend %font-roboto-regular;
+  font-size: 3rem;
+}
+
+h2 {
+  @extend %font-roboto-regular;
+  font-size: 2rem;
+}
+
+p {
+  @extend %font-roboto-light;
+  font-size: 1.4rem;
+}
+
+button {
+  text-transform: uppercase;
+}
+
+a:link, a:active, a:visited {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
