@@ -44,3 +44,10 @@ a:link, a:active, a:visited {
   cursor: pointer;
   color: inherit;
 }
+
+mark {
+  display: inline;
+  margin: 0px !important;
+  padding: 0px !important;
+  font-weight: 600;
+}
