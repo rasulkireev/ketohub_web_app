@@ -5,7 +5,7 @@
             *ngFor="let item of categories"
             (click)="selectCategory(item)"
             [ngClass]="['btn recipe-categories', getCategoryClass(item)]">
-      {{ item | capitalize }}s
+      {{ item }}s
     </button>
   </div>
   <div class="form-group" class="my-3">
