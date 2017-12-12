@@ -8,17 +8,4 @@ set -e
 
 npm run travis
 
-for CSS_FILE in `find ./src/ -type f -name "*.css"`;
-do
-  CSS_BEAUTIFIED=$(mktemp)
-  # Beautify the CSS, but strip the first line because cssbeautify prints the
-  # filename in the output file.
-  cssbeautify-cli \
-    --file "${CSS_FILE}" \
-    --indent 2 \
-    | tail -n +2 \
-    > "${CSS_BEAUTIFIED}"
-  diff "${CSS_FILE}" "${CSS_BEAUTIFIED}"
-done
-
 npm run build
