@@ -25,6 +25,7 @@ install:
   # Disable the spinner; it looks bad on Travis.
   - npm config set spin false
   - npm install
+  - npm install -g scssfmt
 script:
   - ./build
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
