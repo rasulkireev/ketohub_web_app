@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "update-deps": "npm update",
-    "travis": "npm run lint && ng test --no-watch --code-coverage"
+    "travis": "npm run lint && scssfmt --recursive 'src/**/**/*.scss' --diff && ng test --no-watch --code-coverage"
   },
   "private": true,
   "dependencies": {
