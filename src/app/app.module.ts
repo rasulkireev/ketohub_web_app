@@ -29,6 +29,7 @@ import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
+import { AboutComponent } from './_components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
     HighlightedResultPipe,
     FooterComponent,
     SplitKeywordsPipe,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
