@@ -38,11 +38,11 @@
             class="img-responsive card-img-top img-fluid">
         </a>
         <div class="card-block">
-          <h4 class="card-title">
+          <h3 class="card-title">
             <a [href]="recipe.url" target="_blank" rel="noopener">
               <div innerHTML="{{ recipe.title | highlightedResult : keywords }}"></div>
             </a>
-          </h4>
+          </h3>
           <div
             *ngIf="matchingIngredients(recipe.ingredients, keywords).length > 0"
             class="card-text ingredients">

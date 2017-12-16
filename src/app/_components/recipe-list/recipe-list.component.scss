@@ -1,8 +1,6 @@
 button.recipe-categories {
   cursor: pointer;
-  margin-left: 0px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin: 0px 20px 8px 0px;
 }
 
 .recipes-wrapper {
@@ -14,12 +12,12 @@ button.recipe-categories {
   min-height: 385px;
 }
 
-.card h4 {
+.card h3 {
   margin: 15px;
 }
 
 .recipes a {
-  color: #009900;
+  color: #007500;
   text-decoration: none;
 }
 
@@ -30,6 +28,7 @@ button.recipe-categories {
 .card small {
   margin: 15px;
   bottom: 4px;
+  font-size: 11pt;
   position: absolute;
 }
 

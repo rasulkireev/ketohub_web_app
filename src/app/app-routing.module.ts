@@ -10,6 +10,11 @@ const appRoutes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'browse',
+    component: RecipeListComponent,
+    pathMatch: 'full',
+  },
+  {
     path: 'about',
     component: AboutComponent,
     pathMatch: 'full',

@@ -1,0 +1,27 @@
+img {
+    max-width: 550px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+img.float-left {
+    margin-right: 40px;
+}
+
+img.float-right {
+    margin-left: 40px;
+}
+
+div.container {
+    clear: both;
+    min-width: 600px;
+}
+
+div.container:first-child {
+    margin-top: 40px !important;
+}
+
+div.spacer {
+    clear: both;
+    height: 160px;
+}
