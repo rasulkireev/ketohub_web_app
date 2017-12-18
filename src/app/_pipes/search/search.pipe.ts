@@ -1,11 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { SearchParams } from 'app/_classes/search-params';
 
 @Pipe({
   name: 'search',
 })
 export class SearchPipe implements PipeTransform {
 
-  private matchesRecipe = (recipe, keywords) => {
+  private matchesRecipe = (recipe: any, searchParams: SearchParams) => {
     // Concatenate all recipe words together, separating elements with single
     // spaces.
     let words = recipe.title;
@@ -15,23 +16,23 @@ export class SearchPipe implements PipeTransform {
     words = words.toLowerCase();
 
     // Search target string for each keyword.
-    for (let i = 0; i < keywords.length; i += 1) {
-      if (words.indexOf(keywords[i]) === -1) {
+    for (const keyword of searchParams.getKeywords()) {
+      if (words.indexOf(keyword) === -1) {
         return false;
       }
     }
     return true;
   }
 
-  transform(recipes: any[], keywords: string[]): any {
-    if (keywords == null) {
+  transform(recipes: any[], searchParams: SearchParams): any {
+    if (searchParams == null) {
       return recipes;
     }
 
     const results = [];
 
     recipes.forEach((recipe) => {
-      if (this.matchesRecipe(recipe, keywords)) {
+      if (this.matchesRecipe(recipe, searchParams)) {
         results.push(recipe);
       }
     });

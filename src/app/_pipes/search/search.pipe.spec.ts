@@ -1,4 +1,5 @@
 import { SearchPipe } from './search.pipe';
+import { SearchParams } from 'app/_classes/search-params';
 
 describe('SearchPipe', () => {
 
@@ -10,7 +11,8 @@ describe('SearchPipe', () => {
 
   it('should match recipes with keyword in title', () => {
     expect(
-      pipe.transform([{ title: 'the foo recipe', ingredients: [] }], ['foo']).length)
+      pipe.transform([{ title: 'the foo recipe', ingredients: [] }],
+        new SearchParams(['foo'])).length)
       .toBe(1);
   });
 
@@ -21,7 +23,7 @@ describe('SearchPipe', () => {
           title: 'the bar recipe',
           ingredients: ['baz', 'the foo ingredient'],
         },
-      ], ['foo']).length)
+      ], new SearchParams(['foo'])).length)
       .toBe(1);
   });
 
@@ -32,7 +34,7 @@ describe('SearchPipe', () => {
           title: 'the BAR recipe',
           ingredients: ['baz', 'the foo ingredient'],
         },
-      ], ['bar']).length)
+      ], new SearchParams(['bar'])).length)
       .toBe(1);
   });
 
@@ -43,7 +45,7 @@ describe('SearchPipe', () => {
           title: 'the bar recipe',
           ingredients: ['baz', 'the FOO ingredient'],
         },
-      ], ['foo']).length)
+      ], new SearchParams(['foo'])).length)
       .toBe(1);
   });
 
@@ -54,7 +56,7 @@ describe('SearchPipe', () => {
           title: 'the bar recipe',
           ingredients: ['baz', 'bam'],
         },
-      ], ['foo']).length)
+      ], new SearchParams(['foo'])).length)
       .toBe(0);
   });
 
@@ -65,7 +67,7 @@ describe('SearchPipe', () => {
           title: 'apple bacon chips',
           ingredients: ['foo', 'bar'],
         },
-      ], ['apple', 'bacon']).length)
+      ], new SearchParams(['apple', 'bacon'])).length)
       .toBe(1);
   });
 
@@ -76,7 +78,7 @@ describe('SearchPipe', () => {
           title: 'apple bacon chips',
           ingredients: ['foo', 'bar'],
         },
-      ], ['apple', 'banana']).length)
+      ], new SearchParams(['apple', 'banana'])).length)
       .toBe(0);
   });
 
@@ -87,7 +89,7 @@ describe('SearchPipe', () => {
           title: 'holiday chocolate surprise',
           ingredients: ['chocolate', 'caramel'],
         },
-      ], ['chocolatecaramel']).length)
+      ], new SearchParams(['chocolatecaramel'])).length)
       .toBe(0);
   });
 
@@ -98,7 +100,7 @@ describe('SearchPipe', () => {
           title: 'holiday chocolate surprise',
           ingredients: ['chocolate', 'caramel'],
         },
-      ], ['surprisechocolate']).length)
+      ], new SearchParams(['surprisechocolate'])).length)
       .toBe(0);
   });
 });
