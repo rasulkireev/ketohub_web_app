@@ -16,7 +16,7 @@ export class SearchPipe implements PipeTransform {
     words = words.toLowerCase();
 
     // Search target string for each keyword.
-    for (let keyword of searchParams.getKeywords()) {
+    for (const keyword of searchParams.getKeywords()) {
       if (words.indexOf(keyword) === -1) {
         return false;
       }
