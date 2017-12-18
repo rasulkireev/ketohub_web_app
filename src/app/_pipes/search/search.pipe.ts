@@ -28,7 +28,7 @@ export class SearchPipe implements PipeTransform {
 function recipeMatchesSearchParams(recipe: any, searchParams: SearchParams) {
   const searchTarget = searchTargetFromRecipe(recipe);
 
-  if (searchTargetContainsAllKeywords(searchTarget, searchParams.getKeywords()) === false) {
+  if (!searchTargetContainsAllKeywords(searchTarget, searchParams.getKeywords())) {
     return false;
   }
 

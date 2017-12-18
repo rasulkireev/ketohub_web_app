@@ -25,7 +25,8 @@ describe('HighlightedResultPipe', () => {
   });
 
   it('should match multiple keywords when second is single letter', () => {
-    expect(pipe.transform('Loaded Keto Cauliflower Bowl', new SearchParams(['loaded', 'k']))).toBe('<mark>Loaded</mark> <mark>K</mark>eto Cauliflower Bowl');
+    expect(pipe.transform('Loaded Keto Cauliflower Bowl', new SearchParams(['loaded', 'k'])))
+      .toBe('<mark>Loaded</mark> <mark>K</mark>eto Cauliflower Bowl');
   });
  
   it('should match when keywords overlap in their match', () => {
