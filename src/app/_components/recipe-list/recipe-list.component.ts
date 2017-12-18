@@ -92,7 +92,7 @@ export class RecipeListComponent implements OnInit {
 
   matchingIngredients(ingredients: string[]) {
     const matching: string[] = [];
-    if (ingredients != null && this.searchParams.getKeywords() != null) {
+    if (ingredients != null && this.searchParams != null) {
       for (const ingredient of ingredients) {
         let match = false;
         for (const keyword of this.searchParams.getKeywords()) {
