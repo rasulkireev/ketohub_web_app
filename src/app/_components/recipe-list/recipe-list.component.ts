@@ -4,7 +4,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
-import { SplitKeywordsPipe } from './../../_pipes/split-keywords/split-keywords.pipe';
+import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constants';
 
 @Component({
@@ -36,7 +36,7 @@ export class RecipeListComponent implements OnInit {
     private db: AngularFireDatabase,
     private arraySortPipe: ArraySortPipe,
     private searchPipe: SearchPipe,
-    private splitKeywordsPipe: SplitKeywordsPipe) {
+    private parseSearchQuery: ParseSearchQueryPipe) {
     this.db.list('recipes').snapshotChanges().subscribe((entries) => {
       this.loaded = true;
       entries.forEach((entry) => {
@@ -54,13 +54,12 @@ export class RecipeListComponent implements OnInit {
         return;
       }
       this.keywordsRaw = params['q'];
-      this.updateKeywords(this.keywordsRaw);
+      this.updateSearchParams(this.keywordsRaw);
     });
   }
 
-  updateKeywords(rawKeywords: string) {
-    const keywords = this.splitKeywordsPipe.transform(rawKeywords);
-    this.searchParams = new SearchParams(keywords);
+  updateSearchParams(rawKeywords: string) {
+    this.searchParams = this.parseSearchQuery.transform(rawKeywords);
     this.filterRecipes();
   }
 

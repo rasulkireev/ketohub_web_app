@@ -28,7 +28,7 @@ import { RangePipe } from './_pipes/range/range.pipe';
 import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
-import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
+import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
     ArraySortPipe,
     HighlightedResultPipe,
     FooterComponent,
-    SplitKeywordsPipe,
+    ParseSearchQueryPipe,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +57,7 @@ import { SplitKeywordsPipe } from './_pipes/split-keywords/split-keywords.pipe';
 
     NgbModule.forRoot(),
   ],
-  providers: [ArraySortPipe, SearchPipe, SplitKeywordsPipe],
+  providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
