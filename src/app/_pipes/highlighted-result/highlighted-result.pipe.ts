@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { SearchParams } from '../../_classes/search-params';
 
 @Pipe({
   name: 'highlightedResult',
@@ -6,15 +7,15 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class HighlightedResultPipe implements PipeTransform {
 
-  transform(value: string, keywords: string[]): any {
-    if (keywords == null || value == null) {
+  transform(value: string, searchParams: SearchParams): any {
+    if (value == null || searchParams == null) {
       return value;
     }
 
     // Find all matching substrings.
     const searchTarget = value.toLowerCase();
     let replacementRanges: StringRange[] = [];
-    for (const keyword of keywords) {
+    for (const keyword of searchParams.getKeywords()) {
       let index = 0;
       index = searchTarget.indexOf(keyword);
       while (index !== -1) {
