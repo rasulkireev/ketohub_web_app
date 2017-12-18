@@ -85,7 +85,7 @@ export class RecipeListComponent implements OnInit {
     } else {
       recipes = this.recipesRaw;
     }
-    recipes = this.searchPipe.transform(recipes, this.searchParams.getKeywords());
+    recipes = this.searchPipe.transform(recipes, this.searchParams);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
