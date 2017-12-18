@@ -1,6 +1,7 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
 import { SplitKeywordsPipe } from './../../_pipes/split-keywords/split-keywords.pipe';
@@ -26,7 +27,7 @@ export class RecipeListComponent implements OnInit {
   currentCategory: string;
 
   keywordsRaw: string;
-  private keywords: string[];
+  private searchParams: SearchParams;
 
   loaded: boolean = false;
 
@@ -58,7 +59,8 @@ export class RecipeListComponent implements OnInit {
   }
 
   updateKeywords(rawKeywords: string) {
-    this.keywords = this.splitKeywordsPipe.transform(rawKeywords);
+    const keywords = this.splitKeywordsPipe.transform(rawKeywords);
+    this.searchParams = new SearchParams(keywords);
     this.filterRecipes();
   }
 
@@ -83,17 +85,17 @@ export class RecipeListComponent implements OnInit {
     } else {
       recipes = this.recipesRaw;
     }
-    recipes = this.searchPipe.transform(recipes, this.keywords);
+    recipes = this.searchPipe.transform(recipes, this.searchParams.getKeywords());
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
 
   matchingIngredients(ingredients: string[]) {
     const matching: string[] = [];
-    if (ingredients != null && this.keywords != null) {
+    if (ingredients != null && this.searchParams.getKeywords() != null) {
       for (const ingredient of ingredients) {
         let match = false;
-        for (const keyword of this.keywords) {
+        for (const keyword of this.searchParams.getKeywords()) {
           if (ingredient.toLowerCase().indexOf(keyword) !== -1) {
             match = true;
             break;
