@@ -50,11 +50,16 @@ export class RecipeListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      if (!params['q']) {
-        return;
+      if (params['q']) {
+        this.keywordsRaw = params['q'];
+        this.updateSearchParams(this.keywordsRaw);
       }
-      this.keywordsRaw = params['q'];
-      this.updateSearchParams(this.keywordsRaw);
+
+      if (params['category']) {
+        this.currentCategory = params['category'];
+        console.log(this.currentCategory);
+        this.filterRecipes();
+      }
     });
   }
 
