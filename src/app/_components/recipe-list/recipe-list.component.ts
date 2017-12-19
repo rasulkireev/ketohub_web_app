@@ -1,5 +1,6 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
@@ -32,6 +33,7 @@ export class RecipeListComponent implements OnInit {
   loaded: boolean = false;
 
   constructor(
+    private http: Http,
     private activatedRoute: ActivatedRoute,
     private db: AngularFireDatabase,
     private arraySortPipe: ArraySortPipe,
@@ -66,6 +68,13 @@ export class RecipeListComponent implements OnInit {
   updateSearchParams(rawKeywords: string) {
     this.searchParams = this.parseSearchQuery.transform(rawKeywords);
     this.filterRecipes();
+    this.http.get('/registerQuery?q=' + rawKeywords).subscribe(
+      () => {},
+      (error) => {
+        console.log(error);
+      },
+      () => {},
+    );
   }
 
   selectCategory(newCategory: string) {

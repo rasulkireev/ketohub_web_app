@@ -8,6 +8,10 @@
     ],
     "rewrites": [
       {
+        "source": "/registerQuery",
+        "function": "registerQuery"
+      },
+      { 
         "source": "**",
         "destination": "/index.html"
       }
