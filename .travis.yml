@@ -26,7 +26,7 @@ install:
   - npm config set spin false
   - npm install
   - npm install -g scssfmt
-  - cd functions && npm install
+  - pushd ./functions && npm install && popd
 script:
   - ./build
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
