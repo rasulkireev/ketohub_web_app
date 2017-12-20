@@ -16,26 +16,35 @@ html {
 }
 
 body {
-  @extend %font-roboto-regular;
+  @extend %font-text;
   background-size: 100vw 100vh;
 }
 
 h1 {
-  @extend %font-roboto-regular;
+  @extend %font-headline;
   font-size: 3rem;
 }
 
 h2 {
-  @extend %font-roboto-regular;
+  @extend %font-headline;
   font-size: 2rem;
 }
 
+h3 {
+  @extend %font-headline;
+}
+
+h4 {
+  @extend %font-headline;
+}
+
 p {
-  @extend %font-roboto-light;
+  @extend %font-text;
   font-size: 1.4rem;
 }
 
 button {
+  @extend %font-headline;
   text-transform: uppercase;
 }
 

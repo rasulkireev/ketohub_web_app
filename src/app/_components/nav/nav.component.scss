@@ -1,0 +1,20 @@
+.navbar {
+  background: #f4efe0;
+  margin-bottom: 35px;
+  padding: 0 5% 0 5%;
+}
+
+.logo {
+  box-sizing: border-box;
+  flex-grow: 1;
+  opacity: 1;
+  display: block;
+  float: left;
+  height: 100%;
+  margin: 10px 0 10px 0;
+}
+
+.logo a {
+  flex-direction: row;
+  justify-content: flex-start;
+}
