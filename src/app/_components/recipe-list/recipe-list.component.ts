@@ -90,6 +90,10 @@ export class RecipeListComponent implements OnInit {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
+  getCardClass() {
+    return this.keywordsRaw == null ? '' : 'tall-card';
+  }
+
   private filterRecipes() {
     this.currentPage = 1;
     let recipes: any[] = [];

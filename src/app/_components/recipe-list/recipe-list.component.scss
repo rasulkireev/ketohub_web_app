@@ -1,42 +1,79 @@
-button.recipe-categories {
-  cursor: pointer;
-  margin-left: 0px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+// Screen widths for responsive design breakpoints.
+$breakpoints: (
+  'x-small': 480px,
+  'small': 768px,
+  'medium': 992px,
+  'large': 1200px
+) !default;
+
+@mixin case-of($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
 }
 
-.recipes-wrapper {
-  padding-top: 20px;
+div.content {
+  padding: 0px 5%;
+}
+
+button.recipe-categories {
+  cursor: pointer;
+  margin: 0px 20px 8px 0px;
+}
+
+.recipes {
+  padding: 0px;
 }
 
 .card {
   width: 340px;
-  min-height: 385px;
+  min-height: 405px;
+  @include case-of('small') {
+    width: 100%;
+  }
+  float: left;
+  margin-right: 55px !important;
+  margin-bottom: 55px !important;
 }
 
-.card h4 {
+.tall-card {
+  min-height: 475px !important;
+}
+
+.card h3 {
   margin: 15px;
 }
 
 .recipes a {
-  color: #009900;
+  color: #007500;
   text-decoration: none;
 }
 
 .card .ingredients {
-  margin: 0px 15px 85px 15px;
+  padding: 0px 15px 15px 15px;
 }
 
-.card small {
-  margin: 15px;
-  bottom: 4px;
+.card .ingredients ul {
+  padding-left: 25px;
+}
+
+.card footer {
+  padding: 15px;
   position: absolute;
+  @include case-of('small') {
+    position: relative;
+  }
+  bottom: 0;
+  left: 0;
 }
 
-.recipe img {
-  height: 230px;
+.card footer small {
+  font-size: 11pt;
 }
 
-.recipe {
-  margin-bottom: 10px;
+div.spacer {
+  clear: both;
+  height: 0px;
 }

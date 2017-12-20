@@ -1,4 +1,4 @@
-<div class="container recipes-wrapper">
+<div class="content">
   <div class="btn-group-lg"
        role="group" aria-label="Recipe categories">
     <button type="button"
@@ -9,10 +9,9 @@
     </button>
   </div>
   <div class="form-group" class="my-3">
-    <label for="keywords">Search:</label>
-    <input type="text" id="keywords" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="updateSearchParams($event)">
+    <input type="text" id="keywords" placeholder="Search by recipe title or ingredient" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="updateSearchParams($event)">
   </div>
-  <div class="container" *ngIf="keywordsRaw && keywordsRaw.length > 0">
+  <div *ngIf="keywordsRaw && keywordsRaw.length > 0">
     <p>Found {{ recipes.length }} matching recipes</p>
   </div>
   <div *ngIf="loaded">
@@ -26,9 +25,10 @@
       [ellipses]="false"
       [rotate]="true">
     </ngb-pagination>
-    <div class="recipes card-columns">
+    <div class="recipes">
       <div
         class="card recipe"
+        [ngClass]="['card recipe', getCardClass()]"
         *ngFor="let recipe of recipes | range:currentPage:pageSize">
         <a [href]="recipe.url" target="_blank" rel="noopener">
           <img
@@ -38,11 +38,11 @@
             class="img-responsive card-img-top img-fluid">
         </a>
         <div class="card-block">
-          <h4 class="card-title">
+          <h3 class="card-title">
             <a [href]="recipe.url" target="_blank" rel="noopener">
               <div innerHTML="{{ recipe.title | highlightedResult : searchParams }}"></div>
             </a>
-          </h4>
+          </h3>
           <div
             *ngIf="matchingIngredients(recipe.ingredients).length > 0"
             class="card-text ingredients">
@@ -62,6 +62,7 @@
         </div>
       </div>
     </div>
+    <div class="spacer"></div>
     <ngb-pagination
       [boundaryLinks]="true"
       [directionLinks]="true"
