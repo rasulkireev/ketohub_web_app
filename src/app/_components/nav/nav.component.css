@@ -1,29 +1,3 @@
-.logo {
-  box-sizing: border-box;
-  flex-grow: 1;
-  height: 48px;
-  opacity: 1;
-  display: block;
-  float: left;
-  height: 100%;
-  margin-bottom: 0;
-  padding: 0 15px 0 40px;
-}
-
-@media (max-width: 767px) {
-  .logo {
-    padding: 0 15px 0 10px;
-  }
-}
-
-.logo a {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.nav-link {
-  color: #FFFFFF;
+.no-collapse {
+  display: block !important;
 }

@@ -7,6 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
+  // Manage the collapsed state of the navbar
+  isNavbarCollapsed = true;
+
+  /**
+   * Toggle the navbar to the opposite state (collapsed or not collapsed)
+   */
+  toggleNavbar(): void {
+    this.isNavbarCollapsed = !this.isNavbarCollapsed;
+  }
+
   constructor() { }
 
   ngOnInit() {

@@ -1,7 +1,16 @@
-<nav class="navbar navbar-inverse navbar-dark bg-dark">
-  <div class="logo">
-    <a class="navbar-brand" routerLink="/" routerLinkActive="active">KetoHub</a>
+<nav class="navbar navbar-expand-md navbar-inverse navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">KetoHub</a>
+  <button (click)="toggleNavbar()" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngClass]="{'collapse': true, 'navbar-collapse': true, 'no-collapse': !isNavbarCollapsed}" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
+      </li>
+    </ul>
   </div>
-  <a class="nav-link" routerLink="/" routerLinkActive="active">Home</a>
-  <a class="nav-link" routerLink="/about" routerLinkActive="active">About</a>
 </nav>
