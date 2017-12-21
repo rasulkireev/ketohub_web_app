@@ -26,6 +26,7 @@ export class RecipeListComponent implements OnInit {
   recipes: any[] = [];
 
   currentCategory: string;
+  sourceDomainFilter: string;
 
   keywordsRaw: string;
   private searchParams: SearchParams;
@@ -59,7 +60,11 @@ export class RecipeListComponent implements OnInit {
 
       if (params['category']) {
         this.currentCategory = params['category'];
-        console.log(this.currentCategory);
+        this.filterRecipes();
+      }
+
+      if (params['source']) {
+        this.sourceDomainFilter = params['source'];
         this.filterRecipes();
       }
     });
@@ -96,11 +101,13 @@ export class RecipeListComponent implements OnInit {
 
   private filterRecipes() {
     this.currentPage = 1;
-    let recipes: any[] = [];
+    let recipes: any[] = this.recipesRaw;
+
     if (this.currentCategory != null) {
-      recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
-    } else {
-      recipes = this.recipesRaw;
+      recipes = recipes.filter(recipe => recipe.category === this.currentCategory);
+    }
+    if (this.sourceDomainFilter != null) {
+      recipes = recipes.filter(recipe => recipe.url.indexOf(this.sourceDomainFilter) !== -1);
     }
     recipes = this.searchPipe.transform(recipes, this.searchParams);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
