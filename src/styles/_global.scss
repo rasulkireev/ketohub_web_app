@@ -10,7 +10,7 @@
 
 html {
   overflow-x: hidden;
-  @include case-of('small') {
+  @include respond-to('small') {
     font-size: 2vh;
   }
 }
