@@ -1,18 +1,4 @@
-// Screen widths for responsive design breakpoints.
-$breakpoints: (
-  'x-small': 480px,
-  'small': 768px,
-  'medium': 992px,
-  'large': 1200px
-) !default;
-
-@mixin case-of($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: map-get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  }
-}
+@import '~styles/breakpoints';
 
 div.content {
   padding: 0px 5%;
