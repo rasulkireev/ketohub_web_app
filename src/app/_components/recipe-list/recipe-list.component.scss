@@ -16,7 +16,7 @@ button.recipe-categories {
 .card {
   width: 340px;
   min-height: 405px;
-  @include case-of('small') {
+  @include respond-to('small') {
     width: 100%;
   }
   float: left;
@@ -48,7 +48,7 @@ button.recipe-categories {
 .card footer {
   padding: 15px;
   position: absolute;
-  @include case-of('small') {
+  @include respond-to('small') {
     position: relative;
   }
   bottom: 0;
