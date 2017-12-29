@@ -8,8 +8,8 @@ import { SearchParams } from '../../_classes/search-params';
 export class ParseSearchQueryPipe implements PipeTransform {
 
   transform(value: string, args?: any): any {
-    const keywords: string[] = [];
-    const excludedTerms: string[] = [];
+    let keywords: string[] = [];
+    let excludedTerms: string[] = [];
 
     for (const token of tokenizeQuery(value)) {
       if (token[0] === EXCLUDE_PREFIX) {
@@ -18,6 +18,8 @@ export class ParseSearchQueryPipe implements PipeTransform {
         keywords.push(token);
       }
     }
+    keywords = removeSubstrings(keywords);
+    excludedTerms = removeSubstrings(excludedTerms);
 
     return new SearchParams(keywords, excludedTerms);
   }
@@ -28,10 +30,16 @@ const EXCLUDE_PREFIX = '-';
 
 function tokenizeQuery(query: string) {
   let tokens = query.toLowerCase().split(' ').filter(x => x !== '');
-  const deletions: number[] = [];
 
   tokens = removeDuplicateTokens(tokens);
 
+  tokens = tokens.filter(x => x !== '');
+  tokens = tokens.filter(x => x !== EXCLUDE_PREFIX);
+  return tokens;
+}
+
+function removeSubstrings(tokens: string[]) {
+  const substrings = new Set();
   // Find tokens that are contained in other tokens (e.g., "be" in "beef").
   for (let i = 0; i < tokens.length; i += 1) {
     for (let j = 0; j < tokens.length; j += 1) {
@@ -39,19 +47,21 @@ function tokenizeQuery(query: string) {
         continue;
       }
       if (tokens[j].indexOf(tokens[i]) >= 0) {
-        deletions.unshift(i);
+        substrings.add(i);
         break;
       }
     }
   }
 
+  const filtered: string[] = [];
   // Delete tokens that other tokens contain.
-  for (let i = 0; i < deletions.length; i += 1) {
-    delete tokens[deletions[i]];
+  for (let i = 0; i < tokens.length; i += 1) {
+    if (substrings.has(i)) {
+      continue;
+    }
+    filtered.push(tokens[i]);
   }
-  tokens = tokens.filter(x => x !== '');
-  tokens = tokens.filter(x => x !== EXCLUDE_PREFIX);
-  return tokens;
+  return filtered;
 }
 
 function removeDuplicateTokens(tokens: string[]) {
