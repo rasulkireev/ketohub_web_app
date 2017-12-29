@@ -1,14 +1,9 @@
-// Karma configuration file, see link for more information
-// https://karma-runner.github.io/0.13/config/configuration-file.html
-
 module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-phantomjs2-launcher'),
-      require('phantomjs-prebuilt'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
@@ -39,7 +34,13 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['PhantomJS2'],
+    browsers: ['Chromium_no_sandbox'],
+    customLaunchers: {
+      Chromium_no_sandbox: {
+        base: 'Chromium',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: false
   });
 };
