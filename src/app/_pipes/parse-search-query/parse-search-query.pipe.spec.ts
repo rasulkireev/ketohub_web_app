@@ -32,6 +32,10 @@ describe('ParseSearchQueryPipe', () => {
     expect(pipe.transform('chicken chick')).toEqual(new SearchParams(['chicken'], []));
   });
 
+  it('should handle a keyword that is a substring of excluded terms', () => {
+    expect(pipe.transform('bread -shortbread -gingerbread')).toEqual(new SearchParams(['bread'], ['shortbread', 'gingerbread']));
+  });
+
   it('should ignore duplicate keywords', () => {
     expect(pipe.transform('duck duck goose')).toEqual(new SearchParams(['duck', 'goose'], []));
   });
