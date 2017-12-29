@@ -3,24 +3,10 @@ dist: trusty
 language: node_js
 node_js:
   - "8"
-env:
-  - PHANTOMJS_VERSION="2.1.1" PATH="$PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64/bin:$PATH"
-cache:
-  directories:
-    - travis_phantomjs
 notifications:
   email: false
-before_install: |
-  # Make sure cached PhantomJS is up to date
-  if [ $(phantomjs --version) != $PHANTOMJS_VERSION ]; then
-    rm -rf $PWD/travis_phantomjs
-    mkdir -p $PWD/travis_phantomjs
-    wget https://github.com/Medium/phantomjs/releases/download/v$PHANTOMJS_VERSION/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 \
-      -O $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2
-    tar -xvf $PWD/travis_phantomjs/phantomjs-$PHANTOMJS_VERSION-linux-x86_64.tar.bz2 \
-      -C $PWD/travis_phantomjs
-  fi
-  phantomjs --version
+before_install:
+  - export CHROME_BIN=chromium-browser
 install:
   # Disable the spinner; it looks bad on Travis.
   - npm config set spin false
