@@ -10,6 +10,7 @@ input.email {
   @include respond-to('small') {
     width: 300px;
   }
+  height: 40px;
   padding: 7px;
 }
 
@@ -17,6 +18,7 @@ input.button {
   text-transform: uppercase;
   margin-left: 10px;
   padding: 5px 15px;
+  height: 40px;
   float: left;
 }
 
