@@ -2,6 +2,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
@@ -59,7 +60,6 @@ export class RecipeListComponent implements OnInit {
 
       if (params['category']) {
         this.currentCategory = params['category'];
-        console.log(this.currentCategory);
         this.filterRecipes();
       }
     });
@@ -90,8 +90,8 @@ export class RecipeListComponent implements OnInit {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
-  getCardClass() {
-    return this.keywordsRaw == null ? '' : 'tall-card';
+  getKeywords() {
+    return this.keywordsRaw == null ? null : this.searchParams.getKeywords();
   }
 
   private filterRecipes() {
@@ -105,24 +105,5 @@ export class RecipeListComponent implements OnInit {
     recipes = this.searchPipe.transform(recipes, this.searchParams);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
-  }
-
-  matchingIngredients(ingredients: string[]) {
-    const matching: string[] = [];
-    if (ingredients != null && this.searchParams != null) {
-      for (const ingredient of ingredients) {
-        let match = false;
-        for (const keyword of this.searchParams.getKeywords()) {
-          if (ingredient.toLowerCase().indexOf(keyword) !== -1) {
-            match = true;
-            break;
-          }
-        }
-        if (match) {
-          matching.push(ingredient);
-        }
-      }
-    }
-    return matching;
   }
 }

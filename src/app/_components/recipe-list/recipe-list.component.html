@@ -26,41 +26,11 @@
       [rotate]="true">
     </ngb-pagination>
     <div class="recipes">
-      <div
-        class="card recipe"
-        [ngClass]="['card recipe', getCardClass()]"
+      <app-recipe-card
+        [recipe]="recipe"
+        [searchKeywords]="getKeywords()"
         *ngFor="let recipe of recipes | range:currentPage:pageSize">
-        <a [href]="recipe.url" target="_blank" rel="noopener">
-          <img
-            [src]="recipe.thumbnailUrl"
-            [attr.alt]="recipe.title"
-            src="#"
-            class="img-responsive card-img-top img-fluid">
-        </a>
-        <div class="card-block">
-          <h3 class="card-title">
-            <a [href]="recipe.url" target="_blank" rel="noopener">
-              <div innerHTML="{{ recipe.title | highlightedResult : searchParams }}"></div>
-            </a>
-          </h3>
-          <div
-            *ngIf="matchingIngredients(recipe.ingredients).length > 0"
-            class="card-text ingredients">
-            <b>Ingredients</b>
-            <ul>
-              <li
-                *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
-                <div innerHTML="{{ ingredient | capitalize | highlightedResult : searchParams}}"></div>
-              </li>
-            </ul>
-          </div>
-          <footer>
-            <small class="text-muted">
-              Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a>
-            </small>
-          </footer>
-        </div>
-      </div>
+      </app-recipe-card>
     </div>
     <div class="spacer"></div>
     <ngb-pagination
