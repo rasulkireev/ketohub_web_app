@@ -19,6 +19,7 @@ import { FooterComponent } from './_components/footer/footer.component';
 import { NavComponent } from './_components/nav/nav.component';
 import { MailingListComponent } from './_components/mailing-list/mailing-list.component';
 import { RecipeListComponent } from './_components/recipe-list/recipe-list.component';
+import { RecipeCardComponent } from './_components/recipe-card/recipe-card.component';
 
 // Pipes
 import { TimeSincePipe } from './_pipes/time-since/time-since.pipe';
@@ -36,6 +37,7 @@ import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-q
     NavComponent,
     MailingListComponent,
     RecipeListComponent,
+    RecipeCardComponent,
     TimeSincePipe,
     RootDomainPipe,
     SearchPipe,
