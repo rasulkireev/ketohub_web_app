@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "update-deps": "npm update",
-    "travis": "npm run lint && scssfmt --recursive 'src/**/**/*.scss' --diff && ng test --no-watch --code-coverage"
+    "travis": "npm run lint && ./node_modules/.bin/scssfmt --recursive 'src/**/**/*.scss' --diff && ng test --no-watch --code-coverage"
   },
   "private": true,
   "dependencies": {
@@ -48,6 +48,7 @@
     "karma-jasmine": "^1.1.1",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "^5.2.1",
+    "scssfmt": "^1.0.3",
     "ts-node": "~3.3.0",
     "tslint": "~5.8.0",
     "tslint-config-airbnb": "^5.4.2",
