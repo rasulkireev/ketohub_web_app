@@ -44,7 +44,7 @@ export class RecipeListComponent implements OnInit {
       this.loaded = true;
       entries.forEach((entry) => {
         const recipe = entry.payload.val();
-        recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}-680w.jpg`;
+        addThumbnailsToRecipe(entry.key, recipe);
         this.recipesRaw.push(recipe);
       });
       this.filterRecipes();
@@ -106,4 +106,13 @@ export class RecipeListComponent implements OnInit {
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
+}
+
+function addThumbnailsToRecipe(key, recipe) {
+  recipe.defaultThumbnailUrl = `https://storage.googleapis.com/ketohub/${key}-680w.jpg`;
+  const srcs: string[] = [];
+  for (const width of [680, 560, 340]) {
+    srcs.push(`https://storage.googleapis.com/ketohub/${key}-${width}w.jpg ${width}w`);
+  }
+  recipe.thumbnailUrls = srcs.join(', ');
 }

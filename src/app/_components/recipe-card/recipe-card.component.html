@@ -2,7 +2,8 @@
   [ngClass]="['card', getCardClass()]">
   <a [href]="recipe.url" target="_blank" rel="noopener">
     <img
-      [src]="recipe.thumbnailUrl"
+      [src]="recipe.defaultThumbnailUrl"
+      [srcset]="recipe.thumbnailUrls"
       [attr.alt]="recipe.title"
       src="#"
       class="img-responsive card-img-top img-fluid">
