@@ -44,7 +44,7 @@ export class RecipeListComponent implements OnInit {
       this.loaded = true;
       entries.forEach((entry) => {
         const recipe = entry.payload.val();
-        recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}_thumbnail.jpg`;
+        recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}-680w.jpg`;
         this.recipesRaw.push(recipe);
       });
       this.filterRecipes();
