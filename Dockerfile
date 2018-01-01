@@ -6,6 +6,11 @@ WORKDIR /app
 RUN npm install \
     && ./node_modules/@angular/cli/bin/ng build --prod --aot --environment=prod
 
+# Run linter, scss formatter, and tests
+RUN npm run lint \
+    && scssfmt --recursive 'src/**/**/*.scss' --diff \
+    && ng test --no-watch --code-coverage
+
 # Expose ports
 EXPOSE 8080
 
