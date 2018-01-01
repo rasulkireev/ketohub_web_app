@@ -1,4 +1,7 @@
-sudo: false
+# sudo is required to use Docker services in Travis
+sudo: required
+services:
+  - docker
 dist: trusty
 language: node_js
 node_js:
@@ -16,6 +19,8 @@ install:
 script:
   - ./build
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+after_success:
+  - docker build -t ketohub .
 deploy:
   provider: firebase
   token:
