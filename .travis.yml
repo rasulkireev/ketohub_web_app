@@ -12,7 +12,7 @@ script:
   - docker build -t ketohub .
   - docker create --name ketohub-container ketohub:latest
   - docker cp ketohub-container:/app/dist ./dist/
-  - docker cp ketohub-container:/app/coverage/lcov.info ./coverage/lcov.info
+  - docker cp ketohub-container:/app/coverage/ ./coverage/
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: firebase
