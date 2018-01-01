@@ -8,8 +8,6 @@ node_js:
   - "8"
 notifications:
   email: false
-before_install:
-  - export CHROME_BIN=chromium-browser
 install:
   # Disable the spinner; it looks bad on Travis.
   - npm config set spin false

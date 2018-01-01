@@ -5,11 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --aot",
-    "test": "ng test --no-watch --code-coverage",
-    "lint": "ng lint && ./node_modules/.bin/scssfmt --recursive 'src/**/**/*.scss' --diff",
+    "test": "ng test",
+    "lint": "ng lint",
     "e2e": "ng e2e",
-    "update-deps": "npm update",
-    "travis": "npm run lint && ./node_modules/.bin/scssfmt --recursive 'src/**/**/*.scss' --diff && ng test --no-watch --code-coverage"
+    "update-deps": "npm update"
   },
   "private": true,
   "dependencies": {
@@ -23,7 +22,7 @@
     "@angular/router": "^5.1.0",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.7",
     "angularfire2": "^5.0.0-rc.5-next",
-    "bootstrap": "4.0.0-beta.2",
+    "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.5.3",
     "firebase": "4.8.0",
     "rxjs": "^5.5.5",
