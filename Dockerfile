@@ -3,6 +3,7 @@ FROM docker.io/node:8-stretch
 # Install and build the application
 COPY . /app
 WORKDIR /app
+
 RUN npm install \
     && ./node_modules/@angular/cli/bin/ng build --prod --aot
 

@@ -1,5 +1,27 @@
+@import '~styles/breakpoints';
+
+p {
+  font-size: 1.2rem;
+}
+
+input.email {
+  float: left;
+  width: 30%;
+  @include respond-to('small') {
+    width: 300px;
+  }
+  height: 40px;
+  padding: 7px;
+}
+
+input.button {
+  text-transform: uppercase;
+  margin-left: 10px;
+  padding: 5px 15px;
+  height: 40px;
+  float: left;
+}
+
 #mc_embed_signup {
-  background: #fff;
-  clear: left;
-  width: 100%;
+  padding-bottom: 80px;
 }

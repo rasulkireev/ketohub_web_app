@@ -1,0 +1,56 @@
+@import '~styles/breakpoints';
+
+.card {
+  width: 340px;
+  min-height: 405px;
+  @include respond-to('small') {
+    width: 100%;
+  }
+  @include respond-to('x-small') {
+    min-height: 275px;
+  }
+  float: left;
+  margin-right: 55px !important;
+  margin-bottom: 55px !important;
+  @include respond-to('x-small') {
+    margin-bottom: 15px !important;
+  }
+}
+
+.tall-card {
+  min-height: 475px !important;
+}
+
+h3 {
+  margin: 15px;
+  margin-bottom: 45px;
+}
+
+.tall-card h3 {
+  margin-bottom: 5px;
+}
+
+a {
+  color: #007500;
+  text-decoration: none;
+}
+
+.ingredients {
+  padding: 0px 15px 15px 15px;
+  margin-bottom: 35px;
+}
+
+.ingredients ul {
+  padding-left: 25px;
+}
+
+footer {
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.card footer small {
+  font-size: 11pt;
+}

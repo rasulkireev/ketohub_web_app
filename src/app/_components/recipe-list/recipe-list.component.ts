@@ -2,6 +2,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
@@ -43,7 +44,7 @@ export class RecipeListComponent implements OnInit {
       this.loaded = true;
       entries.forEach((entry) => {
         const recipe = entry.payload.val();
-        recipe.thumbnailUrl = `https://storage.googleapis.com/ketohub/${entry.key}_thumbnail.jpg`;
+        addThumbnailsToRecipe(entry.key, recipe);
         this.recipesRaw.push(recipe);
       });
       this.filterRecipes();
@@ -59,7 +60,6 @@ export class RecipeListComponent implements OnInit {
 
       if (params['category']) {
         this.currentCategory = params['category'];
-        console.log(this.currentCategory);
         this.filterRecipes();
       }
     });
@@ -90,8 +90,8 @@ export class RecipeListComponent implements OnInit {
     return this.currentCategory === category ? 'btn-primary' : 'btn-default';
   }
 
-  getCardClass() {
-    return this.keywordsRaw == null ? '' : 'tall-card';
+  getKeywords() {
+    return this.keywordsRaw == null ? null : this.searchParams.getKeywords();
   }
 
   private filterRecipes() {
@@ -106,23 +106,13 @@ export class RecipeListComponent implements OnInit {
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
+}
 
-  matchingIngredients(ingredients: string[]) {
-    const matching: string[] = [];
-    if (ingredients != null && this.searchParams != null) {
-      for (const ingredient of ingredients) {
-        let match = false;
-        for (const keyword of this.searchParams.getKeywords()) {
-          if (ingredient.toLowerCase().indexOf(keyword) !== -1) {
-            match = true;
-            break;
-          }
-        }
-        if (match) {
-          matching.push(ingredient);
-        }
-      }
-    }
-    return matching;
+function addThumbnailsToRecipe(key, recipe) {
+  recipe.defaultThumbnailUrl = `https://storage.googleapis.com/ketohub/${key}-680w.jpg`;
+  const srcs: string[] = [];
+  for (const width of [680, 560, 340]) {
+    srcs.push(`https://storage.googleapis.com/ketohub/${key}-${width}w.jpg ${width}w`);
   }
+  recipe.thumbnailUrls = srcs.join(', ');
 }
