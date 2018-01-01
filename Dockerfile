@@ -23,6 +23,7 @@ RUN cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 # Expose ports
 EXPOSE 8080
 
+# Set environment for production
 ENV NODE_ENV=production
 ARG ENV_FILE=production
 
