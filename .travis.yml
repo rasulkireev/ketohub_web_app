@@ -15,8 +15,6 @@ install:
   - npm config set spin false
   - npm install -g scssfmt
   - pushd ./functions && npm install && popd
-script:
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 after_success:
   - docker build -t ketohub .
 deploy:

@@ -11,6 +11,8 @@ RUN npm run lint \
     && scssfmt --recursive 'src/**/**/*.scss' --diff \
     && ng test --no-watch --code-coverage
 
+RUN cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+
 # Expose ports
 EXPOSE 8080
 
