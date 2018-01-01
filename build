@@ -7,5 +7,3 @@ set -x
 set -e
 
 npm run travis
-
-npm run build
