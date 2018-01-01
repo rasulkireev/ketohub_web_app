@@ -13,7 +13,6 @@ before_install:
 install:
   # Disable the spinner; it looks bad on Travis.
   - npm config set spin false
-  - npm install
   - npm install -g scssfmt
   - pushd ./functions && npm install && popd
 script:
