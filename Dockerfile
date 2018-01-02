@@ -18,7 +18,7 @@ RUN npm install \
 # Deploy application if on master branch
 ARG BRANCH
 ARG FIREBASE_TOKEN
-RUN if $BRANCH -eq "master"; then npm install -g firebase-tools && firebase deploy --token=$FIREBASE_TOKEN --non-interactive;
+RUN if $BRANCH -eq "master"; then npm install -g firebase-tools  && firebase deploy --token=$FIREBASE_TOKEN --non-interactive; fi
 
 # Expose ports
 EXPOSE 8080
