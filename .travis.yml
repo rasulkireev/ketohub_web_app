@@ -11,8 +11,9 @@ notifications:
 script:
   - make build
   - make test
-  - docker cp ketohub_web_app:latest:/app/dist ./dist/
-  - docker cp ketohub_web_app:latest:/app/coverage/ ./coverage/
+  - docker create --name ketohub_web_app ketohub_web_app:latest
+  - docker cp ketohub_web_app:/app/dist ./dist/
+  - docker cp ketohub_web_app:/app/coverage/ ./coverage/
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   # Deploy master to production
