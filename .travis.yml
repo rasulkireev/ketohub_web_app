@@ -12,7 +12,7 @@ script:
   - make build
   - make test
   - docker create --name ketohub-prod ketohub_web_app:latest
-  - docker create --name ketohub-test ketohub_web_app:test
+  - docker create --name ketohub-test ketohub_web_app_test:test
   - docker cp ketohub-prod:/app/dist ./dist/
   - docker cp ketohub-test:/app/coverage/ ./coverage/
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
