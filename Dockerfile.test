@@ -1,0 +1,11 @@
+# Use the production image as base image
+FROM ketohub_web_app:latest
+
+# Enable support for Chromium
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt-get update \
+    && apt-get install -y chromium
+ENV CHROME_BIN=chromium
+
+# Override the command to run the tests instead of the application
+CMD ["npm", "run", "test"]

@@ -1,12 +1,12 @@
 {
   "name": "ketohub",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build --prod --aot",
-    "test": "ng test",
+    "test": "ng test --browser ChromeHeadlessCI --no-watch --code-coverage --single-run=true",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "update-deps": "npm update"
