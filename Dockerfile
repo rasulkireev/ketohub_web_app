@@ -15,11 +15,6 @@ RUN npm install \
     && ./node_modules/scssfmt/cli.js  --recursive 'src/**/**/*.scss' --diff \
     && ./node_modules/@angular/cli/bin/ng test --browser ChromeHeadlessCI --no-watch --code-coverage --single-run=true
 
-# Deploy application if on master branch
-ARG BRANCH
-ARG FIREBASE_TOKEN
-RUN if $BRANCH -eq "master"; then npm install -g firebase-tools  && firebase deploy --token=$FIREBASE_TOKEN --non-interactive; fi
-
 # Expose ports
 EXPOSE 8080
 

@@ -1,4 +1,3 @@
-# sudo is required to use Docker services in Travis
 sudo: required
 services:
   - docker
@@ -11,3 +10,8 @@ notifications:
 script:
   - make build
   - make coverage
+deploy:
+  provider: script
+  on:
+    branch: master
+  script: make deploy
