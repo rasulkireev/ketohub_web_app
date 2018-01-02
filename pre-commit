@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Print commands.
+set -x
+
+# Exit on first error.
+set -e
+
+npm run lint
+
+./node_modules/.bin/scssfmt --recursive 'src/**/**/*.scss' --diff
+
+ng test --no-watch --code-coverage
+
+ng build --prod --aot

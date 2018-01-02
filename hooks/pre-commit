@@ -1,2 +1,2 @@
 #!/bin/bash
-bash -x ./build
+bash -x ./pre-commit
