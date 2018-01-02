@@ -8,9 +8,9 @@ TOKEN = sW8jrLD4FxUSVEPdCr2l2IWXNvL4rRyJdX1UvNF+lUqcWrerQPDJaVNXBMVWxtU5fKB9+2b7
 all: build
 
 build:
-	docker build --build-arg FIREBASE_TOKEN=$(TOKEN) --build-arg BRANCH=$(BRANCH) -t $(NAME):$(SHA1) -f Dockerfile .
+	docker build --build-arg FIREBASE_TOKEN=$(TOKEN) --build-arg BRANCH=$(BRANCH) -t $(NAME):$(SHA1)
 
 coverage:
-	docker run --name builder $(NAME):$(SHA1) echo "Container created"
-	docker cp builder:/app/coverage/ ./coverage/
+	docker run --name ketohub-container $(NAME):$(SHA1) echo "Container created"
+	docker cp ketohub-container:/app/coverage/ ./coverage/
 	cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
