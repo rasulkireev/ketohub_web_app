@@ -8,7 +8,7 @@ node_js:
 notifications:
   email: false
 script:
-  - IMAGE_VERSION=$(shell git rev-parse HEAD)
+  - IMAGE_VERSION=$(git rev-parse HEAD)
   - docker build -t ketohub:${IMAGE_VERSION} .
   - docker create --name ketohub-container ketohub:${IMAGE_VERSION}
   - docker cp ketohub-container:/app/dist ./dist/
