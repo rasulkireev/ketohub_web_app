@@ -3,12 +3,18 @@ module.exports = function (config) {
     basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
-      require('karma-chrome-launcher'),
       require('karma-jasmine'),
+      require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
+    customLaunchers: {
+      ChromeHeadlessCI: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -35,13 +41,8 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chromium_no_sandbox'],
-    customLaunchers: {
-      Chromium_no_sandbox: {
-        base: 'ChromiumHeadless',
-        flags: ['--no-sandbox']
-      }
-    },
-    singleRun: false
+    browsers: ['ChromeHeadless'],
+    singleRun: false,
+    browserNoActivityTimeout: 60000
   });
 };

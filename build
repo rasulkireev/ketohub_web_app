@@ -6,6 +6,8 @@ set -x
 # Exit on first error.
 set -e
 
-npm run travis
-
 npm run build
+
+npm run lint
+
+npm run coverage
