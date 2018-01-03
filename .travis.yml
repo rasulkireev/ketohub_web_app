@@ -15,7 +15,7 @@ script:
   - docker cp ketohub-container:/app/coverage/ ./coverage/
   - cat ./coverage/lcov.info
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
-  - PREFIX=$(pwd) && sed -i -- 's@^SF:@SF:'"${PREFIX}"'@g'
+  - PREFIX=$(pwd) && sed -i -- 's@^SF:\/app@SF:'"${PREFIX}"'@g' ./coverage/lcov.info
   - cat ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:

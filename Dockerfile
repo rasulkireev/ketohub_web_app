@@ -17,3 +17,7 @@ ENV CHROME_BIN=chromium
 # Run linters and tests
 RUN npm run lint \
     && npm run coverage -- --browser ChromeHeadlessCI
+
+EXPOSE 8080
+
+CMD ["nginx", "-g", "daemon off;"]
