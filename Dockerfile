@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN npm install \
     && cd functions && npm install && cd ../ \
-RUN npm run build
+    && npm run build
 
 # Enable support for Chromium
 ARG DEBIAN_FRONTEND=noninteractive
