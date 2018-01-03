@@ -6,7 +6,7 @@ WORKDIR /app
 
 RUN npm install \
     && cd functions && npm install && cd ../ \
-    && ./node_modules/@angular/cli/bin/ng build --prod --aot
+RUN npm run build
 
 # Enable support for Chromium
 ARG DEBIAN_FRONTEND=noninteractive
