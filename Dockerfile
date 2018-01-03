@@ -14,6 +14,6 @@ RUN apt-get update \
     && apt-get install -y chromium
 ENV CHROME_BIN=chromium
 
-# Run linter, scss formatter, and tests
+# Run linters and tests
 RUN npm run lint \
-    && ./node_modules/@angular/cli/bin/ng test --browser ChromeHeadlessCI --no-watch --code-coverage --single-run=true
+    && npm run coverage -- --browser ChromeHeadlessCI
