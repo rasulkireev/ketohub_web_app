@@ -13,10 +13,8 @@ script:
   - docker create --name ketohub-container ketohub:${IMAGE_VERSION}
   - docker cp ketohub-container:/app/dist ./dist/
   - docker cp ketohub-container:/app/coverage/ ./coverage/
-  - cat ./coverage/lcov.info
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
   - PREFIX=$(pwd) && sed -i -- 's@^SF:\/app@SF:'"${PREFIX}"'@g' ./coverage/lcov.info
-  - cat ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: firebase
