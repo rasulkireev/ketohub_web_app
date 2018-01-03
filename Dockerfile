@@ -15,6 +15,5 @@ RUN apt-get update \
 ENV CHROME_BIN=chromium
 
 # Run linter, scss formatter, and tests
-RUN ./node_modules/@angular/cli/bin/ng lint \
-    && ./node_modules/scssfmt/cli.js  --recursive 'src/**/**/*.scss' --diff \
+RUN npm run lint \
     && ./node_modules/@angular/cli/bin/ng test --browser ChromeHeadlessCI --no-watch --code-coverage --single-run=true
