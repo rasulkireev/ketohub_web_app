@@ -14,6 +14,7 @@ install:
   - pushd ./functions && npm install && popd
 script:
   - ./build
+  - cat ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: firebase
