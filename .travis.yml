@@ -16,6 +16,8 @@ script:
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
   - PREFIX=$(pwd) && sed -i -- 's@^SF:\/app@SF:'"${PREFIX}"'@g' ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+before_deploy:
+  - npm install -g firebase-functions
 deploy:
   provider: firebase
   on:
