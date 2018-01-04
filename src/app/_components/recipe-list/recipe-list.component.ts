@@ -109,10 +109,11 @@ export class RecipeListComponent implements OnInit {
 }
 
 function addThumbnailsToRecipe(key, recipe) {
-  recipe.defaultThumbnailUrl = `https://storage.googleapis.com/ketohub/${key}-680w.jpg`;
+  const GCS_BUCKET: string = 'ketohub-gcs1';
+  recipe.defaultThumbnailUrl = `https://storage.googleapis.com/${GCS_BUCKET}/${key}-680w.jpg`;
   const srcs: string[] = [];
   for (const width of [680, 560, 340]) {
-    srcs.push(`https://storage.googleapis.com/ketohub/${key}-${width}w.jpg ${width}w`);
+    srcs.push(`https://storage.googleapis.com/${GCS_BUCKET}/${key}-${width}w.jpg ${width}w`);
   }
   recipe.thumbnailUrls = srcs.join(', ');
 }
