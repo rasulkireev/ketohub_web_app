@@ -1,14 +1,17 @@
-import { KetohubPage } from './app.po';
+import { KetoHubPage } from './app.po';
 
 describe('ketohub App', () => {
-  let page: KetohubPage;
+  let page: KetoHubPage;
 
   beforeEach(() => {
-    page = new KetohubPage();
+    page = new KetoHubPage();
   });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+  it('should have right title', () => {
+    page.getTitle()
+      .then((title: string) => {
+        expect(title).toEqual('KetoHub');
+      });
   });
+
 });
