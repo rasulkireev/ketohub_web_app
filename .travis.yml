@@ -17,7 +17,8 @@ script:
   - PREFIX=$(pwd) && sed -i -- 's@^SF:\/app@SF:'"${PREFIX}"'@g' ./coverage/lcov.info
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
-  - npm install -g firebase-functions
+  # Install firebase-functions pre-requisites for deploying.
+  - cd ./functions && npm install
 deploy:
   provider: firebase
   on:
