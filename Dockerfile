@@ -5,7 +5,6 @@ COPY . /app
 WORKDIR /app
 
 RUN npm install \
-    && cd functions && npm install && cd ../ \
     && npm run build
 
 # Enable support for Chromium
