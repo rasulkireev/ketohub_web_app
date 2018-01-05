@@ -5,6 +5,7 @@ describe('ketohub App', () => {
 
   beforeEach(() => {
     page = new KetoHubPage();
+    page.navigateTo();
   });
 
   it('should have right title', () => {
