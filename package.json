@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --target=production --aot",
-    "coverage": "ng test -e prod --no-watch --code-coverage --single-run=true -sm=false",
+    "coverage": "ng test --environment=dev --no-watch --code-coverage --single-run=true --sourcemaps=false",
     "lint": "ng lint && scssfmt --recursive './src/**/**/*.scss' --diff",
     "e2e": "ng e2e",
     "update-deps": "npm update"
