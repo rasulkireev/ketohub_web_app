@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { SearchParams } from '../../_classes/search-params';
@@ -34,7 +34,7 @@ export class RecipeListComponent implements OnInit {
   loaded: boolean = false;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private activatedRoute: ActivatedRoute,
     private db: AngularFireDatabase,
     private arraySortPipe: ArraySortPipe,
