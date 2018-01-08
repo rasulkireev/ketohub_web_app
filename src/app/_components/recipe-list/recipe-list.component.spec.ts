@@ -10,13 +10,13 @@ import { environment } from '../../../environments/environment';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from './recipe-list.component';
 import { RangePipe } from '../../_pipes/range/range.pipe';
-import { HighlightedResultPipe } from "../../_pipes/highlighted-result/highlighted-result.pipe";
-import { RootDomainPipe } from "../../_pipes/root-domain/root-domain.pipe";
-import {TimeSincePipe} from "../../_pipes/time-since/time-since.pipe";
-import {CapitalizePipe} from "../../_pipes/capitalize/capitalize.pipe";
-import {ArraySortPipe} from "../../_pipes/array-sort/array-sort.pipe";
-import {SearchPipe} from "../../_pipes/search/search.pipe";
-import {ParseSearchQueryPipe} from "../../_pipes/parse-search-query/parse-search-query.pipe";
+import { HighlightedResultPipe } from '../../_pipes/highlighted-result/highlighted-result.pipe';
+import { RootDomainPipe } from '../../_pipes/root-domain/root-domain.pipe';
+import { TimeSincePipe } from '../../_pipes/time-since/time-since.pipe';
+import { CapitalizePipe } from '../../_pipes/capitalize/capitalize.pipe';
+import { ArraySortPipe } from '../../_pipes/array-sort/array-sort.pipe';
+import { SearchPipe } from '../../_pipes/search/search.pipe';
+import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 
 describe('RecipeListComponent', () => {
   let component: RecipeListComponent;
@@ -30,7 +30,7 @@ describe('RecipeListComponent', () => {
         HttpModule,
         RouterTestingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireDatabaseModule
+        AngularFireDatabaseModule,
       ],
       declarations: [
         RecipeListComponent,
@@ -39,7 +39,7 @@ describe('RecipeListComponent', () => {
         HighlightedResultPipe,
         RootDomainPipe,
         TimeSincePipe,
-        CapitalizePipe
+        CapitalizePipe,
       ],
       providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
     })

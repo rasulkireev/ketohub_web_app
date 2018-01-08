@@ -13,9 +13,9 @@ const recipe = {
   ingredients: ['butter', 'carrots'],
   mainImage: 'https://cdn.ruled.me/wp-content/uploads/2017/11/tuna-casserole-featured.jpg',
   publishedTime: '2017-12-21T12:00:54+00:00',
-  thumbnailUrls: 'https://storage.googleapis.com/ketohub-gcs1/ruled-me_keto-tuna-casserole-680w.jpg 680w, https://storage.googleapis.com/ketohub-gcs1/ruled-me_keto-tuna-casserole-560w.jpg 560w, https://storage.googleapis.com/ketohub-gcs1/ruled-me_keto-tuna-casserole-340w.jpg 340w',
+  thumbnailUrls: 'https://storage.googleapis.com/ketohub-gcs1/ruled-me_keto-tuna-casserole-680w.jpg 680w',
   title: 'Keto Tuna Casserole',
-  url: 'https://www.ruled.me/keto-tuna-casserole/'
+  url: 'https://www.ruled.me/keto-tuna-casserole/',
 };
 
 describe('RecipeCardComponent', () => {
