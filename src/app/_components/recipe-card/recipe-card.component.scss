@@ -1,13 +1,13 @@
 @import '~styles/breakpoints';
 
 .card {
-  width: 340px;
   min-height: 405px;
+  width: 342px;
   @include respond-to('small') {
     width: 100%;
   }
   @include respond-to('x-small') {
-    min-height: 275px;
+    min-height: 365px;
   }
   float: left;
   margin-right: 55px !important;
@@ -15,6 +15,10 @@
   @include respond-to('x-small') {
     margin-bottom: 15px !important;
   }
+}
+
+.card img {
+  width: 100%;
 }
 
 .card-block {
