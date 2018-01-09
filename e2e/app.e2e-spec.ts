@@ -18,6 +18,6 @@ describe('ketohub App', () => {
     page.navigateTo();
     page.waitForRecipes().then(() => {
       expect(page.getRecipes().count()).toBeGreaterThan(0);
-    })
+    });
   });
 });
