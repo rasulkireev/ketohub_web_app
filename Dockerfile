@@ -4,8 +4,7 @@ FROM docker.io/node:8-stretch
 COPY . /app
 WORKDIR /app
 
-RUN npm install \
-    && npm run build
+RUN npm install
 
 # Enable support for Chromium
 ARG DEBIAN_FRONTEND=noninteractive
@@ -25,6 +24,9 @@ RUN apt-get install -y openjdk-8-jdk libgconf-2-4 \
     && npm install -g protractor@5.2.2 \
     && webdriver-manager update \
     && npm run e2e
+
+# Build the production app.
+RUN npm run build
 
 EXPOSE 8080
 
