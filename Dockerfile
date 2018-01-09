@@ -4,16 +4,15 @@ FROM docker.io/node:8-stretch
 COPY . /app
 WORKDIR /app
 
-RUN npm install
-
 # Enable support for Chromium
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
     && apt-get install -y chromium
 ENV CHROME_BIN=chromium
 
-# Run linters and tests
-RUN npm run lint \
+# Run linters and unit tests
+RUN npm install \
+    && npm run lint \
     && npm run coverage -- --browser ChromeHeadlessCI
 
 # Install dependencies and run end-to-end tests.
@@ -27,7 +26,3 @@ RUN apt-get install -y openjdk-8-jdk libgconf-2-4 \
 
 # Build the production app.
 RUN npm run build
-
-EXPOSE 8080
-
-CMD ["nginx", "-g", "daemon off;"]
