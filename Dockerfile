@@ -17,6 +17,15 @@ ENV CHROME_BIN=chromium
 RUN npm run lint \
     && npm run coverage -- --browser ChromeHeadlessCI
 
+# Install dependencies and run end-to-end tests.
+RUN apt-get install -y openjdk-8-jdk libgconf-2-4 \
+    && apt-cache search jdk \
+    && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk \
+    && export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin \
+    && npm install -g protractor@5.2.2 \
+    && webdriver-manager update \
+    && npm run e2e
+
 EXPOSE 8080
 
 CMD ["nginx", "-g", "daemon off;"]
