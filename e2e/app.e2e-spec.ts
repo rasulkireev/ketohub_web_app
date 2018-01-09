@@ -16,6 +16,8 @@ describe('ketohub App', () => {
 
   it('should load recipes', () => {
     page.navigateTo();
-    expect(page.getRecipes().count()).toBeGreaterThan(0);
+    page.waitForRecipes().then(() => {
+      expect(page.getRecipes().count()).toBeGreaterThan(0);
+    })
   });
 });
