@@ -1,11 +1,21 @@
-import { browser, element, by } from 'protractor';
+import { browser, protractor, element, by, $ } from 'protractor';
 
 export class KetohubPage {
   navigateTo() {
     return browser.get('/');
   }
 
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+  getCategories() {
+    return element.all(by.className('recipe-categories'));
   }
+
+  waitForRecipes() {
+    const recipesLoaded = protractor.ExpectedConditions.visibilityOf($('app-recipe-card'));
+    return browser.wait(recipesLoaded, 5000, 'Load recipes');
+  }
+
+  getRecipes() {
+    return element.all(by.css('app-recipe-card'));
+  }
+
 }
