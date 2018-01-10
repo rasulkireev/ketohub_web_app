@@ -5,7 +5,13 @@ describe('ketohub App', () => {
   let page: KetohubPage;
 
   beforeEach(() => {
+
+    /**
+     * turns off synchronization, a workaround to make protractor work with angularfire
+     * see https://github.com/angular/protractor/issues/4300
+     */
     browser.waitForAngularEnabled(false);
+
     page = new KetohubPage();
   });
 
