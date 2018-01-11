@@ -21,6 +21,8 @@ export class RecipeListComponent implements OnInit {
   categories: string[] = recipeCategories;
   maxPageButtons: number = maxPageButtons;
 
+  expandCategoryButtons: boolean = false;
+
   // Recipes as they appear in the database.
   private recipesRaw: any[] = [];
   // Recipes with filters and sorting applied.

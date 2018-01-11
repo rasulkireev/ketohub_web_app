@@ -34,6 +34,6 @@ export class RecipeCardComponent {
   }
 
   getCardClass() {
-    return this.searchKeywords == null ? '' : 'tall-card';
+    return (this.searchKeywords == null || this.searchKeywords.length === 0) ? '' : 'tall-card';
   }
 }
