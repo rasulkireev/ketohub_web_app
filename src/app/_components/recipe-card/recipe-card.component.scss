@@ -6,8 +6,8 @@
     width: 100%;
   }
   min-height: 405px;
-  @include respond-to('x-small') {
-    min-height: 275px;
+  @include respond-to('small') {
+    min-height: 355px;
   }
   margin: auto;
   margin-bottom: 55px !important;
