@@ -2,15 +2,14 @@
 
 .card {
   width: 340px;
-  min-height: 405px;
   @include respond-to('small') {
     width: 100%;
   }
+  min-height: 405px;
   @include respond-to('x-small') {
     min-height: 275px;
   }
-  float: left;
-  margin-right: 55px !important;
+  margin: auto;
   margin-bottom: 55px !important;
   @include respond-to('x-small') {
     margin-bottom: 15px !important;
