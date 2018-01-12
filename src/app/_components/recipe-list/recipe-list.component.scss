@@ -2,20 +2,6 @@ div.content {
   padding: 0px 5%;
 }
 
-button.recipe-categories {
-  cursor: pointer;
-  margin: 0px 20px 8px 0px;
-}
-
-.recipes {
-  padding: 0px;
-}
-
-div.spacer {
-  clear: both;
-  height: 0px;
-}
-
 #keywords {
   font-size: 13pt;
   background: #d4e1f7;
@@ -23,4 +9,21 @@ div.spacer {
 
 #categoryButtons {
   margin-left: 20px;
+}
+
+button.recipe-categories {
+  cursor: pointer;
+  margin: 0px 20px 8px 0px;
+}
+
+.recipes {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+div.spacer {
+  clear: both;
+  height: 0px;
 }
