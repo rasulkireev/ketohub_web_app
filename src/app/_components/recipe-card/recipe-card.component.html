@@ -4,8 +4,11 @@
     <img
       [src]="recipe.defaultThumbnailUrl"
       [srcset]="recipe.thumbnailUrls"
+      sizes="(max-width: 377px) 340px,
+            (max-width: 622px) 560px,
+            (max-width: 768px) 680px,
+            340px"
       [attr.alt]="recipe.title"
-      src="#"
       class="img-responsive card-img-top img-fluid">
   </a>
   <div class="card-block">
