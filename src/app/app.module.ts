@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Environment
 import { environment } from '../environments/environment';
@@ -51,9 +51,9 @@ import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-q
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
-    
+
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
 

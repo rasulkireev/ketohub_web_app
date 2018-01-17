@@ -1,20 +1,17 @@
-.navbar {
+@import '~styles/breakpoints';
+
+nav.navbar {
   background: #f4efe0;
-  margin-bottom: 35px;
-  padding: 0 5% 0 5%;
+  margin-bottom: 15px;
+  padding: 15px 5% 15px 5%;
+  @include respond-to('small') {
+    padding: 0 5% 0 5%;
+  }
 }
 
-.logo {
-  box-sizing: border-box;
-  flex-grow: 1;
-  opacity: 1;
-  display: block;
-  float: left;
-  height: 100%;
+img {
+  width: 40%;
+  max-width: 186px;
   margin: 10px 0 10px 0;
 }
 
-.logo a {
-  flex-direction: row;
-  justify-content: flex-start;
-}
