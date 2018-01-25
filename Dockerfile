@@ -1,7 +1,6 @@
 FROM docker.io/node:8-stretch
 
 # Install and build the application
-COPY . /app
 WORKDIR /app
 
 # Enable support for Chromium
