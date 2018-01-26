@@ -29,13 +29,42 @@ export class ParseSearchQueryPipe implements PipeTransform {
 const EXCLUDE_PREFIX = '-';
 
 function tokenizeQuery(query: string) {
-  let tokens = query.toLowerCase().split(/[\s,]/).filter(x => x !== '');
+  let tokens = extractQuotedStrings(query);
+  const partialQuery = removeDoubleQuotes(removeQuotedStrings(query));
+  tokens = tokens.concat(extractTokens(partialQuery));
 
   tokens = removeDuplicateTokens(tokens);
 
   tokens = tokens.filter(x => x !== '');
   tokens = tokens.filter(x => x !== EXCLUDE_PREFIX);
   return tokens;
+}
+
+function extractQuotedStrings(query: string): string[] {
+  const quotedStrings : string[] = [];
+  let stringStart: number = -1;
+  for (let i  = 0; i < query.length; i += 1) {
+    if (query[i] === '"') {
+      if (stringStart === -1) {
+        stringStart = i + 1;
+      } else {
+        quotedStrings.push(query.substr(stringStart, i - 1));
+      }
+    }
+  }
+  return quotedStrings;
+}
+
+function removeQuotedStrings(query: string): string {
+  return query.replace(/"[^"]*"/g, '').replace('"', '');
+}
+
+function removeDoubleQuotes(query: string): string {
+  return query.replace('"', '');
+}
+
+function extractTokens(query: string) : string[] {
+  return query.toLowerCase().split(/[\s,]/).filter(x => x !== '');
 }
 
 function removeSubstrings(tokens: string[]) {

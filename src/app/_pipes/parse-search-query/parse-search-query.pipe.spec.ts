@@ -36,6 +36,26 @@ describe('ParseSearchQueryPipe', () => {
     expect(pipe.transform('ham         cheese')).toEqual(new SearchParams(['ham', 'cheese'], []));
   });
 
+  it('should ignore leading spaces', () => {
+    expect(pipe.transform('     ham cheese')).toEqual(new SearchParams(['ham', 'cheese'], []));
+  });
+
+  it('should ignore trailing spaces', () => {
+    expect(pipe.transform('ham cheese   ')).toEqual(new SearchParams(['ham', 'cheese'], []));
+  });
+
+  it('should treat quoted strings as exact match', () => {
+    expect(pipe.transform('"sour cream" onions')).toEqual(new SearchParams(['sour cream', 'onions'], []));
+  });
+
+  it('should accept quoted entire query', () => {
+    expect(pipe.transform('"flourless chocolate cake"')).toEqual(new SearchParams(['flourless chocolate cake'], []));
+  });
+
+  it('should ignore unmatched double quote', () => {
+    expect(pipe.transform('"sour cream')).toEqual(new SearchParams(['sour', 'cream'], []));
+  });
+
   it('should remove keywords when other keywords contain the substrings', () => {
     expect(pipe.transform('chicken chick')).toEqual(new SearchParams(['chicken'], []));
   });
