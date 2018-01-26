@@ -24,6 +24,14 @@ describe('ParseSearchQueryPipe', () => {
     expect(pipe.transform('salmon bacon cheese')).toEqual(new SearchParams(['salmon', 'bacon', 'cheese'], []));
   });
 
+  it('should treat commas as spaces', () => {
+    expect(pipe.transform('apple,orange,lemon')).toEqual(new SearchParams(['apple', 'orange', 'lemon'], []));
+  });
+
+  it('should treat commas as spaces', () => {
+    expect(pipe.transform('apple, orange, lemon')).toEqual(new SearchParams(['apple', 'orange', 'lemon'], []));
+  });
+
   it('should ignore consecutive spaces', () => {
     expect(pipe.transform('ham         cheese')).toEqual(new SearchParams(['ham', 'cheese'], []));
   });
