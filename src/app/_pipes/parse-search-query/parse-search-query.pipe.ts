@@ -29,7 +29,7 @@ export class ParseSearchQueryPipe implements PipeTransform {
 const EXCLUDE_PREFIX = '-';
 
 function tokenizeQuery(query: string) {
-  let tokens = query.toLowerCase().split(' ').filter(x => x !== '');
+  let tokens = query.toLowerCase().split(/[\s,]/).filter(x => x !== '');
 
   tokens = removeDuplicateTokens(tokens);
 
