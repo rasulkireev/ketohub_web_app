@@ -30,6 +30,7 @@ import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
+import { RecipeDataService } from 'app/_services/recipe-data.service';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-q
 
     NgbModule.forRoot(),
   ],
-  providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
+  providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe, RecipeDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

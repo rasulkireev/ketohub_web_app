@@ -36,4 +36,18 @@ export class RecipeCardComponent {
   getCardClass() {
     return (this.searchKeywords == null || this.searchKeywords.length === 0) ? '' : 'tall-card';
   }
+
+  getDefaultThumbnailUrl() {
+    return `https://storage.googleapis.com/${GCS_BUCKET}/${this.recipe.key}-680w.jpg`;
+  }
+
+  getThumbnailUrls() {
+    const srcs: string[] = [];
+    for (const width of [680, 560, 340]) {
+      srcs.push(`https://storage.googleapis.com/${GCS_BUCKET}/${this.recipe.key}-${width}w.jpg ${width}w`);
+    }
+    return srcs.join(', ');
+  }
 }
+
+const GCS_BUCKET: string = 'ketohub-gcs1';
