@@ -8,7 +8,7 @@ export const environment = {
   firebaseConfig : {
     apiKey: 'AIzaSyCglK8ZkZfL6QWWyEZf26z1BMPYFQM6wTw',
     authDomain: 'ketohub.firebaseapp.com',
-    databaseURL: 'https://ketohub.firebaseio.com',
+    databaseURL: 'https://ketohub-c7fe5.firebaseio.com/',
     projectId: 'ketohub',
     storageBucket: 'ketohub.appspot.com',
     messagingSenderId: '1012588055483',
