@@ -1,13 +1,13 @@
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { SearchParams } from '../../_classes/search-params';
 import { ArraySortPipe } from './../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from './../../_pipes/search/search.pipe';
 import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constants';
+import { RecipeDataService } from '../../_services/recipe-data.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -38,15 +38,16 @@ export class RecipeListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
-    private db: AngularFireDatabase,
+    private recipeData: RecipeDataService,
     private arraySortPipe: ArraySortPipe,
     private searchPipe: SearchPipe,
     private parseSearchQuery: ParseSearchQueryPipe) {
-    this.db.list('recipes').snapshotChanges().subscribe((entries) => {
+    this.recipeData.recipes.subscribe((entries) => {
       this.loaded = true;
+      this.recipesRaw = [];
       entries.forEach((entry) => {
         const recipe = entry.payload.val();
-        addThumbnailsToRecipe(entry.key, recipe);
+        recipe.key = entry.key;
         this.recipesRaw.push(recipe);
       });
       this.filterRecipes();
@@ -98,24 +99,12 @@ export class RecipeListComponent implements OnInit {
 
   private filterRecipes() {
     this.currentPage = 1;
-    let recipes: any[] = [];
+    let recipes: any[] = this.recipesRaw;
     if (this.currentCategory != null) {
-      recipes = this.recipesRaw.filter(recipe => recipe.category === this.currentCategory);
-    } else {
-      recipes = this.recipesRaw;
+      recipes = recipes.filter(recipe => recipe.category === this.currentCategory);
     }
     recipes = this.searchPipe.transform(recipes, this.searchParams);
     recipes = this.arraySortPipe.transform(recipes, 'publishedTime');
     this.recipes = recipes;
   }
-}
-
-function addThumbnailsToRecipe(key, recipe) {
-  const GCS_BUCKET: string = 'ketohub-gcs1';
-  recipe.defaultThumbnailUrl = `https://storage.googleapis.com/${GCS_BUCKET}/${key}-680w.jpg`;
-  const srcs: string[] = [];
-  for (const width of [680, 560, 340]) {
-    srcs.push(`https://storage.googleapis.com/${GCS_BUCKET}/${key}-${width}w.jpg ${width}w`);
-  }
-  recipe.thumbnailUrls = srcs.join(', ');
 }

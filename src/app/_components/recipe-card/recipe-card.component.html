@@ -2,8 +2,8 @@
   [ngClass]="['card', getCardClass()]">
   <a [href]="recipe.url" target="_blank" rel="noopener">
     <img
-      [src]="recipe.defaultThumbnailUrl"
-      [srcset]="recipe.thumbnailUrls"
+      [src]="getDefaultThumbnailUrl()"
+      [srcset]="getThumbnailUrls()"
       sizes="(max-width: 377px) 340px,
             (max-width: 622px) 560px,
             (max-width: 768px) 680px,

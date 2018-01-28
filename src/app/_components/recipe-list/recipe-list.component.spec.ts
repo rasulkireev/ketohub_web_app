@@ -17,6 +17,7 @@ import { CapitalizePipe } from '../../_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from '../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from '../../_pipes/search/search.pipe';
 import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
+import { RecipeDataService } from '../../_services/recipe-data.service';
 
 describe('RecipeListComponent', () => {
   let component: RecipeListComponent;
@@ -41,7 +42,7 @@ describe('RecipeListComponent', () => {
         TimeSincePipe,
         CapitalizePipe,
       ],
-      providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
+      providers: [RecipeDataService, ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
     })
     .compileComponents();
   }));
