@@ -6,8 +6,8 @@ import { environment } from '../../environments/environment';
 import { RecipeDataService } from './recipe-data.service';
 
 describe('RecipeDataService', () => {
-  let component: RecipeDataService;
-  let fixture: ComponentFixture<RecipeDataService>;
+  const component: RecipeDataService;
+  const fixture: ComponentFixture<RecipeDataService>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
