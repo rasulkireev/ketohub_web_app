@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../../../environments/environment';
 
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
@@ -19,6 +19,15 @@ import { SearchPipe } from '../../_pipes/search/search.pipe';
 import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 import { RecipeDataService } from '../../_services/recipe-data.service';
 
+@Injectable()
+export class MockRecipeDataService {
+
+  public get recipes(): Observable<any[]> {
+    return Observable.of([]);
+  }
+}
+
+
 describe('RecipeListComponent', () => {
   let component: RecipeListComponent;
   let fixture: ComponentFixture<RecipeListComponent>;
@@ -30,8 +39,6 @@ describe('RecipeListComponent', () => {
         NgbModule.forRoot(),
         HttpClientTestingModule,
         RouterTestingModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireDatabaseModule,
       ],
       declarations: [
         RecipeListComponent,
@@ -42,7 +49,7 @@ describe('RecipeListComponent', () => {
         TimeSincePipe,
         CapitalizePipe,
       ],
-      providers: [RecipeDataService, ArraySortPipe, SearchPipe, ParseSearchQueryPipe],
+      providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe, { provide: RecipeDataService, useClass: MockRecipeDataService }],
     })
     .compileComponents();
   }));
