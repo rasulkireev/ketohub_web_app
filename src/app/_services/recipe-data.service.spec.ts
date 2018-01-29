@@ -6,22 +6,22 @@ import { AngularFireDatabase } from 'angularfire2/database';
 
 const mockData = [
   {
-    key: "heyketomama-com_meatpie",
+    key: 'heyketomama-com_meatpie',
     payload: null,
     prevKey: null,
-    type: 'value'
+    type: 'value',
   },
   {
-    key: "heyketomama-com_bacon",
+    key: 'heyketomama-com_bacon',
     payload: null,
     prevKey: null,
-    type: 'value'
-  }
+    type: 'value',
+  },
 ];
 const angularFireDatabaseStub = {
   list: () => ({
-    snapshotChanges: () => Observable.of(mockData)
-  })
+    snapshotChanges: () => Observable.of(mockData),
+  }),
 };
 
 describe('RecipeDataService', () => {
@@ -34,7 +34,7 @@ describe('RecipeDataService', () => {
       providers: [
         RecipeDataService,
         { provide: AngularFireDatabase, useValue: angularFireDatabaseStub },
-      ]
+      ],
     });
 
     service = TestBed.get(RecipeDataService);
@@ -45,8 +45,8 @@ describe('RecipeDataService', () => {
   });
 
   it('should return recipes', () => {
-    service.recipes.subscribe(data => {
+    service.recipes.subscribe((data) => {
       expect(data).toEqual(mockData);
-    })
+    });
   });
 });
