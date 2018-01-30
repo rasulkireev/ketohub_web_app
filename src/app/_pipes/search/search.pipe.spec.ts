@@ -103,4 +103,26 @@ describe('SearchPipe', () => {
       ], new SearchParams(['surprisechocolate'])).length)
       .toBe(0);
   });
+
+  it('should not match recipes that only match when concatenating title and first ingredient', () => {
+    expect(
+      pipe.transform([
+        {
+          title: 'holiday chocolate surprise',
+          ingredients: ['chocolate', 'caramel'],
+        },
+      ], new SearchParams(['surprise chocolate'])).length)
+      .toBe(0);
+  });
+
+  it('should not match recipes that only match when concatenating adjacent ingredients', () => {
+    expect(
+      pipe.transform([
+        {
+          title: 'Spicy Keto Coffee',
+          ingredients: ['coffee', 'spice', 'cream'],
+        },
+      ], new SearchParams(['surprise chocolate'])).length)
+      .toBe(0);
+  });
 });

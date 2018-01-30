@@ -41,10 +41,10 @@ function recipeMatchesSearchParams(recipe: any, searchParams: SearchParams) {
 
 function searchTargetFromRecipe(recipe: any) : string {
   // Concatenate all recipe words together, separating elements with single
-  // spaces.
+  // pipe characters.
   let words = recipe.title;
   if (recipe.ingredients) {
-    words += ' ' + recipe.ingredients.join(' ');
+    words += '|' + recipe.ingredients.join('|');
   }
   return words.toLowerCase();
 }
