@@ -6,8 +6,10 @@ set -x
 # Exit on first error.
 set -e
 
-npm run build
-
 npm run lint
 
-npm run coverage
+npm run coverage -- --browser ChromeHeadlessCI
+
+npm run e2e
+
+npm run build
