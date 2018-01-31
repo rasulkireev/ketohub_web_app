@@ -9,13 +9,17 @@ notifications:
   email: false
 script:
   - IMAGE_VERSION=$(git rev-parse HEAD)
-  - docker build -t ketohub:${IMAGE_VERSION} .
-  - docker create --name ketohub-container ketohub:${IMAGE_VERSION}
-  - docker cp ketohub-container:/app/dist ./dist/
-  - docker cp ketohub-container:/app/coverage/ ./coverage/
+  - IMAGE_NAME="ketohub:${IMAGE_VERSION}"
+  - CONTAINER_NAME="ketohub-container"
+  - docker build -t "$IMAGE_NAME" .
+  - docker run --tty --detach --volume "${PWD}:/app" --name "$CONTAINER_NAME" "$IMAGE_NAME"
+  - docker exec -it "$CONTAINER_NAME" npm install
+  - docker exec -it "$CONTAINER_NAME" npm run lint
+  - docker exec -it "$CONTAINER_NAME" npm run coverage -- --browser ChromeHeadlessCI
+  - docker exec -it "$CONTAINER_NAME" npm run e2e
+  - docker exec -it "$CONTAINER_NAME" npm run build
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
-  - PREFIX=$(pwd) && sed -i -- 's@^SF:\/app@SF:'"${PREFIX}"'@g' ./coverage/lcov.info
-  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - sed -- 's@^SF:\/app@SF:'"${PWD}"'@g' ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
   # Install firebase-functions pre-requisites for deploying.
   - cd ./functions && npm install && cd ../
