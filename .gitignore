@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Server rendering
+/functions/node_modules
+/functions/dist-server
+/functions/index.js
+
