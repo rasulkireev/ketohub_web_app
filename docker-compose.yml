@@ -21,9 +21,10 @@ services:
       - HUB_PORT_4444_TCP_PORT=4444
   ketohub:
     container_name: ketohub
-    image: node:8-stretch
+    image: node:8
     working_dir: /app
     volumes:
       - "./:/app"
+    tty: true
     links:
       - selenium-hub:selenium-hub
