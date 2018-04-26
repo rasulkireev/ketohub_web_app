@@ -34,6 +34,7 @@ module.exports = function (config) {
         platformName: 'windows',
         version: 'latest',
       },
+    },
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
