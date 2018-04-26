@@ -15,26 +15,6 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular/cli/plugins/karma')
     ],
-    customLaunchers: {
-      'firefox': {
-        base: 'WebDriver',
-        config: webdriverConfig,
-        browserName: 'firefox',
-        name: 'ff',
-        platform: 'WIN8_1',
-        platformName: 'windows',
-        version: '54',
-      },
-      'chrome': {
-        base: 'WebDriver',
-        config: webdriverConfig,
-        browserName: 'ghrome',
-        name: 'Chrome',
-        platform: 'VISTA',
-        platformName: 'windows',
-        version: 'latest',
-      },
-    },
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
@@ -57,12 +37,12 @@ module.exports = function (config) {
     reporters: config.angularCli && config.angularCli.codeCoverage
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
-    hostname: 'selenium',
-    port: 4444,
+    hostname: 'localhost',
+    port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['firefox','chrome'],
+    browsers: ['Firefox','Chrome'],
     singleRun: false,
     browserNoActivityTimeout: 60000
   });
