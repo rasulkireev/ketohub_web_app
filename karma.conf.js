@@ -19,7 +19,7 @@ module.exports = function (config) {
       'firefox': {
         base: 'WebDriver',
         config: webdriverConfig,
-        browserName: 'firefox',
+        browserName: 'Firefox',
         name: 'ff',
         platform: 'WIN8_1',
         platformName: 'windows',
@@ -28,7 +28,7 @@ module.exports = function (config) {
       'chrome': {
         base: 'WebDriver',
         config: webdriverConfig,
-        browserName: 'chrome',
+        browserName: 'Chrome',
         name: 'Chrome',
         platform: 'VISTA',
         platformName: 'windows',
@@ -60,7 +60,7 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['firefox','chrome'],
+    browsers: ['Firefox','Chrome'],
     singleRun: false,
     browserNoActivityTimeout: 60000
   });
