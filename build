@@ -8,7 +8,7 @@ set -e
 
 npm run lint
 
-npm run coverage -- --browser Chrome
+npm run coverage
 
 npm run e2e
 
