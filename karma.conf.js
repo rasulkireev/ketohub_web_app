@@ -1,6 +1,6 @@
 module.exports = function (config) {
   var webdriverConfig = {
-    hostname: 'localhost',
+    hostname: 'selenium',
     port: 4444,
     path: '/wd/hub'
   };
@@ -41,14 +41,13 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     customLaunchers: {
-      selenium_chrome: {
-        base: 'Selenium',
+      'firefox': {
+        base: 'WebDriver',
         config: webdriverConfig,
-        name: 'Karma Test',
-        browserName: 'chrome'
+        browserName: 'firefox',
       }
     },
-    browsers: ['selenium_chrome'],
+    browsers: ['firefox'],
     singleRun: false,
     browserNoActivityTimeout: 60000
   });
