@@ -1,6 +1,6 @@
 module.exports = function (config) {
   var webdriverConfig = {
-    hostname: 'selenium',
+    hostname: '127.0.0.1',
     port: 4444,
     path: '/wd/hub'
   };
