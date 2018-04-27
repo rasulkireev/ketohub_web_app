@@ -1,6 +1,6 @@
 module.exports = function (config) {
   config.set({
-    basePath: '/wd/hub',
+    basePath: '',
     frameworks: ['jasmine', '@angular/cli'],
     plugins: [
       require('karma-jasmine'),
@@ -32,8 +32,10 @@ module.exports = function (config) {
     reporters: config.angularCli && config.angularCli.codeCoverage
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
-    host: '127.0.0.1',
+    protocol: 'http:',
+    listenAddress: '127.0.0.1',
     port: 4444,
+    urlRoot: '/wd/hub',
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
