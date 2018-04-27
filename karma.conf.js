@@ -33,7 +33,8 @@ module.exports = function (config) {
               ? ['progress', 'coverage-istanbul']
               : ['progress', 'kjhtml'],
     protocol: 'http:',
-    listenAddress: '127.0.0.1',
+    hostname: 'selenium',
+    //listenAddress: '127.0.0.1',
     port: 4444,
     urlRoot: '/wd/hub',
     colors: true,
