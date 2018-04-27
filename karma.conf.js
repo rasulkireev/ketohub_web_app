@@ -1,6 +1,7 @@
 module.exports = function (config) {
   var webdriverConfig = {
-    seleniumAddress: 'http://127.0.0.1:4444/wd/hub'
+    hostname: 'selenium-hub',
+    port: 4444
   };
 
   config.set({
@@ -37,17 +38,21 @@ module.exports = function (config) {
               : ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
     autoWatch: true,
     customLaunchers: {
       'firefox': {
         base: 'WebDriver',
         config: webdriverConfig,
-        browserName: 'firefox',
-        user: 'seluser'
+        browserName: 'firefox'
+      },
+      'chrome': {
+        base: 'WebDriver',
+        config: webdriverConfig,
+        browserName: 'chrome'
       }
     },
-    browsers: ['firefox'],
+    browsers: ['firefox', 'chrome'],
     singleRun: false,
     browserNoActivityTimeout: 60000
   });
