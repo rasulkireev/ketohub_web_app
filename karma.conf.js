@@ -46,6 +46,7 @@ module.exports = function (config) {
         base: 'WebDriver',
         config: webdriverConfig,
         browserName: 'firefox',
+        user: 'seluser'
       }
     },
     browsers: ['firefox'],
