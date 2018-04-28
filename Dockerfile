@@ -1,12 +1,10 @@
-FROM docker.io/node:8-stretch
+FROM node:8-stretch
 
-# Enable support for Chromium
+# Enable support for Chrome
 ARG DEBIAN_FRONTEND=noninteractive
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - && \
-    echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | sudo tee /etc/apt/sources.list.d/google-chrome.list \
-    apt-get update \
-    && apt-get install -y google-chrome-stable
-ENV CHROME_BIN=chromium
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt-get update && \
+    apt install ./google-chrome-stable_current_amd64.deb -y
 
 # Install protractor and dependencies.
 RUN apt-get install -y openjdk-8-jdk libgconf-2-4 \
