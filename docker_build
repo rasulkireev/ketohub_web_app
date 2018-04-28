@@ -5,15 +5,10 @@
  # Echo commands to console.
  set -x
 
-IMAGE_VERSION=$(git rev-parse HEAD)
-IMAGE_NAME="ketohub:${IMAGE_VERSION}"
+IMAGE_NAME="mtlynch/protractor"
 CONTAINER_NAME="ketohub-container"
 
 docker version
-
-docker build \
-  --tag "$IMAGE_NAME" \
-  .
 
 docker run \
   --tty \
