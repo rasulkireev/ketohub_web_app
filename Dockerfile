@@ -11,7 +11,7 @@ RUN apt-get install -y openjdk-8-jdk libgconf-2-4 \
     && apt-cache search jdk \
     && export JAVA_HOME=/usr/lib/jvm/java-8-openjdk \
     && export PATH=$PATH:/usr/lib/jvm/java-8-openjdk/bin \
-    && npm install -g protractor@5.2.2 \
+    && npm install -g protractor@5.3.1 \
     && webdriver-manager update
 
 WORKDIR /app
