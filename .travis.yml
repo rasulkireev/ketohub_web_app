@@ -8,13 +8,8 @@ node_js:
 notifications:
   email: false
 script:
-  - IMAGE_VERSION=$(git rev-parse HEAD)
-  - IMAGE_NAME="ketohub:${IMAGE_VERSION}"
-  - CONTAINER_NAME="ketohub-container"
-  - docker build -t "$IMAGE_NAME" .
-  - docker run --tty --detach --volume "${PWD}:/app" --name "$CONTAINER_NAME" "$IMAGE_NAME"
-  - docker exec "$CONTAINER_NAME" npm install
-  - docker exec "$CONTAINER_NAME" bash ./build
+  - ./docker_build
+after_success:
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
   - sed -- 's@^SF:\/app@SF:'"${PWD}"'@g' ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
