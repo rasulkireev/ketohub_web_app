@@ -10,8 +10,11 @@ notifications:
 script:
   - ./docker_build
 after_success:
+  # Fix permissions on node_modules after Docker creates the folder.
+  - sudo chown "$(whoami)" node_modules
+  - npm install coveralls
   # Fix paths in lcov.info so they match Coveralls' expectation that they were generated on Travis.
-  - sed -- 's@^SF:\/app@SF:'"${PWD}"'@g' ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - docker exec ketohub-container cat /app/coverage/lcov.info | sed --expression='s@^SF:\/app@SF:'"${PWD}"'@g' | ./node_modules/coveralls/bin/coveralls.js
 before_deploy:
   # Install firebase-functions pre-requisites for deploying.
   - cd ./functions && npm install && cd ../
