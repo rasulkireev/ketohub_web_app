@@ -39,7 +39,6 @@
     "@angular/platform-server": "^5.2.3",
     "@types/jasmine": "2.8.2",
     "@types/node": "^8.9.5",
-    "chromium": "^1.0.2",
     "codelyzer": "^4.2.1",
     "cssbeautify-cli": "^0.5.3",
     "jasmine-core": "~2.8.0",
