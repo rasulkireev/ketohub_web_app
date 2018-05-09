@@ -14,11 +14,11 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor(private titleService: Title, private queryParamService: QueryParamService) {}
 
   ngOnInit(): void {
-    // https://angularfirebase.com/lessons/seo-angular-part-1-rendertron-meta-tags/
     this.subscription = this.queryParamService.queryParams$.subscribe(params => this.setTitle(params))
   }
 
   ngOnDestroy() {
+    // always unsubscribe from observables to avoid memory leaks
     this.subscription.unsubscribe();
   }
 
@@ -32,11 +32,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
 order of methods follows best practice
 
-constructor
-
-ngOnInit
-
-public method
-
-
+* constructor
+* lifecycle methods
+* public method
+* private methosd
 */

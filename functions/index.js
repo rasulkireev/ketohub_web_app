@@ -22,7 +22,8 @@ const AppServerModuleNgFactory = require('./dist-server/main.bundle').AppServerM
 const index = require('fs').readFileSync(path.resolve(__dirname, './dist/index.html'), 'utf8');
 let app = express();
 
-//handle the query route
+//handle the query route - 
+// I've not worked out why yet, but this route is not always recognised.
 app.get('/registerQuery', (req, res) => {
   const original = req.query.q;
   admin.database().ref('/queries').push({
