@@ -5,7 +5,9 @@
       Meal filters
     </button>
   </p>
-  <div id="categoryButtons" [ngbCollapse]="!expandCategoryButtons">
+  <!-- TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858 -->
+  <!-- [ngbCollapse]="!expandCategoryButtons" -->
+  <div id="categoryButtons">
     <div class="btn-group-lg"
         role="group" aria-label="Recipe categories">
       <button type="button"
@@ -23,10 +25,12 @@
     <p>Showing {{ recipes.length | number:0 }} keto recipes</p>
   </ng-template>
   <div class="form-group" class="my-3">
-    <input type="text" id="keywords" placeholder="Search by recipe title or ingredient" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="updateSearchParams($event)">
+    <!-- use a debounced input so we are not updating on every keystroke E.g. not hitting API / filtering etc too often -->
+    <app-input-debounce delay="500" placeholder="Search by recipe title or ingredient" (value)="updateSearchParams($event)"></app-input-debounce>
   </div>
-  <div *ngIf="loaded">
-    <ngb-pagination
+   <div *ngIf="loaded">
+     <!-- TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858 -->
+    <!--<ngb-pagination
       [boundaryLinks]="true"
       [directionLinks]="true"
       [collectionSize]="recipes.length"
@@ -35,7 +39,7 @@
       [maxSize]="maxPageButtons"
       [ellipses]="false"
       [rotate]="true">
-    </ngb-pagination>
+    </ngb-pagination> -->
     <div class="recipes">
       <app-recipe-card
         [recipe]="recipe"
@@ -44,7 +48,8 @@
       </app-recipe-card>
     </div>
     <div class="spacer"></div>
-    <ngb-pagination
+     <!-- TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858 -->
+    <!--<ngb-pagination
       [boundaryLinks]="true"
       [directionLinks]="true"
       [collectionSize]="recipes.length"
@@ -53,6 +58,6 @@
       [maxSize]="maxPageButtons"
       [ellipses]="false"
       [rotate]="true">
-    </ngb-pagination>
+    </ngb-pagination> -->
   </div>
 </div>

@@ -8,6 +8,7 @@ import { SearchPipe } from './../../_pipes/search/search.pipe';
 import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 import { recipesPerPage, maxPageButtons, recipeCategories } from '../../constants';
 import { RecipeDataService } from '../../_services/recipe-data.service';
+import { QueryParamService } from '../../_services/query-param.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -38,20 +39,11 @@ export class RecipeListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private activatedRoute: ActivatedRoute,
+    private queryParamService: QueryParamService,
     private recipeData: RecipeDataService,
     private arraySortPipe: ArraySortPipe,
     private searchPipe: SearchPipe,
     private parseSearchQuery: ParseSearchQueryPipe) {
-    this.recipeData.recipes.subscribe((entries) => {
-      this.loaded = true;
-      this.recipesRaw = [];
-      entries.forEach((entry) => {
-        const recipe = entry.payload.val();
-        recipe.key = entry.key;
-        this.recipesRaw.push(recipe);
-      });
-      this.filterRecipes();
-    });
   }
 
   ngOnInit() {
@@ -66,12 +58,25 @@ export class RecipeListComponent implements OnInit {
         this.filterRecipes();
       }
     });
+
+    this.recipeData.recipes.subscribe((entries) => {
+      this.loaded = true;
+      this.recipesRaw = [];
+      entries.forEach((entry) => {
+        const recipe = entry.payload.val();
+        recipe.key = entry.key;
+        this.recipesRaw.push(recipe);
+      });
+      this.filterRecipes();
+    });
   }
 
   updateSearchParams(rawKeywords: string) {
+    // review. could possible colacate in service
+    this.queryParamService.updateSearchParams(rawKeywords);
     this.searchParams = this.parseSearchQuery.transform(rawKeywords);
     this.filterRecipes();
-    this.http.get('/registerQuery?q=' + rawKeywords).subscribe(
+    this.http.get( '/registerQuery?q=' + rawKeywords).subscribe(
       () => {},
       (error) => {
         console.log(error);

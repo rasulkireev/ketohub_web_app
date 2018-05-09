@@ -1,5 +1,5 @@
 // Angular
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule , Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,7 +10,8 @@ import { environment } from '../environments/environment';
 // Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
@@ -20,6 +21,7 @@ import { NavComponent } from './_components/nav/nav.component';
 import { MailingListComponent } from './_components/mailing-list/mailing-list.component';
 import { RecipeListComponent } from './_components/recipe-list/recipe-list.component';
 import { RecipeCardComponent } from './_components/recipe-card/recipe-card.component';
+import { InputDebounceComponent } from './_components/debounced-input/debounced-input.component';
 
 // Pipes
 import { TimeSincePipe } from './_pipes/time-since/time-since.pipe';
@@ -31,6 +33,7 @@ import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
 import { RecipeDataService } from 'app/_services/recipe-data.service';
+import { QueryParamService } from 'app/_services/query-param.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,7 @@ import { RecipeDataService } from 'app/_services/recipe-data.service';
     MailingListComponent,
     RecipeListComponent,
     RecipeCardComponent,
+    InputDebounceComponent,
     TimeSincePipe,
     RootDomainPipe,
     SearchPipe,
@@ -51,6 +55,7 @@ import { RecipeDataService } from 'app/_services/recipe-data.service';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ketohub' }),
+    BrowserTransferStateModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -58,9 +63,10 @@ import { RecipeDataService } from 'app/_services/recipe-data.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
 
-    NgbModule.forRoot(),
+    // TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858
+    //NgbModule.forRoot(),
   ],
-  providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe, RecipeDataService],
+  providers: [Title, ArraySortPipe, SearchPipe, ParseSearchQueryPipe, RecipeDataService, QueryParamService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

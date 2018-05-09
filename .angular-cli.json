@@ -29,6 +29,7 @@
       }
     },
     {
+      "name":"ssr",
       "platform": "server",
       "root": "src",
       "outDir": "functions/dist-server",
@@ -37,7 +38,7 @@
         "favicon.ico"
       ],
       "index": "index.html",
-      "main": "main.ts",
+      "main": "main-server.ts",
       "test": "test.ts",
       "tsconfig": "tsconfig.server.json",
       "testTsconfig": "tsconfig.spec.json",
