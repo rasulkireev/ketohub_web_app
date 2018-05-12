@@ -32,7 +32,8 @@ import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
-import { RecipeDataService } from 'app/_services/recipe-data.service';
+//TEMP - dont use service right now
+//import { RecipeDataService } from 'app/_services/recipe-data.service';
 import { QueryParamService } from 'app/_services/query-param.service';
 
 @NgModule({
@@ -66,7 +67,7 @@ import { QueryParamService } from 'app/_services/query-param.service';
     // TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858
     //NgbModule.forRoot(),
   ],
-  providers: [Title, ArraySortPipe, SearchPipe, ParseSearchQueryPipe, RecipeDataService, QueryParamService],
+  providers: [Title, ArraySortPipe, SearchPipe, ParseSearchQueryPipe, QueryParamService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
