@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { RouterTestingModule } from '@angular/router/testing';
 import { environment } from '../../../environments/environment';
 
+import { InputDebounceComponent } from '../debounced-input/debounced-input.component';
 import { RecipeCardComponent } from '../recipe-card/recipe-card.component';
 import { RecipeListComponent } from './recipe-list.component';
 import { RangePipe } from '../../_pipes/range/range.pipe';
@@ -18,6 +19,7 @@ import { ArraySortPipe } from '../../_pipes/array-sort/array-sort.pipe';
 import { SearchPipe } from '../../_pipes/search/search.pipe';
 import { ParseSearchQueryPipe } from '../../_pipes/parse-search-query/parse-search-query.pipe';
 import { RecipeDataService } from '../../_services/recipe-data.service';
+import { QueryParamService } from '../../_services/query-param.service';
 
 @Injectable()
 export class MockRecipeDataService {
@@ -27,6 +29,8 @@ export class MockRecipeDataService {
   }
 }
 
+@Injectable()
+export class MockQueryParamService {}
 
 describe('RecipeListComponent', () => {
   let component: RecipeListComponent;
@@ -41,6 +45,7 @@ describe('RecipeListComponent', () => {
         RouterTestingModule,
       ],
       declarations: [
+        InputDebounceComponent,
         RecipeListComponent,
         RecipeCardComponent,
         RangePipe,
@@ -49,7 +54,10 @@ describe('RecipeListComponent', () => {
         TimeSincePipe,
         CapitalizePipe,
       ],
-      providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe, { provide: RecipeDataService, useClass: MockRecipeDataService }],
+      providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe,
+         { provide: RecipeDataService, useClass: MockRecipeDataService },
+         { provide: QueryParamService, useClass: MockQueryParamService }
+        ],
     })
     .compileComponents();
   }));
