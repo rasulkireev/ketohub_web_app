@@ -36,7 +36,7 @@ describe('RecipeListComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        //NgbModule.forRoot(),
+        // NgbModule.forRoot(),
         HttpClientTestingModule,
         RouterTestingModule,
       ],

@@ -14,7 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   public constructor(private titleService: Title, private queryParamService: QueryParamService) {}
 
   ngOnInit(): void {
-    this.subscription = this.queryParamService.queryParams$.subscribe(params => this.setTitle(params))
+    this.subscription = this.queryParamService.queryParams$.subscribe(params => this.setTitle(params));
   }
 
   ngOnDestroy() {

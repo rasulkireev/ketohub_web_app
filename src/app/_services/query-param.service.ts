@@ -8,14 +8,14 @@ import { Subscription } from 'rxjs/Subscription';
 @Injectable()
 export class QueryParamService {
 
-    // keep a record of the last value emitted, or return empty if nothing yet emitted
-    private _queryParam: BehaviorSubject<any> = new BehaviorSubject('');
+  // keep a record of the last value emitted, or return empty if nothing yet emitted
+  private queryParam: BehaviorSubject<any> = new BehaviorSubject('');
 
-    public readonly queryParams$: Observable<any> = this._queryParam.asObservable();
+  public readonly queryParams$: Observable<any> = this.queryParam.asObservable();
 
-    public updateSearchParams(searchParams) {
-        this._queryParam.next(searchParams);
-    }
+  public updateSearchParams(searchParams) {
+    this.queryParam.next(searchParams);
+  }
 }
 
 

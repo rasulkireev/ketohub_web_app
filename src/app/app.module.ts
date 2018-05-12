@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 // TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858
-//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 
 // Components
@@ -32,8 +32,8 @@ import { CapitalizePipe } from './_pipes/capitalize/capitalize.pipe';
 import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
-//TEMP - dont use service right now
-//import { RecipeDataService } from 'app/_services/recipe-data.service';
+// TEMP - dont use service right now
+// import { RecipeDataService } from 'app/_services/recipe-data.service';
 import { QueryParamService } from 'app/_services/query-param.service';
 
 @NgModule({
@@ -65,7 +65,7 @@ import { QueryParamService } from 'app/_services/query-param.service';
     AngularFireDatabaseModule,
 
     // TEMP DISABLE AS BREAKS SSR https://github.com/ng-bootstrap/ng-bootstrap/issues/858
-    //NgbModule.forRoot(),
+    // NgbModule.forRoot(),
   ],
   providers: [Title, ArraySortPipe, SearchPipe, ParseSearchQueryPipe, QueryParamService],
   bootstrap: [AppComponent],
