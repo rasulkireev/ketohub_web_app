@@ -4,7 +4,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "ng serve",
-    "build": "ng build --prod && ng build -prod -app ssr --output-hashing none && node build.js",
+    "build": "node clean.js && ng build --prod && ng build -prod -app ssr --output-hashing none && node build.js",
     "deploy": "ng build --prod && ng build -prod -app ssr --output-hashing none && node build.js && firebase deploy",
     "coverage": "ng test --environment=dev --no-watch --code-coverage --single-run=true",
     "lint": "ng lint && scssfmt --recursive './src/**/**/*.scss' --diff",

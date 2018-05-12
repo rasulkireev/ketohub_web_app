@@ -37,6 +37,20 @@ function copyFolderRecursiveSync( source, target ) {
     }
 }
 
+function removeDir(dir_path) {
+    if (fs.existsSync(dir_path)) {
+        fs.readdirSync(dir_path).forEach(function(entry) {
+            var entry_path = path.join(dir_path, entry);
+            if (fs.lstatSync(entry_path).isDirectory()) {
+                removeDir(entry_path);
+            } else {
+                fs.unlinkSync(entry_path);
+            }
+        });
+        fs.rmdirSync(dir_path);
+    }
+}
+
 function removeFile(target) {
     //remove file IF it exists
    const checkFileExists = s => new Promise(r=>fs.access(s, fs.F_OK, e => r(!e)))
@@ -45,4 +59,5 @@ function removeFile(target) {
 }
 
 exports.copyFolderRecursiveSync = copyFolderRecursiveSync;
+exports.removeDir = removeDir;
 exports.removeFile = removeFile;
