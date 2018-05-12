@@ -9,6 +9,9 @@ The key point for SSR of the title is to ensure that the path passed to `renderM
 
 ## Notes on implementation
 
+### Disable fetching of recipe data
+Fetching the recipe data was causing the ssr function to crash, preventing the server side rendered index from being returned. Most likely cause of issues is AngularFire2 version issue or lack of billing account on dev project.
+
 ### Disable the use of angular-universal-express-firebase
 I was not able to get this to work in my test project, and I prefer having more control of the server code - easier to debug.
 For this reason `server/index.ts` also not used.
