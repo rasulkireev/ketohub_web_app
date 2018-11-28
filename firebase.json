@@ -11,13 +11,9 @@
         "source": "/registerQuery",
         "function": "registerQuery"
       },
-      {
+      { 
         "source": "**",
         "destination": "/index.html"
-      },
-      {
-        "source": "**",
-        "function": "ssrapp"
       }
     ]
   }
