@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 import { environment } from '../../../environments/environment';
 
@@ -23,7 +23,7 @@ import { RecipeDataService } from '../../_services/recipe-data.service';
 export class MockRecipeDataService {
 
   public get recipes(): Observable<any[]> {
-    return Observable.of([]);
+    return of([]);
   }
 }
 
@@ -51,7 +51,7 @@ describe('RecipeListComponent', () => {
       ],
       providers: [ArraySortPipe, SearchPipe, ParseSearchQueryPipe, { provide: RecipeDataService, useClass: MockRecipeDataService }],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

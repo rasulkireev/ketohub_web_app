@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 
 import { RecipeDataService } from './recipe-data.service';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 const mockData = [
   {
@@ -20,7 +20,7 @@ const mockData = [
 ];
 const angularFireDatabaseStub = {
   list: () => ({
-    snapshotChanges: () => Observable.of(mockData),
+    snapshotChanges: () => of(mockData),
   }),
 };
 
