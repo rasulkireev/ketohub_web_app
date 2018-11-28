@@ -12,7 +12,8 @@
   },
   "files": [
     "test.ts",
-    "environments/environment.ts"
+    "environments/environment.ts",
+    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",

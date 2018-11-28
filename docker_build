@@ -19,4 +19,8 @@ docker run \
   "$IMAGE_NAME"
 
 docker exec "$CONTAINER_NAME" npm install
+
+# Workaround for weird behavior in node-sass.
+docker exec "$CONTAINER_NAME" npm rebuild node-sass
+
 docker exec "$CONTAINER_NAME" bash ./build
