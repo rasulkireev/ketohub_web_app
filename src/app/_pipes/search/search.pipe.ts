@@ -39,17 +39,18 @@ function recipeMatchesSearchParams(recipe: any, searchParams: SearchParams) {
   return true;
 }
 
-function searchTargetFromRecipe(recipe: any) : string {
+function searchTargetFromRecipe(recipe: any): string {
   // Concatenate all recipe words together, separating elements with single
   // pipe characters.
   let words = recipe.title;
   if (recipe.ingredients) {
-    words += '|' + recipe.ingredients.join('|');
+    words += '|';
+    words += recipe.ingredients.join('|');
   }
   return words.toLowerCase();
 }
 
-function searchTargetContainsAllKeywords(searchTarget: string, keywords: string[]) : boolean {
+function searchTargetContainsAllKeywords(searchTarget: string, keywords: string[]): boolean {
   for (const keyword of keywords) {
     if (searchTarget.indexOf(keyword) === -1) {
       return false;
@@ -58,7 +59,7 @@ function searchTargetContainsAllKeywords(searchTarget: string, keywords: string[
   return true;
 }
 
-function searchTargetContainsAnyExcludedTerm(searchTarget: string, excludedTerms: string[]) : boolean {
+function searchTargetContainsAnyExcludedTerm(searchTarget: string, excludedTerms: string[]): boolean {
   for (const excludedTerm of excludedTerms) {
     if (searchTarget.indexOf(excludedTerm) !== -1) {
       return true;

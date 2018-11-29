@@ -27,7 +27,6 @@ export class MockRecipeDataService {
   }
 }
 
-
 describe('RecipeListComponent', () => {
   let component: RecipeListComponent;
   let fixture: ComponentFixture<RecipeListComponent>;
