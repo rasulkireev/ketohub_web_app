@@ -1,17 +1,13 @@
 <div class="content">
   <p>
     <button type="button" class="btn btn-outline-primary" (click)="expandCategoryButtons = !expandCategoryButtons"
-            [attr.aria-expanded]="!expandCategoryButtons" aria-controls="categoryButtons">
+      [attr.aria-expanded]="!expandCategoryButtons" aria-controls="categoryButtons">
       Meal filters
     </button>
   </p>
   <div id="categoryButtons" [ngbCollapse]="!expandCategoryButtons">
-    <div class="btn-group-lg"
-        role="group" aria-label="Recipe categories">
-      <button type="button"
-              *ngFor="let item of categories"
-              (click)="selectCategory(item)"
-              [ngClass]="['btn recipe-categories', getCategoryClass(item)]">
+    <div class="btn-group-lg" role="group" aria-label="Recipe categories">
+      <button type="button" *ngFor="let item of categories" (click)="selectCategory(item)" [ngClass]="['btn recipe-categories', getCategoryClass(item)]">
         {{ item }}s
       </button>
     </div>
@@ -23,36 +19,20 @@
     <p>Showing {{ recipes.length | number:0 }} keto recipes</p>
   </ng-template>
   <div class="form-group" class="my-3">
-    <input type="text" id="keywords" placeholder="Search by recipe title or ingredient" class="form-control" [(ngModel)]="keywordsRaw" (ngModelChange)="updateSearchParams($event)">
+    <input type="text" id="keywords" placeholder="Search by recipe title or ingredient" class="form-control"
+      [(ngModel)]="keywordsRaw" (ngModelChange)="updateSearchParams($event)">
   </div>
   <div *ngIf="loaded">
-    <ngb-pagination
-      [boundaryLinks]="true"
-      [directionLinks]="true"
-      [collectionSize]="recipes.length"
-      [(page)]="currentPage"
-      [pageSize]="pageSize"
-      [maxSize]="maxPageButtons"
-      [ellipses]="false"
-      [rotate]="true">
+    <ngb-pagination [boundaryLinks]="true" [directionLinks]="true" [collectionSize]="recipes.length" [(page)]="currentPage"
+      [pageSize]="pageSize" [maxSize]="maxPageButtons" [ellipses]="false" [rotate]="true">
     </ngb-pagination>
     <div class="recipes">
-      <app-recipe-card
-        [recipe]="recipe"
-        [searchKeywords]="getKeywords()"
-        *ngFor="let recipe of recipes | range:currentPage:pageSize">
+      <app-recipe-card [recipe]="recipe" [searchKeywords]="getKeywords()" *ngFor="let recipe of recipes | range:currentPage:pageSize">
       </app-recipe-card>
     </div>
     <div class="spacer"></div>
-    <ngb-pagination
-      [boundaryLinks]="true"
-      [directionLinks]="true"
-      [collectionSize]="recipes.length"
-      [(page)]="currentPage"
-      [pageSize]="pageSize"
-      [maxSize]="maxPageButtons"
-      [ellipses]="false"
-      [rotate]="true">
+    <ngb-pagination [boundaryLinks]="true" [directionLinks]="true" [collectionSize]="recipes.length" [(page)]="currentPage"
+      [pageSize]="pageSize" [maxSize]="maxPageButtons" [ellipses]="false" [rotate]="true">
     </ngb-pagination>
   </div>
 </div>
