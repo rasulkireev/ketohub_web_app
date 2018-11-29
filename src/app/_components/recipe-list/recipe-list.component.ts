@@ -71,12 +71,12 @@ export class RecipeListComponent implements OnInit {
   updateSearchParams(rawKeywords: string) {
     this.searchParams = this.parseSearchQuery.transform(rawKeywords);
     this.filterRecipes();
-    this.http.get('/registerQuery?q=' + rawKeywords).subscribe(
-      () => {},
+    this.http.get(`/registerQuery?q=${rawKeywords}`).subscribe(
+      () => { },
       (error) => {
         console.log(error);
       },
-      () => {},
+      () => { },
     );
   }
 

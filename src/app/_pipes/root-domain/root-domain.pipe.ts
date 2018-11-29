@@ -33,8 +33,9 @@ export class RootDomainPipe implements PipeTransform {
     const domainsPartsLength = domainParts.length;
 
     if (domainsPartsLength > 2) {
-      domain = domainParts[domainsPartsLength - 2] + '.' +
-        domainParts[domainsPartsLength - 1];
+      domain = domainParts[domainsPartsLength - 2];
+      domain += '.';
+      domain += domainParts[domainsPartsLength - 1];
     }
     return domain;
   }

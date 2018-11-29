@@ -50,7 +50,7 @@ export class TimeSincePipe implements PipeTransform {
       units = units.substring(0, units.length - 1);
     }
 
-    return interval + ' ' + units;
+    return `${interval} ${units}`;
   }
 
 }

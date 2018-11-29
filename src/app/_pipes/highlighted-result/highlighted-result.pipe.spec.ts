@@ -28,7 +28,7 @@ describe('HighlightedResultPipe', () => {
     expect(pipe.transform('Loaded Keto Cauliflower Bowl', ['loaded', 'k']))
       .toBe('<mark>Loaded</mark> <mark>K</mark>eto Cauliflower Bowl');
   });
- 
+
   it('should match when keywords overlap in their match', () => {
     expect(pipe.transform('jalapeno salad', ['jala', 'lapeno'])).toBe('<mark>jalapeno</mark> salad');
   });
