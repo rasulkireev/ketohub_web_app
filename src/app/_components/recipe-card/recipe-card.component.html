@@ -1,15 +1,10 @@
-<div
-  [ngClass]="['card', getCardClass()]">
+<div [ngClass]="['card', getCardClass()]">
   <a [href]="recipe.url" target="_blank" rel="noopener">
-    <img
-      [src]="getDefaultThumbnailUrl()"
-      [srcset]="getThumbnailUrls()"
-      sizes="(max-width: 377px) 340px,
+    <img [src]="getDefaultThumbnailUrl()" [srcset]="getThumbnailUrls()" sizes="(max-width: 377px) 340px,
             (max-width: 622px) 560px,
             (max-width: 768px) 680px,
             340px"
-      [attr.alt]="recipe.title"
-      class="img-responsive card-img-top img-fluid">
+      [attr.alt]="recipe.title" class="img-responsive card-img-top img-fluid">
   </a>
   <div class="card-block">
     <h3 class="card-title">
@@ -17,20 +12,18 @@
         <div innerHTML="{{ recipe.title | highlightedResult : searchKeywords }}"></div>
       </a>
     </h3>
-    <div
-      *ngIf="matchingIngredients(recipe.ingredients).length > 0"
-      class="card-text ingredients">
+    <div *ngIf="matchingIngredients(recipe.ingredients).length > 0" class="card-text ingredients">
       <b>Ingredients</b>
       <ul>
-        <li
-          *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
+        <li *ngFor="let ingredient of matchingIngredients(recipe.ingredients)">
           <div innerHTML="{{ ingredient | capitalize | highlightedResult : searchKeywords}}"></div>
         </li>
       </ul>
     </div>
     <footer>
       <small class="text-muted">
-        Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{ recipe.url | rootDomain }}</a>
+        Published {{ recipe.publishedTime | timeSince }} ago on <a [href]="recipe.url" target="_blank" rel="noopener">{{
+          recipe.url | rootDomain }}</a>
       </small>
     </footer>
   </div>
