@@ -50,7 +50,7 @@ import { RecipeDataService } from 'app/_services/recipe-data.service';
     ParseSearchQueryPipe,
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'ketohub' }),
+    BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
