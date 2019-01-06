@@ -48,7 +48,6 @@ function extractQuotedStrings(query: string): string[] {
       if (stringStart === -1) {
         stringStart = i + 1;
       } else {
-        const subs = query.substr(stringStart, i - 1);
         quotedStrings.push(query.substr(stringStart, i - stringStart));
       }
     }
