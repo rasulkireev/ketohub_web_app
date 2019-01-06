@@ -4,8 +4,7 @@ describe('CapitalizePipe', () => {
 
   const pipe = new CapitalizePipe();
 
-  it('create an instance', () => {
-
+  it('should create an instance', () => {
     expect(pipe).toBeTruthy();
   });
 
