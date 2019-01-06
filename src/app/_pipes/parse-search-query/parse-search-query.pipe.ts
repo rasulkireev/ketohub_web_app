@@ -41,9 +41,9 @@ function tokenizeQuery(query: string) {
 }
 
 function extractQuotedStrings(query: string): string[] {
-  const quotedStrings : string[] = [];
+  const quotedStrings: string[] = [];
   let stringStart: number = -1;
-  for (let i  = 0; i < query.length; i += 1) {
+  for (let i = 0; i < query.length; i += 1) {
     if (query[i] === '"') {
       if (stringStart === -1) {
         stringStart = i + 1;
@@ -63,7 +63,7 @@ function removeDoubleQuotes(query: string): string {
   return query.replace('"', '');
 }
 
-function extractTokens(query: string) : string[] {
+function extractTokens(query: string): string[] {
   return query.toLowerCase().split(/[\s,]/).filter(x => x !== '');
 }
 
