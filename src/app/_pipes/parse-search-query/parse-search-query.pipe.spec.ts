@@ -52,6 +52,10 @@ describe('ParseSearchQueryPipe', () => {
     expect(pipe.transform('"flourless chocolate cake"')).toEqual(new SearchParams(['flourless chocolate cake'], []));
   });
 
+  it('should accept mixed quoted and unquoted terms', () => {
+    expect(pipe.transform('coconut "fat bomb"')).toEqual(new SearchParams(['fat bomb', 'coconut'], []));
+  });
+
   it('should ignore unmatched double quote', () => {
     expect(pipe.transform('"sour cream')).toEqual(new SearchParams(['sour', 'cream'], []));
   });
