@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { MailingListComponent } from '../mailing-list/mailing-list.component';
+import { IsItKetoSearchComponent } from '../is-it-keto-search/is-it-keto-search.component';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -9,9 +9,9 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [FooterComponent, MailingListComponent],
+      declarations: [FooterComponent, IsItKetoSearchComponent],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
