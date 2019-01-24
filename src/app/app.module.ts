@@ -17,7 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './_components/footer/footer.component';
 import { NavComponent } from './_components/nav/nav.component';
-import { MailingListComponent } from './_components/mailing-list/mailing-list.component';
 import { RecipeListComponent } from './_components/recipe-list/recipe-list.component';
 import { RecipeCardComponent } from './_components/recipe-card/recipe-card.component';
 
@@ -31,12 +30,12 @@ import { ArraySortPipe } from './_pipes/array-sort/array-sort.pipe';
 import { HighlightedResultPipe } from './_pipes/highlighted-result/highlighted-result.pipe';
 import { ParseSearchQueryPipe } from './_pipes/parse-search-query/parse-search-query.pipe';
 import { RecipeDataService } from 'app/_services/recipe-data.service';
+import { IsItKetoSearchComponent } from './_components/is-it-keto-search/is-it-keto-search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    MailingListComponent,
     RecipeListComponent,
     RecipeCardComponent,
     TimeSincePipe,
@@ -48,6 +47,7 @@ import { RecipeDataService } from 'app/_services/recipe-data.service';
     HighlightedResultPipe,
     FooterComponent,
     ParseSearchQueryPipe,
+    IsItKetoSearchComponent,
   ],
   imports: [
     BrowserModule,

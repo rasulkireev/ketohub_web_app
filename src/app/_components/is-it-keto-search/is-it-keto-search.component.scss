@@ -1,0 +1,63 @@
+@import '~styles/breakpoints';
+
+p {
+  font-size: 1.2rem;
+}
+
+.isitketo-footer {
+  @include respond-to('small') {
+    width: 100%;
+  }
+}
+
+.flex-grid {
+  display: flex;
+  @include respond-to('small') {
+    display: block;
+  }
+}
+
+.col {
+  flex: 1;
+  padding: 0px;
+}
+
+img.logo {
+  width: 350px;
+  margin-right: 50px;
+  @include respond-to('small') {
+    margin-right: 0px;
+    width: 100%;
+  }
+}
+
+p.explanation {
+  @include respond-to('small') {
+    margin: 50px 0px;
+  }
+}
+
+input#query {
+  min-width: 300px;
+  @include respond-to('small') {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  height: 40px;
+  padding: 7px;
+}
+
+input.button {
+  text-transform: uppercase;
+  margin-left: 10px;
+  padding: 5px 15px;
+  height: 40px;
+
+  @include respond-to('small') {
+    font-size: 16pt;
+    margin-top: 5px;
+    margin-left: 0px;
+    height: 70px;
+    width: 100%;
+  }
+}

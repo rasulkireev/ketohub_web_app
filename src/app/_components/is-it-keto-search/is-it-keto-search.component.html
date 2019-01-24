@@ -1,0 +1,23 @@
+<div class="flex-grid isitketo-footer">
+  <div class="col">
+    <a href="https://isitketo.org">
+      <img src="assets/img/isitketo-logo.png" alt="Is It Keto logo" class="logo" />
+    </a>
+  </div>
+  <div class="col">
+    <p class="explanation">
+      Wondering if a food is keto-friendly?<br />
+      Check instantly on our sister site, <a href="https://isitketo.org" rel="external">Is It Keto</a>.
+    </p>
+    <form onsubmit="location.href='https://isitketo.org/' + document.getElementById('query').value; return false;">
+      <div class="flex-grid">
+        <div class="col">
+          <input type="text" id="query" placeholder="&quot;dark chocolate&quot; or &quot;pure via stevia&quot;" />
+        </div>
+        <div class="col">
+          <input type="submit" class="button" value="Is It Keto?" />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
