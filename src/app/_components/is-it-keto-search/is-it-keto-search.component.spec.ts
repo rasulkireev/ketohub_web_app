@@ -8,9 +8,9 @@ describe('IsItKetoSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IsItKetoSearchComponent ]
+      declarations: [IsItKetoSearchComponent],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
